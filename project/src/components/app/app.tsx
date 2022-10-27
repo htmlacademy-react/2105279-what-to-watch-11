@@ -1,5 +1,6 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+import Main from '../../pages/main/main';
+
+export default function App(): JSX.Element {
+  return <Main errorsCount={1} />;
 }
 
-export default App;
