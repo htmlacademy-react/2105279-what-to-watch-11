@@ -1,6 +1,11 @@
 import Main from '../../pages/main/main';
 
-export default function App(): JSX.Element {
-  return <Main errorsCount={1} />;
-}
+type MainProps = {
+  filmName: string;
+  genre: string;
+  data: number;
+};
 
+export default function App(props: MainProps): JSX.Element {
+  return <Main filmName={props.filmName} genre={props.genre} data={props.data} />;
+}

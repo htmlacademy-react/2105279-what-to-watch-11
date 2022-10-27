@@ -1,11 +1,12 @@
 import FilmCard from '../../components/film-card/film-card';
 
-
 type MainProps = {
-  errorsCount: number;
-}
+  filmName: string;
+  genre: string;
+  data: number;
+};
 
-export default function Main({ errorsCount }: MainProps): JSX.Element {
+export default function Main(props: MainProps): JSX.Element {
   return (
     <div>
       <section className="film-card">
@@ -43,10 +44,10 @@ export default function Main({ errorsCount }: MainProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{props.filmName}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{props.genre}</span>
+                <span className="film-card__year">{props.data}</span>
               </p>
 
               <div className="film-card__buttons">
