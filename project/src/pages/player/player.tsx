@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 
 export default function Player(): JSX.Element {
   return (
@@ -11,7 +11,7 @@ export default function Player(): JSX.Element {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" /* style="left: 30%;" */>Toggler</div>
+            <div className="player__toggler" style={{ left: '30%' }}>Toggler</div>
           </div>
           <div className="player__time-value">1:30:29</div>
         </div>
@@ -19,7 +19,7 @@ export default function Player(): JSX.Element {
         <div className="player__controls-row">
           <button type="button" className="player__play">
             <svg viewBox="0 0 19 19" width="19" height="19">
-              {/* <use xlink:href="#play-s"></use> */}
+              <use xlinkHref="#play-s"></use>
             </svg>
             <span>Play</span>
           </button>
@@ -27,12 +27,12 @@ export default function Player(): JSX.Element {
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
-              {/* <use xlink:href="#full-screen"></use> */}
+              <use xlinkHref="#full-screen"></use>
             </svg>
             <span>Full screen</span>
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

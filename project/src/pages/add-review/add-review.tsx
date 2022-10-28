@@ -25,7 +25,7 @@ export default function AddReview(): JSX.Element {
                 <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <a href="##" className="breadcrumbs__link">Add review</a>
               </li>
             </ul>
           </nav>
@@ -37,7 +37,7 @@ export default function AddReview(): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <a href="##" className="user-block__link">Sign out</a>
             </li>
           </ul>
         </header>

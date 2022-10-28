@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+// import React from 'react';
 
 export default function MyList(): JSX.Element {
   return (
@@ -20,7 +21,7 @@ export default function MyList(): JSX.Element {
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <a href="#" className="user-block__link">Sign out</a>
           </li>
         </ul>
       </header>
