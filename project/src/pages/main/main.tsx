@@ -33,7 +33,7 @@ export default function Main(props: MainProps): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a href="##" className="user-block__link">Sign out</a>
+              <a href="#" className="user-block__link">Sign out</a>
             </li>
           </ul>
         </header>
