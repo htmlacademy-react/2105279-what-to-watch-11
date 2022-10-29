@@ -1,9 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function MyList(): JSX.Element {
   return (
     <div className="user-page">
+      <Helmet>
+        <title>Мой список</title>
+      </Helmet>
       <header className="page-header user-page__head">
         <div className="logo">
           <a href="main.html" className="logo__link">

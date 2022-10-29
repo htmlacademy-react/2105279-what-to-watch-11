@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import FilmCard from '../../components/film-card/film-card';
+import { Helmet } from 'react-helmet-async';
 
 type MainProps = {
   filmName: string;
@@ -10,6 +11,9 @@ type MainProps = {
 export default function Main(props: MainProps): JSX.Element {
   return (
     <div>
+      <Helmet>
+        <title>Главная страница</title>
+      </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />

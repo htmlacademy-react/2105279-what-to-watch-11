@@ -1,9 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function Film(): JSX.Element {
   return (
     <React.StrictMode>
+      <Helmet>
+        <title>Подробнее о фильме</title>
+      </Helmet>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
