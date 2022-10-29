@@ -1,8 +1,12 @@
 // import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function Player(): JSX.Element {
   return (
     <div className="player">
+      <Helmet>
+        <title>Проигрыватель</title>
+      </Helmet>
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
