@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { FilmData } from '../../mocks/films';
 
 // Страницы
 import Main from '../../pages/main/main';
@@ -18,9 +19,7 @@ import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 
 type MainProps = {
-  filmName: string;
-  genre: string;
-  data: number;
+  films: FilmData[];
 };
 
 export default function App(props: MainProps): JSX.Element {
@@ -30,7 +29,7 @@ export default function App(props: MainProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<Main filmName={props.filmName} genre={props.genre} data={props.data} />}
+            element={<Main films={props.films} />}
           />
           <Route
             path={AppRoute.SignIn}

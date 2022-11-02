@@ -1,14 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import FilmCard from '../../components/film-card/film-card';
 import { Helmet } from 'react-helmet-async';
+import { FilmData } from '../../mocks/films';
 
 type MainProps = {
-  filmName: string;
-  genre: string;
-  data: number;
+  films: FilmData[];
 };
 
 export default function Main(props: MainProps): JSX.Element {
+  const filmCards = props.films
+    .map((film: FilmData) => (
+      < FilmCard
+        id={film.id}
+        key={film.id}
+        name={film.name}
+        previewImage={film.previewImage}
+      />
+    ));
+
   return (
     <div>
       <Helmet>
@@ -49,10 +58,10 @@ export default function Main(props: MainProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{props.filmName}</h2>
+              <h2 className="film-card__title">{props.films[0].name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{props.genre}</span>
-                <span className="film-card__year">{props.data}</span>
+                <span className="film-card__genre">{props.films[0].genre}</span>
+                <span className="film-card__year">{props.films[0].released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -114,26 +123,7 @@ export default function Main(props: MainProps): JSX.Element {
 
           <div className="catalog__films-list">
 
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
+            {filmCards}
 
           </div>
 

@@ -1,4 +1,4 @@
-export type Film = {
+export type FilmData = {
   id: number;
   name: string;
   posterImage: string;
@@ -18,7 +18,7 @@ export type Film = {
   isFavorite: boolean;
 }
 
-export const films: Film[] = [
+export const films: FilmData[] = [
   {
     'id': 1,
     'name': 'The Grand Budapest Hotel',

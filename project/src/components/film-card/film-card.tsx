@@ -1,4 +1,8 @@
-export default function FilmCard(): JSX.Element {
+import { FilmData } from '../../mocks/films';
+
+type previewFilm = Pick<FilmData, 'id' | 'name' | 'previewImage'>;
+
+export default function FilmCard(props: previewFilm): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
