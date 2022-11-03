@@ -1,3 +1,7 @@
+
+// Библиотеки
+import React from 'react';
+
 // Типы
 import { FilmData, MainProps } from '../../types/film';
 
@@ -6,6 +10,9 @@ import FilmCard from '../../components/film-card/film-card';
 
 
 export default function CardList(props: MainProps): JSX.Element {
+
+  const setId = React.useState(0)[1];
+
   return (
     <div className="catalog__films-list">
 
@@ -16,6 +23,7 @@ export default function CardList(props: MainProps): JSX.Element {
               key={film.id}
               name={film.name}
               previewImage={film.previewImage}
+              onCardMouseEnter={() => setId(film.id)}
             />
           ))
       }
