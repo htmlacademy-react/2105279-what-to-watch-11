@@ -36,8 +36,8 @@ export default function App(props: MainProps): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <MyList />
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <MyList films={props.films} />
               </PrivateRoute>
             }
           />
