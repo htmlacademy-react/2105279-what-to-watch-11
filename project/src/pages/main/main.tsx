@@ -1,22 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import FilmCard from '../../components/film-card/film-card';
-import { Helmet } from 'react-helmet-async';
-import { FilmData } from '../../mocks/films';
 
-type MainProps = {
-  films: FilmData[];
-};
+// Библиотеки
+import { Helmet } from 'react-helmet-async';
+
+// Типы
+import { MainProps } from '../../types/film';
+
+// Компоненты
+import CardList from '../../components/card-list/card-list';
+
 
 export default function Main(props: MainProps): JSX.Element {
-  const filmCards = props.films
-    .map((film: FilmData) => (
-      < FilmCard
-        key={film.id}
-        name={film.name}
-        previewImage={film.previewImage}
-      />
-    ));
-
   return (
     <div>
       <Helmet>
@@ -120,11 +114,7 @@ export default function Main(props: MainProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-
-            {filmCards}
-
-          </div>
+          <CardList films={props.films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

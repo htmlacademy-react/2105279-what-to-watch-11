@@ -2,9 +2,11 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
+// Типы
+import { MainProps } from '../../types/film';
+
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { FilmData } from '../../mocks/films';
 
 // Страницы
 import Main from '../../pages/main/main';
@@ -17,10 +19,6 @@ import NotFound from '../../pages/not-found/not-found';
 
 // Компоненты
 import PrivateRoute from '../private-route/private-route';
-
-type MainProps = {
-  films: FilmData[];
-};
 
 export default function App(props: MainProps): JSX.Element {
   return (

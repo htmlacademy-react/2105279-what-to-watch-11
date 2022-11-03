@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
+// Библиотеки
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+
 
 export default function Film(): JSX.Element {
   return (

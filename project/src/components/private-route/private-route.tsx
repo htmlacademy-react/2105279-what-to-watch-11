@@ -1,5 +1,9 @@
+// Библиотеки
 import { Navigate } from 'react-router-dom';
+
+// Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
+
 
 type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;

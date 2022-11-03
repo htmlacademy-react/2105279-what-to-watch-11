@@ -1,4 +1,5 @@
-import { FilmData } from '../../mocks/films';
+// Типы
+import { FilmData } from '../../types/film';
 
 type previewFilm = Pick<FilmData, 'name' | 'previewImage'>;
 

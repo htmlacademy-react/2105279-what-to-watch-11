@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-// import React from 'react';
+
+// Библиотеки
 import { Helmet } from 'react-helmet-async';
+
 
 export default function MyList(): JSX.Element {
   return (

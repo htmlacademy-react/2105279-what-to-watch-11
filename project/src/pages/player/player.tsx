@@ -1,5 +1,6 @@
-// import React from 'react';
+// Библиотеки
 import { Helmet } from 'react-helmet-async';
+
 
 export default function Player(): JSX.Element {
   return (
