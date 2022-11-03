@@ -11,7 +11,6 @@ export default function Main(props: MainProps): JSX.Element {
   const filmCards = props.films
     .map((film: FilmData) => (
       < FilmCard
-        id={film.id}
         key={film.id}
         name={film.name}
         previewImage={film.previewImage}
