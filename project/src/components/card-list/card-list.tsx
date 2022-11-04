@@ -1,4 +1,3 @@
-
 // Библиотеки
 import React from 'react';
 
@@ -21,6 +20,7 @@ export default function CardList(props: MainProps): JSX.Element {
           .map((film: FilmData) => (
             < FilmCard
               key={film.id}
+              id={film.id}
               name={film.name}
               previewImage={film.previewImage}
               onCardMouseEnter={() => setId(film.id)}

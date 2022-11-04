@@ -1,6 +1,6 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -27,20 +27,20 @@ export default function AddReview(props: MainProps): JSX.Element {
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link to="main.html" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{film?.name}</a>
+                <Link to="film-page.html" className="breadcrumbs__link">{film?.name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <a href="##" className="breadcrumbs__link">Add review</a>
+                <Link to="#" className="breadcrumbs__link">Add review</Link>
               </li>
             </ul>
           </nav>
@@ -52,7 +52,7 @@ export default function AddReview(props: MainProps): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a href="##" className="user-block__link">Sign out</a>
+              <Link to="#" className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>

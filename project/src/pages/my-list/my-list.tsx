@@ -2,6 +2,7 @@
 
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -18,11 +19,11 @@ export default function MyList(props: MainProps): JSX.Element {
       </Helmet>
       <header className="page-header user-page__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <Link to="main.html" className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
@@ -33,7 +34,7 @@ export default function MyList(props: MainProps): JSX.Element {
             </div>
           </li>
           <li className="user-block__item">
-            <a href="#" className="user-block__link">Sign out</a>
+            <Link to="#" className="user-block__link">Sign out</Link>
           </li>
         </ul>
       </header>
@@ -47,11 +48,11 @@ export default function MyList(props: MainProps): JSX.Element {
 
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <Link to="main.html" className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">

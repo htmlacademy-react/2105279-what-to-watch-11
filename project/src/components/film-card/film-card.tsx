@@ -1,7 +1,11 @@
+// Библиотеки
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 // Типы
 import { FilmData } from '../../types/film';
 
-type previewFilm = Pick<FilmData, 'name' | 'previewImage'> & { onCardMouseEnter: () => void };
+type previewFilm = Pick<FilmData, 'id' | 'name' | 'previewImage'> & { onCardMouseEnter: () => void };
 
 export default function FilmCard(props: previewFilm): JSX.Element {
   return (
@@ -13,7 +17,7 @@ export default function FilmCard(props: previewFilm): JSX.Element {
         <img src={props.previewImage} alt={props.name} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{props.name}</a>
+        <Link to={`/films/${props.id}`} className="small-film-card__link">{props.name}</Link>
       </h3>
     </article>
   );

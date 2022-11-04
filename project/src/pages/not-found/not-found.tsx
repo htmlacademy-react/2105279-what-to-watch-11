@@ -1,5 +1,6 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 
 export default function NotFound(): JSX.Element {
@@ -9,7 +10,7 @@ export default function NotFound(): JSX.Element {
         <title>Not Found</title>
       </Helmet>
       <h1>404 Not Found</h1>
-      <a href="/">Вернуться на главную</a>
+      <Link to="/">Вернуться на главную</Link>
     </div>
   );
 }
