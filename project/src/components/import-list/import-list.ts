@@ -6,6 +6,7 @@
 // Библиотеки
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -34,3 +35,4 @@ import App from '../../components/app/app';
 import PrivateRoute from '../private-route/private-route';
 import FilmCard from '../../components/film-card/film-card';
 import CardList from '../../components/card-list/card-list';
+import FormReview from '../../components/form-review/form-review';
