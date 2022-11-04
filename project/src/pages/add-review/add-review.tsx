@@ -1,8 +1,18 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
+import { useParams } from 'react-router-dom';
+
+// Типы
+import { MainProps } from '../../types/film';
 
 
-export default function AddReview(): JSX.Element {
+export default function AddReview(props: MainProps): JSX.Element {
+  const { id } = useParams();
+  const filmId = Number(id);
+  const film = props.films.find((value) => (value.id === filmId));
+  if (!film) {
+    window.location.pathname = 'not found';
+  }
   return (
     <section className="film-card film-card--full">
       <Helmet>
@@ -27,7 +37,7 @@ export default function AddReview(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href="film-page.html" className="breadcrumbs__link">{film?.name}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a href="##" className="breadcrumbs__link">Add review</a>
@@ -48,7 +58,7 @@ export default function AddReview(): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={film?.posterImage} alt={film?.name} width="218" height="327" />
         </div>
       </div>
 

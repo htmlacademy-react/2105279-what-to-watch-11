@@ -47,11 +47,11 @@ export default function App(props: MainProps): JSX.Element {
           />
           <Route
             path={AppRoute.AddReview}
-            element={<AddReview />}
+            element={<AddReview films={props.films} />}
           />
           <Route
             path={AppRoute.Player}
-            element={<Player />}
+            element={<Player films={props.films} />}
           />
           <Route
             path="*"

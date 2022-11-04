@@ -24,7 +24,7 @@ export const films: FilmData[] = [
   },
   {
     'id': 2,
-    'name': 'The Grand Budapest Hotel',
+    'name': 'Bohemian rhapsody',
     'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
     'previewImage': 'img/bohemian-rhapsody.jpg',
     'backgroundImage': 'img/bg-the-grand-budapest-hotel.jpg',
@@ -45,7 +45,7 @@ export const films: FilmData[] = [
   },
   {
     'id': 3,
-    'name': 'The Grand Budapest Hotel',
+    'name': 'Dardjeeling Limited',
     'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
     'previewImage': 'img/dardjeeling-limited.jpg',
     'backgroundImage': 'img/bg-the-grand-budapest-hotel.jpg',
@@ -66,7 +66,7 @@ export const films: FilmData[] = [
   },
   {
     'id': 4,
-    'name': 'The Grand Budapest Hotel',
+    'name': 'Johnny english',
     'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
     'previewImage': 'img/johnny-english.jpg',
     'backgroundImage': 'img/bg-the-grand-budapest-hotel.jpg',
@@ -87,7 +87,7 @@ export const films: FilmData[] = [
   },
   {
     'id': 5,
-    'name': 'The Grand Budapest Hotel',
+    'name': 'Macbeth',
     'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
     'previewImage': 'img/macbeth.jpg',
     'backgroundImage': 'img/bg-the-grand-budapest-hotel.jpg',
@@ -108,7 +108,7 @@ export const films: FilmData[] = [
   },
   {
     'id': 6,
-    'name': 'The Grand Budapest Hotel',
+    'name': 'Midnight special',
     'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
     'previewImage': 'img/midnight-special.jpg',
     'backgroundImage': 'img/bg-the-grand-budapest-hotel.jpg',
@@ -129,7 +129,7 @@ export const films: FilmData[] = [
   },
   {
     'id': 7,
-    'name': 'The Grand Budapest Hotel',
+    'name': 'Mindhunter',
     'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
     'previewImage': 'img/mindhunter.jpg',
     'backgroundImage': 'img/bg-the-grand-budapest-hotel.jpg',
@@ -150,7 +150,7 @@ export const films: FilmData[] = [
   },
   {
     'id': 8,
-    'name': 'The Grand Budapest Hotel',
+    'name': 'Moonrise kingdom',
     'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
     'previewImage': 'img/moonrise-kingdom.jpg',
     'backgroundImage': 'img/bg-the-grand-budapest-hotel.jpg',
