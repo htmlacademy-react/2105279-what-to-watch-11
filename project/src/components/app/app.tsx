@@ -2,6 +2,9 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
+// Типы
+import { MainProps } from '../../types/film';
+
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
 
@@ -17,12 +20,6 @@ import NotFound from '../../pages/not-found/not-found';
 // Компоненты
 import PrivateRoute from '../private-route/private-route';
 
-type MainProps = {
-  filmName: string;
-  genre: string;
-  data: number;
-};
-
 export default function App(props: MainProps): JSX.Element {
   return (
     <HelmetProvider>
@@ -30,7 +27,7 @@ export default function App(props: MainProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<Main filmName={props.filmName} genre={props.genre} data={props.data} />}
+            element={<Main films={props.films} />}
           />
           <Route
             path={AppRoute.SignIn}
@@ -39,22 +36,22 @@ export default function App(props: MainProps): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <MyList />
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <MyList films={props.films} />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Film}
-            element={<Film />}
+            element={<Film films={props.films} />}
           />
           <Route
             path={AppRoute.AddReview}
-            element={<AddReview />}
+            element={<AddReview films={props.films} />}
           />
           <Route
             path={AppRoute.Player}
-            element={<Player />}
+            element={<Player films={props.films} />}
           />
           <Route
             path="*"

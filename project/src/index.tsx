@@ -1,6 +1,13 @@
+// Библиотеки
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+// Константы
+import { films } from './mocks/films';
+
+// Компоненты
 import App from './components/app/app';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -8,6 +15,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App filmName='The Grand Budapest Hotel' genre='Drama' data={2014} />
+    <App films={films} />
   </React.StrictMode>,
 );

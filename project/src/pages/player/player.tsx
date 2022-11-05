@@ -1,13 +1,24 @@
-// import React from 'react';
+// Библиотеки
 import { Helmet } from 'react-helmet-async';
+import { useParams } from 'react-router-dom';
 
-export default function Player(): JSX.Element {
+// Типы
+import { MainProps } from '../../types/film';
+
+
+export default function Player(props: MainProps): JSX.Element {
+  const { id } = useParams();
+  const filmId = Number(id);
+  const videoLink = props.films.find((value) => (value.id === filmId))?.videoLink;
+  if (!videoLink) {
+    window.location.pathname = 'not found';
+  }
   return (
     <div className="player">
       <Helmet>
         <title>Проигрыватель</title>
       </Helmet>
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={videoLink} className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 

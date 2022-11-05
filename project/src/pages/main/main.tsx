@@ -1,12 +1,13 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import FilmCard from '../../components/film-card/film-card';
+// Библиотеки
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
-type MainProps = {
-  filmName: string;
-  genre: string;
-  data: number;
-};
+// Типы
+import { MainProps } from '../../types/film';
+
+// Компоненты
+import CardList from '../../components/card-list/card-list';
+
 
 export default function Main(props: MainProps): JSX.Element {
   return (
@@ -16,18 +17,18 @@ export default function Main(props: MainProps): JSX.Element {
       </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={props.films[0].backgroundImage} alt={props.films[0].name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a href="#" className="logo__link">
+            <Link to="/" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <ul className="user-block">
@@ -37,7 +38,7 @@ export default function Main(props: MainProps): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a href="#" className="user-block__link">Sign out</a>
+              <Link to="#" className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -45,14 +46,14 @@ export default function Main(props: MainProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={props.films[0].posterImage} alt={props.films[0].name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{props.filmName}</h2>
+              <h2 className="film-card__title">{props.films[0].name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{props.genre}</span>
-                <span className="film-card__year">{props.data}</span>
+                <span className="film-card__genre">{props.films[0].genre}</span>
+                <span className="film-card__year">{props.films[0].released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -81,61 +82,38 @@ export default function Main(props: MainProps): JSX.Element {
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
+              <Link to="#" className="catalog__genres-link">All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
+              <Link to="#" className="catalog__genres-link">Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
+              <Link to="#" className="catalog__genres-link">Crime</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
+              <Link to="#" className="catalog__genres-link">Documentary</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
+              <Link to="#" className="catalog__genres-link">Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
+              <Link to="#" className="catalog__genres-link">Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
+              <Link to="#" className="catalog__genres-link">Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
+              <Link to="#" className="catalog__genres-link">Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
+              <Link to="#" className="catalog__genres-link">Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
+              <Link to="#" className="catalog__genres-link">Thrillers</Link>
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-
-          </div>
+          <CardList films={props.films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -144,11 +122,11 @@ export default function Main(props: MainProps): JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="#" className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
