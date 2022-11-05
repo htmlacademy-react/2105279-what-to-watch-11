@@ -17,7 +17,7 @@ export default function Main(props: MainProps): JSX.Element {
       </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={props.films[0].backgroundImage} alt={props.films[0].name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -46,7 +46,7 @@ export default function Main(props: MainProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={props.films[0].posterImage} alt={props.films[0].name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
