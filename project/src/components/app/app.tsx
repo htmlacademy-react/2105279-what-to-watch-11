@@ -43,7 +43,7 @@ export default function App(props: MainProps): JSX.Element {
           />
           <Route
             path={AppRoute.Film}
-            element={<Film />}
+            element={<Film films={props.films} />}
           />
           <Route
             path={AppRoute.AddReview}

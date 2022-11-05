@@ -11,7 +11,7 @@ export default function SignIn(): JSX.Element {
       </Helmet>
       <header className="page-header user-page__head">
         <div className="logo">
-          <Link to="main.html" className="logo__link">
+          <Link to="/" className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
@@ -41,7 +41,7 @@ export default function SignIn(): JSX.Element {
 
       <footer className="page-footer">
         <div className="logo">
-          <Link to="main.html" className="logo__link logo__link--light">
+          <Link to="/" className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>

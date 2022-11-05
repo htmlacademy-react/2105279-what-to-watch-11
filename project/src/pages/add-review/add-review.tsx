@@ -30,7 +30,7 @@ export default function AddReview(props: MainProps): JSX.Element {
 
         <header className="page-header">
           <div className="logo">
-            <Link to="main.html" className="logo__link">
+            <Link to="/" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -40,7 +40,7 @@ export default function AddReview(props: MainProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to="film-page.html" className="breadcrumbs__link">{film?.name}</Link>
+                <Link to={`/films/${filmId}`} className="breadcrumbs__link">{film?.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <Link to="#" className="breadcrumbs__link">Add review</Link>
