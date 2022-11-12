@@ -9,10 +9,10 @@ import { MainProps } from '../../types/film';
 import FormReview from '../../components/form-review/form-review';
 
 
-export default function AddReview(props: MainProps): JSX.Element {
+export default function AddReview({ films }: MainProps): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
-  const film = props.films.find((value) => (value.id === filmId));
+  const film = films.find((value) => (value.id === filmId));
   if (!film) {
     window.location.pathname = 'not found';
   }

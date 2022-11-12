@@ -10,10 +10,10 @@ import { MainProps } from '../../types/film';
 import CardList from '../../components/card-list/card-list';
 
 
-export default function Film(props: MainProps): JSX.Element {
+export default function Film({ films }: MainProps): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
-  const film = props.films.find((value) => (value.id === filmId));
+  const film = films.find((value) => (value.id === filmId));
   if (!film) {
     window.location.pathname = 'not found';
   }
@@ -126,7 +126,7 @@ export default function Film(props: MainProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <CardList films={props.films} />
+          <CardList films={films} />
 
         </section>
 

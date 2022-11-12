@@ -8,7 +8,7 @@ import { FilmData, MainProps } from '../../types/film';
 import FilmCard from '../../components/film-card/film-card';
 
 
-export default function CardList(props: MainProps): JSX.Element {
+export default function CardList({ films }: MainProps): JSX.Element {
 
   const setId = React.useState(0)[1];
 
@@ -16,7 +16,7 @@ export default function CardList(props: MainProps): JSX.Element {
     <div className="catalog__films-list">
 
       {
-        props.films
+        films
           .map((film: FilmData) => (
             < FilmCard
               key={film.id}

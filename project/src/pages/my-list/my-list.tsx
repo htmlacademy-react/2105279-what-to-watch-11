@@ -11,7 +11,7 @@ import { MainProps } from '../../types/film';
 import CardList from '../../components/card-list/card-list';
 
 
-export default function MyList(props: MainProps): JSX.Element {
+export default function MyList({ films }: MainProps): JSX.Element {
   return (
     <div className="user-page">
       <Helmet>
@@ -42,7 +42,7 @@ export default function MyList(props: MainProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <CardList films={props.films} />
+        <CardList films={films} />
 
       </section>
 
