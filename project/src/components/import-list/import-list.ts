@@ -7,12 +7,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
-import { Helmet } from 'react-helmet-async';
+import { Navigate, useParams, Link, Route, BrowserRouter, Routes } from 'react-router-dom';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 
 // Типы
 import { FilmData, MainProps } from '../../types/film';

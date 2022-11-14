@@ -1,7 +1,7 @@
 // Библиотеки
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -9,13 +9,12 @@ import { MainProps } from '../../types/film';
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 
-
 export default function Film({ films }: MainProps): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
   const film = films.find((value) => (value.id === filmId));
   if (!film) {
-    window.location.pathname = 'not found';
+    Navigate({ to: 'not-found' });
   }
   return (
     <React.StrictMode>
