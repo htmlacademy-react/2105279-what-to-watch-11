@@ -7,7 +7,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
-import { Navigate, useParams, Link, Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Navigate, useParams, Link, Route, BrowserRouter, Routes, redirect } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 
 // Типы

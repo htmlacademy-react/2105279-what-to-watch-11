@@ -1,6 +1,6 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, redirect } from 'react-router-dom';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -11,7 +11,7 @@ export default function Player({ films }: MainProps): JSX.Element {
   const filmId = Number(id);
   const videoLink = films.find((value) => (value.id === filmId))?.videoLink;
   if (!videoLink) {
-    Navigate({ to: 'not-found' });
+    redirect('not-found');
   }
   return (
     <div className="player">

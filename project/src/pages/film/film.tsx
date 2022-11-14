@@ -1,7 +1,7 @@
 // Библиотеки
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, redirect } from 'react-router-dom';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -14,7 +14,7 @@ export default function Film({ films }: MainProps): JSX.Element {
   const filmId = Number(id);
   const film = films.find((value) => (value.id === filmId));
   if (!film) {
-    Navigate({ to: 'not-found' });
+    redirect('not-found');
   }
   return (
     <React.StrictMode>
