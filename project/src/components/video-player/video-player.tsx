@@ -41,7 +41,6 @@ export default function VideoPlayer({ src, previewImage, muted, width, height }:
     }
 
     videoRef.current.pause();
-    videoRef.current.setPointerCapture(0);
 
     return () => {
       // isVideoPlayerMounted = false;
@@ -57,8 +56,8 @@ export default function VideoPlayer({ src, previewImage, muted, width, height }:
         width={width}
         height={height}
         ref={videoRef}
-        onMouseEnter={() => setIsPlaying(true)}
-        onMouseLeave={() => setIsPlaying(false)}
+        onClick={() => setIsPlaying(true)}
+      // onMouseLeave={() => setIsPlaying(false)}
       />
     </div>
   );

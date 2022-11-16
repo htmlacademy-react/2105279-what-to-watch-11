@@ -23,6 +23,7 @@ export default function CardList({ films }: MainProps): JSX.Element {
               id={film.id}
               name={film.name}
               previewImage={film.previewImage}
+              previewVideoLink={film.previewVideoLink}
               onCardMouseEnter={() => setId(film.id)}
             />
           ))
