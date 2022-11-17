@@ -20,14 +20,14 @@ import NotFound from '../../pages/not-found/not-found';
 // Компоненты
 import PrivateRoute from '../private-route/private-route';
 
-export default function App(props: MainProps): JSX.Element {
+export default function App({ films }: MainProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<Main films={props.films} />}
+            element={<Main films={films} />}
           />
           <Route
             path={AppRoute.SignIn}
@@ -37,21 +37,21 @@ export default function App(props: MainProps): JSX.Element {
             path={AppRoute.MyList}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <MyList films={props.films} />
+                <MyList films={films} />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Film}
-            element={<Film films={props.films} />}
+            element={<Film films={films} />}
           />
           <Route
             path={AppRoute.AddReview}
-            element={<AddReview films={props.films} />}
+            element={<AddReview films={films} />}
           />
           <Route
             path={AppRoute.Player}
-            element={<Player films={props.films} />}
+            element={<Player films={films} />}
           />
           <Route
             path="*"

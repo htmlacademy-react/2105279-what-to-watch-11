@@ -1,23 +1,51 @@
 // Библиотеки
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Типы
 import { FilmData } from '../../types/film';
 
-type previewFilm = Pick<FilmData, 'id' | 'name' | 'previewImage'> & { onCardMouseEnter: () => void };
+// Компоненты
+import VideoPlayer from '../video-player/video-player';
 
-export default function FilmCard(props: previewFilm): JSX.Element {
+const PLAYBACK_DELAY = 1000;
+
+type previewFilm = Pick<FilmData, 'id' | 'name' | 'previewImage' | 'previewVideoLink'> & { onCardMouseEnter: () => void };
+
+export default function FilmCard({ id, name, previewImage, previewVideoLink, onCardMouseEnter }: previewFilm): JSX.Element {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [timer, setTimer] = useState(setTimeout(() => 0, 0));
+
+  const handleCardMouseEnter = () => {
+    onCardMouseEnter();
+    setTimer(setTimeout(() => {
+      setIsPlaying(true);
+    }, PLAYBACK_DELAY));
+  };
+
+  const handleCardMouseLeave = () => {
+    clearTimeout(timer);
+    setIsPlaying(false);
+  };
+
   return (
     <article
       className="small-film-card catalog__films-card"
-      onMouseEnter={() => { props.onCardMouseEnter(); }}
+      onMouseEnter={handleCardMouseEnter}
+      onMouseLeave={handleCardMouseLeave}
     >
       <div className="small-film-card__image">
-        <img src={props.previewImage} alt={props.name} width="280" height="175" />
+        <VideoPlayer
+          isPlaying={isPlaying}
+          src={previewVideoLink}
+          previewImage={previewImage}
+          muted
+          width={280}
+          height={175}
+        />
       </div>
       <h3 className="small-film-card__title">
-        <Link to={`/films/${props.id}`} className="small-film-card__link">{props.name}</Link>
+        <Link to={`/films/${id}`} className="small-film-card__link">{name}</Link>
       </h3>
     </article>
   );
