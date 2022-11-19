@@ -8,6 +8,7 @@ import { FilmData } from '../../types/film';
 // Компоненты
 import TabOverview from '../tab-overview/tab-overview';
 import TabDetails from '../tab-details/tab-details';
+import TabReview from '../tab-reviews/tab-review';
 
 const tabs = [
   'Overview',
@@ -34,8 +35,9 @@ export default function Tabs({ film, tabIndex }: { film: FilmData; tabIndex: num
     case TabsName.Details:
       selectedTab = <TabDetails film={film} />;
       break;
-
-
+    case TabsName.Reviews:
+      selectedTab = <TabReview film={film} />;
+      break;
   }
 
   return (
