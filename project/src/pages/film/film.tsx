@@ -1,7 +1,7 @@
 // Библиотеки
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link, redirect } from 'react-router-dom';
+import { useParams, Link, redirect, useSearchParams } from 'react-router-dom';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -18,6 +18,8 @@ export default function Film({ films }: MainProps): JSX.Element {
     redirect('not-found');
   }
   const film = films[filmIndex];
+  const searchTab = useSearchParams()[0];
+  const tabIndex = Number(searchTab.get('tab') || 0);
 
   return (
     <React.StrictMode>
@@ -27,7 +29,7 @@ export default function Film({ films }: MainProps): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film?.backgroundImage} alt={film.name} />
+            <img src={film.backgroundImage} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -84,10 +86,13 @@ export default function Film({ films }: MainProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film?.posterImage} alt={film.name} width="218" height="327" />
+              <img src={film.posterImage} alt={film.name} width="218" height="327" />
             </div>
 
-            <Tabs film={film} />
+            <Tabs
+              film={film}
+              tabIndex={tabIndex}
+            />
 
           </div>
         </div>

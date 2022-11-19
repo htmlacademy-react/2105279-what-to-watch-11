@@ -1,5 +1,6 @@
 // Библиотеки
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // Типы
 import { FilmData } from '../../types/film';
@@ -14,8 +15,8 @@ const tabs = [
 ];
 
 
-export default function Tabs({ film }: { film: FilmData }): JSX.Element {
-  const [tab, setTab] = useState(0);
+export default function Tabs({ film, tabIndex }: { film: FilmData; tabIndex: number }): JSX.Element {
+  const [tab, setTab] = useState(tabIndex || 0);
 
   let selectedTab;
 
@@ -34,18 +35,17 @@ export default function Tabs({ film }: { film: FilmData }): JSX.Element {
             .map((tabName, index) => (
               <li
                 key={tabName}
-                className="film-nav__item film-nav__item--active"
+                className={tab === index ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}
               >
-                <a
-                  href={`/films/${film.id}`}
+                <Link
+                  to={`/films/${film.id}?tab=${index}`}
                   onClick={(evt) => {
-                    evt.preventDefault();
                     setTab(index);
                   }}
                   className="film-nav__link"
                 >
                   {tabName}
-                </a>
+                </Link>
               </li>
             ))}
         </ul>
