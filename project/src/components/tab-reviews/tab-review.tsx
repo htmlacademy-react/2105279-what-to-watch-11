@@ -8,14 +8,13 @@ export default function TabReview({ comments }: { comments: CommentData[] }): JS
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        <Comment comment={comments[0]} />
-        <Comment comment={comments[2]} />
-        <Comment comment={comments[4]} />
-      </div>
-      <div className="film-card__reviews-col">
-        <Comment comment={comments[1]} />
-        <Comment comment={comments[3]} />
-        <Comment comment={comments[5]} />
+        {comments
+          .map((comment) => (
+            <Comment
+              key={comment.id}
+              comment={comment}
+            />))
+          .join('')}
       </div>
     </div>
   );
