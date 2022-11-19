@@ -7,12 +7,19 @@ import { FilmData } from '../../types/film';
 
 // Компоненты
 import TabOverview from '../tab-overview/tab-overview';
+import TabDetails from '../tab-details/tab-details';
 
 const tabs = [
   'Overview',
   'Details',
   'Reviews',
 ];
+
+enum TabsName {
+  Overview,
+  Details,
+  Reviews,
+}
 
 
 export default function Tabs({ film, tabIndex }: { film: FilmData; tabIndex: number }): JSX.Element {
@@ -21,8 +28,12 @@ export default function Tabs({ film, tabIndex }: { film: FilmData; tabIndex: num
   let selectedTab;
 
   switch (tab) {
-    case 0:
+    case TabsName.Overview:
       selectedTab = <TabOverview film={film} />;
+      break;
+    case TabsName.Details:
+      selectedTab = <TabDetails film={film} />;
+      break;
 
 
   }
