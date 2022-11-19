@@ -1,7 +1,7 @@
 // Типы
 import { CommentData } from '../../types/film';
 
-export default function TabReview({ comment }: { comment: CommentData }): JSX.Element {
+export default function Comment({ comment }: { comment: CommentData }): JSX.Element {
   return (
     <div className="review">
       <blockquote className="review__quote">
