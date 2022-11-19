@@ -1,4 +1,4 @@
-import { FilmData } from '../types/film';
+import { FilmData, Comment } from '../types/film';
 
 export const films: FilmData[] = [
   {
@@ -213,5 +213,68 @@ export const films: FilmData[] = [
     'genre': 'Comedy',
     'released': 2004,
     'isFavorite': false
+  },
+];
+
+export const comments: Comment[] = [
+  {
+    comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed films in years.',
+    date: '2016-12-24',
+    id: 0,
+    rating: 8.9,
+    user: {
+      id: 0,
+      name: 'Kate Muir'
+    }
+  },
+  {
+    comment: 'The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.',
+    date: '2016-12-20',
+    id: 1,
+    rating: 7.2,
+    user: {
+      id: 1,
+      name: 'atthew Lickona'
+    }
+  },
+  {
+    comment: 'Anderson&apos;s films are too precious for some, but for those of us willing to lose ourselves in them, they&apos;re a delight." The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.',
+    date: '2015-11-18',
+    id: 2,
+    rating: 8.0,
+    user: {
+      id: 3,
+      name: 'Bill Goodykoontz'
+    }
+  },
+  {
+    comment: 'It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.',
+    date: '2016-12-20',
+    id: 3,
+    rating: 7.6,
+    user: {
+      id: 4,
+      name: 'Paula Fleri-Soler'
+    }
+  },
+  {
+    comment: 'I didn&apos;t find it amusing, and while I can appreciate the creativity, it&apos;s an hour and 40 minutes I wish I could take back.',
+    date: '2015-11-18',
+    id: 4,
+    rating: 8.0,
+    user: {
+      id: 5,
+      name: 'Amanda Greever'
+    }
+  },
+  {
+    comment: 'It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.',
+    date: '2016-12-20',
+    id: 5,
+    rating: 7.0,
+    user: {
+      id: 4,
+      name: 'Paula Fleri-Soler'
+    }
   },
 ];

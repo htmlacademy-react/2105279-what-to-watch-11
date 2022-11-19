@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 // Типы
 import { FilmData } from '../../types/film';
 
+// Константы
+import { comments } from '../../mocks/films';
+
 // Компоненты
 import TabOverview from '../tab-overview/tab-overview';
 import TabDetails from '../tab-details/tab-details';
@@ -36,7 +39,7 @@ export default function Tabs({ film, tabIndex }: { film: FilmData; tabIndex: num
       selectedTab = <TabDetails film={film} />;
       break;
     case TabsName.Reviews:
-      selectedTab = <TabReview film={film} />;
+      selectedTab = <TabReview comments={comments} />;
       break;
   }
 
