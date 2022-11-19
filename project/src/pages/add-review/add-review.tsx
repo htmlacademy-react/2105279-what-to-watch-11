@@ -1,6 +1,6 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, redirect } from 'react-router-dom';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -12,10 +12,12 @@ import FormReview from '../../components/form-review/form-review';
 export default function AddReview({ films }: MainProps): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
-  const film = films.find((value) => (value.id === filmId));
-  if (!film) {
-    window.location.pathname = 'not found';
+  const filmIndex = films.findIndex((value) => (value.id === filmId));
+  if (filmIndex === -1) {
+    redirect('not-found');
   }
+  const film = films[filmIndex];
+
   return (
     <section className="film-card film-card--full">
       <Helmet>
@@ -23,7 +25,7 @@ export default function AddReview({ films }: MainProps): JSX.Element {
       </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film?.backgroundImage} alt={film?.name} />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -40,7 +42,7 @@ export default function AddReview({ films }: MainProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${filmId}`} className="breadcrumbs__link">{film?.name}</Link>
+                <Link to={`/films/${filmId}`} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <Link to="#" className="breadcrumbs__link">Add review</Link>
@@ -61,7 +63,7 @@ export default function AddReview({ films }: MainProps): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film?.posterImage} alt={film?.name} width="218" height="327" />
+          <img src={film.posterImage} alt={film.name} width="218" height="327" />
         </div>
       </div>
 
