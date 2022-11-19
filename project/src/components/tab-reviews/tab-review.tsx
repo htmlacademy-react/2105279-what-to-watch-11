@@ -9,12 +9,11 @@ export default function TabReview({ comments }: { comments: CommentData[] }): JS
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
         {comments
-          .map((comment) => (
-            <Comment
+          .map((comment: CommentData) => (
+            < Comment
               key={comment.id}
               comment={comment}
-            />))
-          .join('')}
+            />))}
       </div>
     </div>
   );
