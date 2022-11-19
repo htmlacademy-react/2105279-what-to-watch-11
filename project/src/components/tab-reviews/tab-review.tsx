@@ -1,7 +1,7 @@
 // Типы
-import { Comment } from '../../types/film';
+import { CommentData } from '../../types/film';
 
-export default function TabReview({ comments }: { comments: Comment[] }): JSX.Element {
+export default function TabReview({ comments }: { comments: CommentData[] }): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">

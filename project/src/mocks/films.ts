@@ -1,4 +1,4 @@
-import { FilmData, Comment } from '../types/film';
+import { FilmData, CommentData } from '../types/film';
 
 export const films: FilmData[] = [
   {
@@ -216,7 +216,7 @@ export const films: FilmData[] = [
   },
 ];
 
-export const comments: Comment[] = [
+export const comments: CommentData[] = [
   {
     comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed films in years.',
     date: '2016-12-24',

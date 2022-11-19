@@ -18,7 +18,7 @@ export type FilmData = {
   isFavorite: boolean;
 };
 
-export type Comment = {
+export type CommentData = {
   comment: string;
   date: string;
   id: number;
