@@ -1,5 +1,5 @@
 // Библиотеки
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 // Типы
@@ -19,6 +19,10 @@ export default function Tabs({ film }: { film: FilmData }): JSX.Element {
   const tabIndex = searchTab.get('tab') || TabsName.Overview;
   const [currentTab, setTab] = useState(tabIndex);
   if (tabIndex !== currentTab) { setTab(tabIndex); }
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [film.id]);
 
   let selectedTab;
   switch (currentTab) {
