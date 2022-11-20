@@ -6,8 +6,7 @@ import FilmCard from '../../components/film-card/film-card';
 
 
 export default function SimilarCardList({ films, genre }: MainProps & { genre: string }): JSX.Element {
-  const similarFilm = films.filter((film: FilmData) => film.genre === genre).slice(0, 3);
-
+  const similarFilm = films.filter((film: FilmData) => film.genre === genre).slice(0, 4);
 
   return (
     <div className="catalog__films-list">
@@ -23,7 +22,6 @@ export default function SimilarCardList({ films, genre }: MainProps & { genre: s
             />
           ))
       }
-
     </div>
   );
 }

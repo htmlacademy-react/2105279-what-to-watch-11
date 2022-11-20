@@ -8,7 +8,7 @@ import { MainProps } from '../../types/film';
 
 // Компоненты
 import Tabs from '../../components/tabs/tabs';
-import CardList from '../../components/card-list/card-list';
+import SimilarCardList from '../../components/similar-card-list/similar-card-list';
 
 export default function Film({ films }: MainProps): JSX.Element {
   const { id } = useParams();
@@ -99,7 +99,10 @@ export default function Film({ films }: MainProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <CardList films={films} />
+          <SimilarCardList
+            films={films}
+            genre={film.genre}
+          />
 
         </section>
 

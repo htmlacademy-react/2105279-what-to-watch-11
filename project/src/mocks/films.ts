@@ -54,7 +54,7 @@ export const films: FilmData[] = [
       'Jeff Goldblum'
     ],
     'runTime': 99,
-    'genre': 'Comedy',
+    'genre': 'Action',
     'released': 1998,
     'isFavorite': false
   },
@@ -78,7 +78,7 @@ export const films: FilmData[] = [
       'Owen Wilkinson',
     ],
     'runTime': 99,
-    'genre': 'Comedy',
+    'genre': 'Roman',
     'released': 1987,
     'isFavorite': false
   },
@@ -132,7 +132,7 @@ export const films: FilmData[] = [
       'Tilda Swinton'
     ],
     'runTime': 99,
-    'genre': 'Comedy',
+    'genre': 'Action',
     'released': 2017,
     'isFavorite': false
   },
