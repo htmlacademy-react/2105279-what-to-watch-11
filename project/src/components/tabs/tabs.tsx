@@ -1,6 +1,6 @@
 // Библиотеки
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 // Типы
 import { FilmData, TabsName } from '../../types/film';
@@ -15,10 +15,12 @@ import TabReview from '../tab-reviews/tab-review';
 
 
 export default function Tabs({ film }: { film: FilmData }): JSX.Element {
-  const searchTab = useSearchParams()[0];
-  const tabIndex = searchTab.get('tab') || TabsName.Overview;
-  const [currentTab, setTab] = useState(tabIndex);
-  if (tabIndex !== currentTab) { setTab(tabIndex); }
+  const [searchTab, setSearchTab] = useSearchParams();
+  const tabName = searchTab.get('tab') || TabsName.Overview;
+  const [currentTab, setTab] = useState<TabsName>(tabName as TabsName);
+  if (tabName !== currentTab) {
+    setTab(tabName as TabsName);
+  }
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -44,15 +46,17 @@ export default function Tabs({ film }: { film: FilmData }): JSX.Element {
         key={enumTab}
         className={currentTab === enumTab ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}
       >
-        <Link
-          to={`/films/${film.id}?tab=${enumTab}`}
+        <a
+          href={`/films/${film.id}?tab=${enumTab}`}
           onClick={(evt) => {
-            setTab(enumTab);
+            evt.preventDefault();
+            setSearchTab({ tab: enumTab });
+            setTab(enumTab as TabsName);
           }}
           className="film-nav__link"
         >
           {enumTab}
-        </Link>
+        </a>
       </li>);
   }
 
