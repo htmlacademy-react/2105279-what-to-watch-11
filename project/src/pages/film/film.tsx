@@ -1,7 +1,7 @@
 // Библиотеки
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link, redirect, useSearchParams } from 'react-router-dom';
+import { useParams, Link, redirect } from 'react-router-dom';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -18,8 +18,6 @@ export default function Film({ films }: MainProps): JSX.Element {
     redirect('not-found');
   }
   const film = films[filmIndex];
-  const searchTab = useSearchParams()[0];
-  const tabIndex = Number(searchTab.get('tab') || 0);
 
   return (
     <React.StrictMode>
@@ -91,7 +89,6 @@ export default function Film({ films }: MainProps): JSX.Element {
 
             <Tabs
               film={film}
-              tabIndex={tabIndex}
             />
 
           </div>

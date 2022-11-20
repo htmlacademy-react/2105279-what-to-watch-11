@@ -1,9 +1,9 @@
 // Библиотеки
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 // Типы
-import { FilmData } from '../../types/film';
+import { FilmData, TabsName } from '../../types/film';
 
 // Константы
 import { comments } from '../../mocks/films';
@@ -13,25 +13,15 @@ import TabOverview from '../tab-overview/tab-overview';
 import TabDetails from '../tab-details/tab-details';
 import TabReview from '../tab-reviews/tab-review';
 
-const tabs = [
-  'Overview',
-  'Details',
-  'Reviews',
-];
 
-enum TabsName {
-  Overview,
-  Details,
-  Reviews,
-}
-
-
-export default function Tabs({ film, tabIndex }: { film: FilmData; tabIndex: number }): JSX.Element {
-  const [tab, setTab] = useState(tabIndex || 0);
+export default function Tabs({ film }: { film: FilmData }): JSX.Element {
+  const searchTab = useSearchParams()[0];
+  const tabIndex = searchTab.get('tab') || TabsName.Overview;
+  const [currentTab, setTab] = useState(tabIndex);
+  if (tabIndex !== currentTab) { setTab(tabIndex); }
 
   let selectedTab;
-
-  switch (tab) {
+  switch (currentTab) {
     case TabsName.Overview:
       selectedTab = <TabOverview film={film} />;
       break;
@@ -43,27 +33,30 @@ export default function Tabs({ film, tabIndex }: { film: FilmData; tabIndex: num
       break;
   }
 
+  const tabLinks = [];
+  for (const enumTab in TabsName) {
+    tabLinks.push(
+      <li
+        key={enumTab}
+        className={currentTab === enumTab ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}
+      >
+        <Link
+          to={`/films/${film.id}?tab=${enumTab}`}
+          onClick={(evt) => {
+            setTab(enumTab);
+          }}
+          className="film-nav__link"
+        >
+          {enumTab}
+        </Link>
+      </li>);
+  }
+
   return (
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          {tabs
-            .map((tabName, index) => (
-              <li
-                key={tabName}
-                className={tab === index ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}
-              >
-                <Link
-                  to={`/films/${film.id}?tab=${index}`}
-                  onClick={(evt) => {
-                    setTab(index);
-                  }}
-                  className="film-nav__link"
-                >
-                  {tabName}
-                </Link>
-              </li>
-            ))}
+          {tabLinks}
         </ul>
       </nav>
       {selectedTab}

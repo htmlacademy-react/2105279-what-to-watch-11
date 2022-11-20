@@ -32,3 +32,9 @@ export type CommentData = {
 export type MainProps = {
   films: FilmData[];
 };
+
+export enum TabsName {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews',
+}
