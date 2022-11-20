@@ -234,7 +234,7 @@ export const comments: CommentData[] = [
     rating: 7.2,
     user: {
       id: 1,
-      name: 'atthew Lickona'
+      name: 'Matthew Lickona'
     }
   },
   {

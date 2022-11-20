@@ -13,7 +13,7 @@ export default function Comment({ comment }: { comment: CommentData }): JSX.Elem
         </footer>
       </blockquote>
 
-      <div className="review__rating">{comment.rating}</div>
+      <div className="review__rating">{comment.rating.toFixed(1)}</div>
     </div>
   );
 }
