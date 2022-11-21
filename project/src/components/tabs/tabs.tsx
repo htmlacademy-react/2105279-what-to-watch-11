@@ -17,9 +17,9 @@ import TabReview from '../tab-reviews/tab-review';
 export default function Tabs({ film }: { film: FilmData }): JSX.Element {
   const [searchTab, setSearchTab] = useSearchParams();
   const tabName = searchTab.get('tab') || TabsName.Overview;
-  const [currentTab, setTab] = useState<TabsName>(tabName as TabsName);
+  const [currentTab, setCurrentTab] = useState<TabsName>(tabName as TabsName);
   if (tabName !== currentTab) {
-    setTab(tabName as TabsName);
+    setCurrentTab(tabName as TabsName);
   }
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function Tabs({ film }: { film: FilmData }): JSX.Element {
           onClick={(evt) => {
             evt.preventDefault();
             setSearchTab({ tab: enumTab });
-            setTab(enumTab as TabsName);
+            setCurrentTab(enumTab as TabsName);
           }}
           className="film-nav__link"
         >
