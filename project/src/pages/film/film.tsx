@@ -19,6 +19,8 @@ export default function Film({ films }: MainProps): JSX.Element {
   }
   const film = films[filmIndex];
 
+  window.scroll(0, 0);
+
   return (
     <React.StrictMode>
       <Helmet>
