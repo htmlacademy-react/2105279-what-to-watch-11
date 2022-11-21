@@ -32,3 +32,4 @@ import PrivateRoute from '../private-route/private-route';
 import FilmCard from '../../components/film-card/film-card';
 import CardList from '../../components/card-list/card-list';
 import FormReview from '../../components/form-review/form-review';
+import Comment from '../comment/comment';

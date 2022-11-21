@@ -10,14 +10,13 @@ import VideoPlayer from '../video-player/video-player';
 
 const PLAYBACK_DELAY = 1000;
 
-type previewFilm = Pick<FilmData, 'id' | 'name' | 'previewImage' | 'previewVideoLink'> & { onCardMouseEnter: () => void };
+type previewFilm = Pick<FilmData, 'id' | 'name' | 'previewImage' | 'previewVideoLink'>;
 
-export default function FilmCard({ id, name, previewImage, previewVideoLink, onCardMouseEnter }: previewFilm): JSX.Element {
+export default function FilmCard({ id, name, previewImage, previewVideoLink }: previewFilm): JSX.Element {
   const [isPlaying, setIsPlaying] = useState(false);
   const [timer, setTimer] = useState(setTimeout(() => 0, 0));
 
   const handleCardMouseEnter = () => {
-    onCardMouseEnter();
     setTimer(setTimeout(() => {
       setIsPlaying(true);
     }, PLAYBACK_DELAY));
@@ -45,7 +44,12 @@ export default function FilmCard({ id, name, previewImage, previewVideoLink, onC
         />
       </div>
       <h3 className="small-film-card__title">
-        <Link to={`/films/${id}`} className="small-film-card__link">{name}</Link>
+        <Link
+          to={`/films/${id}?tab=Overview`}
+          className="small-film-card__link"
+        >
+          {name}
+        </Link>
       </h3>
     </article>
   );

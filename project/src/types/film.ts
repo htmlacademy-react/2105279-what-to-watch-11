@@ -11,13 +11,30 @@ export type FilmData = {
   rating: number;
   scoresCount: number;
   director: string;
-  starring: [string];
+  starring: string[];
   runTime: number;
   genre: string;
   released: number;
   isFavorite: boolean;
 };
 
+export type CommentData = {
+  comment: string;
+  date: string;
+  id: number;
+  rating: number;
+  user: {
+    id: number;
+    name: string;
+  };
+};
+
 export type MainProps = {
   films: FilmData[];
 };
+
+export enum TabsName {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews',
+}
