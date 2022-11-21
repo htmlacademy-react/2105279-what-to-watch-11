@@ -45,7 +45,7 @@ export default function FilmCard({ id, name, previewImage, previewVideoLink }: p
       </div>
       <h3 className="small-film-card__title">
         <Link
-          to={`/films/${id}?tab=Overview`}
+          to={`/films/${id}`}
           className="small-film-card__link"
         >
           {name}
