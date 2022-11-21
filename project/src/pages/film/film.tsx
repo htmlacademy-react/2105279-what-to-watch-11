@@ -1,5 +1,6 @@
 // Библиотеки
 import React from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, redirect } from 'react-router-dom';
 
@@ -19,7 +20,9 @@ export default function Film({ films }: MainProps): JSX.Element {
   }
   const film = films[filmIndex];
 
-  window.scroll(0, 0);
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [id]);
 
   return (
     <React.StrictMode>
