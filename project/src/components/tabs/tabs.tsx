@@ -1,6 +1,7 @@
 // Библиотеки
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import cn from 'classnames';
 
 // Типы
 import { FilmData, TabsName } from '../../types/film';
@@ -40,7 +41,10 @@ export default function Tabs({ film }: { film: FilmData }): JSX.Element {
     tabLinks.push(
       <li
         key={enumTab}
-        className={currentTab === enumTab ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}
+        className={cn(
+          'film-nav__item',
+          { 'film-nav__item--active': currentTab === enumTab }
+        )}
       >
         <a
           href={`/films/${film.id}?tab=${enumTab}`}

@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom/client';
 import { Fragment, useState, useEffect, useRef } from 'react';
 import { Navigate, useParams, Link, Route, BrowserRouter, Routes, redirect } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
+import cn from 'classnames';
 
 // Типы
 import { FilmData, MainProps } from '../../types/film';
