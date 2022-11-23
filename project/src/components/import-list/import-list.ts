@@ -4,6 +4,13 @@
 // шаблон для создания новых компонентов
 
 // Библиотеки
+// Типы
+// Константы
+// Страницы
+// Компоненты
+
+
+// Библиотеки
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Fragment, useState, useEffect, useRef } from 'react';
