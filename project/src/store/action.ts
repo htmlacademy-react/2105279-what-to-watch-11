@@ -1,9 +1,12 @@
-
 // Библиотеки
 import { createAction } from '@reduxjs/toolkit';
-// Типы
-// Константы
-// Страницы
-// Компоненты
 
-export const action = createAction('game/incrementStep');
+// Константы
+// import { films } from '../../mocks/films';
+
+export const selectGenre = createAction('SELECT_GENRE');
+//   (value: string) => ({
+//     payload: value
+//   }
+//   ));
+export const getFilmList = createAction('GET_FILM_LIST');

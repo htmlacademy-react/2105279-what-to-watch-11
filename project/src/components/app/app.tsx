@@ -20,45 +20,53 @@ import NotFound from '../../pages/not-found/not-found';
 // Компоненты
 import PrivateRoute from '../private-route/private-route';
 
+import { Provider } from 'react-redux';
+import { store } from '../../store/reducer';
+
+
 export default function App({ films }: MainProps): JSX.Element {
   return (
-    <HelmetProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path={AppRoute.Main}
-            element={<Main films={films} />}
-          />
-          <Route
-            path={AppRoute.SignIn}
-            element={<SignIn />}
-          />
-          <Route
-            path={AppRoute.MyList}
-            element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <MyList films={films} />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={AppRoute.Film}
-            element={<Film films={films} />}
-          />
-          <Route
-            path={AppRoute.AddReview}
-            element={<AddReview films={films} />}
-          />
-          <Route
-            path={AppRoute.Player}
-            element={<Player films={films} />}
-          />
-          <Route
-            path="*"
-            element={<NotFound />}
-          />
-        </Routes>
-      </BrowserRouter>
-    </HelmetProvider>
+    <Provider
+      store={store}
+    >
+      <HelmetProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path={AppRoute.Main}
+              element={<Main films={films} />}
+            />
+            <Route
+              path={AppRoute.SignIn}
+              element={<SignIn />}
+            />
+            <Route
+              path={AppRoute.MyList}
+              element={
+                <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                  <MyList films={films} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={AppRoute.Film}
+              element={<Film films={films} />}
+            />
+            <Route
+              path={AppRoute.AddReview}
+              element={<AddReview films={films} />}
+            />
+            <Route
+              path={AppRoute.Player}
+              element={<Player films={films} />}
+            />
+            <Route
+              path="*"
+              element={<NotFound />}
+            />
+          </Routes>
+        </BrowserRouter>
+      </HelmetProvider>
+    </Provider>
   );
 }

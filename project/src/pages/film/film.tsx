@@ -11,6 +11,11 @@ import { MainProps } from '../../types/film';
 import Tabs from '../../components/tabs/tabs';
 import SimilarCardList from '../../components/similar-card-list/similar-card-list';
 
+
+import { useSelector } from 'react-redux';
+import { StateType } from '../../store/reducer';
+import { selectGenre } from '../../store/action';
+
 export default function Film({ films }: MainProps): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
@@ -24,11 +29,24 @@ export default function Film({ films }: MainProps): JSX.Element {
     window.scroll(0, 0);
   }, [id]);
 
+  const gen = useSelector((state: StateType) => state.film.genre);
+
+  useEffect(() => {
+    console.log(gen);
+  }, [gen]);
+
+
   return (
     <React.StrictMode>
       <Helmet>
         <title>Подробнее о фильме</title>
       </Helmet>
+      <button
+        onClick={() => {
+          selectGenre('qwerty');
+        }}
+      >hfhhdghdgdgdghgd
+      </button>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
