@@ -3,10 +3,11 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 // Типы
-import { MainProps } from '../../types/film';
+import { MainProps, Genre } from '../../types/film';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
+import GenreList from '../../components/genre-list/genere-list';
 
 
 export default function Main({ films }: MainProps): JSX.Element {
@@ -80,38 +81,9 @@ export default function Main({ films }: MainProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <Link to="#" className="catalog__genres-link">All genres</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Comedies</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Crime</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Documentary</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Dramas</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Horror</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Kids & Family</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Romance</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Sci-Fi</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Thrillers</Link>
-            </li>
-          </ul>
+          <GenreList
+            genre={Genre.All}
+          />
 
           <CardList films={films} />
 

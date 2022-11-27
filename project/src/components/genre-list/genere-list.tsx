@@ -1,41 +1,41 @@
 // Библиотеки
 // import { useState } from 'react';
 // import { Link } from 'react-router-dom';
+import cn from 'classnames';
 
 // Типы
-import { MainProps, Genre } from '../../types/film';
+import { Genre } from '../../types/film';
 
 // Компоненты
-import CardList from '../../components/card-list/card-list';
+// import CardList from '../../components/card-list/card-list';
 
-export default function GenreList({ films }: MainProps): JSX.Element {
+export default function GenreList({ genre }: { genre: Genre }): JSX.Element {
 
-  const genreList = [];
-  for (const genre in Genre) {
+  const genres = new Set<string>();
+  for (const key in Genre) {
+    genres.add(Genre[key]);
+  }
+
+  const genreList: JSX.Element[] = [];
+  genres.forEach((value) => {
     const link = (
-      <li className="catalog__genres-item catalog__genres-item--active">
-        <a href="#" className="catalog__genres-link">{genre}</a>
-      </li>
+      <li className={cn(
+        'catalog__genres-item',
+        { 'catalog__genres-item--active': genre === value }
+
+      )}
+      >
+        <a href="#" className="catalog__genres-link">{value}</a>
+      </li >
     );
     genreList.push(link);
-  }
+  });
 
   return (
 
-    <div className="page-content">
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
+    <ul className="catalog__genres-list">
+      {genreList}
+    </ul>
 
-        <ul className="catalog__genres-list">
-          {genreList}
-        </ul>
-
-        <CardList films={films} />
-
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
-      </section>
-    </div>
   );
 }
