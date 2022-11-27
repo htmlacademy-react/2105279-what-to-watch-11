@@ -38,3 +38,17 @@ export enum TabsName {
   Details = 'Details',
   Reviews = 'Reviews',
 }
+
+export enum Genre {
+  'All' = 'All genres',
+  'Comedy' = 'Comedies',
+  'Crime' = 'Crime',
+  'Documentary' = 'Documentary',
+  'Drama' = 'Dramas',
+  'Horror' = 'Horror',
+  'Kids' = 'Kids & Family',
+  'Family' = 'Kids & Family',
+  'Romance' = 'Romance',
+  'Sci-Fi' = 'Sci-Fi',
+  'Thrillers' = 'Thrillers',
+}

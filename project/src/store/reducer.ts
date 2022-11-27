@@ -3,7 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { selectGenre, getFilmList } from './action';
 
 // Типы
-import { FilmData } from '../types/film';
+import { FilmData, Genre } from '../types/film';
 
 type StateType = {
   genre: string;
@@ -11,7 +11,7 @@ type StateType = {
 }
 
 const initialState: StateType = {
-  genre: '',
+  genre: Genre.All,
   films: [],
 };
 
@@ -26,10 +26,13 @@ export const reducer = createReducer(initialState, (builder) => {
 
   builder
     .addCase(getFilmList,
-      (state, action) => ({
-        ...state,
-        films: action.payload
-      })
+      (state, action) => {
+        const films = action.payload.filter((film) => film.genre === state.genre || state.genre === Genre.All);
+        return {
+          ...state,
+          films,
+        };
+      }
     );
 });
 
