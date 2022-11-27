@@ -1,6 +1,7 @@
 // Библиотеки
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { Provider } from 'react-redux';
 
 // Типы
 import { MainProps } from '../../types/film';
@@ -20,8 +21,8 @@ import NotFound from '../../pages/not-found/not-found';
 // Компоненты
 import PrivateRoute from '../private-route/private-route';
 
-import { Provider } from 'react-redux';
-import { store } from '../../store/reducer';
+//Модули
+import { store } from '../../store/index';
 
 
 export default function App({ films }: MainProps): JSX.Element {

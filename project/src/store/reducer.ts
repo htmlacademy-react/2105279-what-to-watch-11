@@ -1,42 +1,35 @@
 // Библиотеки
-import { createReducer, configureStore } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 import { selectGenre, getFilmList } from './action';
 
 // Типы
-// import { FilmData } from '../types/film';
-// Константы
-// Страницы
-// Компоненты
+import { FilmData } from '../types/film';
 
-const initialState = {
-  genre: '1234',
+type StateType = {
+  genre: string;
+  films: FilmData[];
+}
+
+const initialState: StateType = {
+  genre: '',
   films: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(selectGenre,
-      (state, action) => {
-        console.log(action);
-        return {
-          ...state,
-          genre: action.payload
-        };
-      });
+      (state, action) => ({
+        ...state,
+        genre: action.payload
+      })
+    );
+
+  builder
+    .addCase(getFilmList,
+      (state, action) => ({
+        ...state,
+        films: action.payload
+      })
+    );
 });
 
-
-// export const reducer = (state = initialState, action) => {
-//   console.log(action);
-//   return { ...state };
-
-// };
-
-
-export const store = configureStore({
-  reducer: {
-    film: reducer,
-  },
-});
-
-export type StateType = ReturnType<typeof store.getState>;

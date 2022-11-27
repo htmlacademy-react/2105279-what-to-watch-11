@@ -8,12 +8,14 @@
 // Константы
 // Страницы
 // Компоненты
+//Модули
 
 
 // Библиотеки
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { Fragment, useState, useEffect, useRef } from 'react';
+import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom/client';
 import { Navigate, useParams, Link, Route, BrowserRouter, Routes, redirect } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import cn from 'classnames';
@@ -41,3 +43,10 @@ import FilmCard from '../../components/film-card/film-card';
 import CardList from '../../components/card-list/card-list';
 import FormReview from '../../components/form-review/form-review';
 import Comment from '../comment/comment';
+
+//Модули
+// import { reducer } from './reducer';
+// import { StoreType } from '../../store/index';
+import { useSelector, useDispatch } from 'react-redux';
+import { StoreType } from '../../store/index';
+import { selectGenre } from '../../store/action';
