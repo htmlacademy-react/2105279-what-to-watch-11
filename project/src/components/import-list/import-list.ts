@@ -21,7 +21,7 @@ import { HelmetProvider, Helmet } from 'react-helmet-async';
 import cn from 'classnames';
 
 // Типы
-import { FilmData, MainProps } from '../../types/film';
+import { FilmData, MainProps, Genre } from '../../types/film';
 
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
