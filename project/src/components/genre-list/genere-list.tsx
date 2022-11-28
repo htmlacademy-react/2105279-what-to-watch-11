@@ -1,41 +1,51 @@
 // Библиотеки
-// import { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { SyntheticEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
 // Типы
-import { Genre } from '../../types/film';
+import { MainProps, Genre } from '../../types/film';
 
-// Компоненты
-// import CardList from '../../components/card-list/card-list';
 
-export default function GenreList({ genre }: { genre: Genre }): JSX.Element {
+//Модули
+import { selectGenre } from '../../store/action';
 
-  const genres = new Set<string>();
-  for (const key in Genre) {
-    genres.add(Genre[key]);
-  }
+export default function GenreList({ films }: MainProps): JSX.Element {
+  const [currentGenre, setCurrentGenre] = useState(Genre.All);
+  const dispatch = useDispatch();
 
   const genreList: JSX.Element[] = [];
-  genres.forEach((value) => {
-    const link = (
-      <li className={cn(
-        'catalog__genres-item',
-        { 'catalog__genres-item--active': genre === value }
+  const genres = new Set<string>();
 
-      )}
-      >
-        <a href="#" className="catalog__genres-link">{value}</a>
-      </li >
-    );
-    genreList.push(link);
-  });
+  for (const key in Genre) {
+    const genre = Genre[key] as Genre;
+    if (!genres.has(genre)) {
+      genres.add(genre);
+      genreList.push(
+        <li className={cn(
+          'catalog__genres-item',
+          { 'catalog__genres-item--active': currentGenre === genre }
+        )}
+        >
+          <a
+            href="/"
+            className="catalog__genres-link"
+            onClick={(evt: SyntheticEvent) => {
+              evt.preventDefault();
+              setCurrentGenre(genre);
+              dispatch(selectGenre(genre));
+            }}
+          >
+            {genre}
+          </a>
+        </li >
+      );
+    }
+  }
 
   return (
-
     <ul className="catalog__genres-list">
       {genreList}
     </ul>
-
   );
 }

@@ -27,7 +27,18 @@ export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getFilmList,
       (state, action) => {
-        const films = action.payload.filter((film) => film.genre === state.genre || state.genre === Genre.All);
+        const films = action.payload.filter((film) => {
+          if (state.genre === Genre.All) {
+            return true;
+          }
+          for (const key in Genre) {
+            if (film.genre === key && state.genre === Genre[key]) {
+              return true;
+            }
+          }
+          return false;
+        });
+
         return {
           ...state,
           films,
