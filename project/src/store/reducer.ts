@@ -5,6 +5,9 @@ import { selectGenre, getFilmList } from './action';
 // Типы
 import { FilmData, Genre } from '../types/film';
 
+// Константы
+import { films } from '../mocks/films';
+
 type StateType = {
   genre: string;
   films: FilmData[];
@@ -12,12 +15,13 @@ type StateType = {
 
 const initialState: StateType = {
   genre: Genre.All,
-  films: [],
+  films: films,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(selectGenre,
+    .addCase(
+      selectGenre,
       (state, action) => ({
         ...state,
         genre: action.payload
@@ -25,25 +29,12 @@ export const reducer = createReducer(initialState, (builder) => {
     );
 
   builder
-    .addCase(getFilmList,
-      (state, action) => {
-        const films = action.payload.filter((film) => {
-          if (state.genre === Genre.All) {
-            return true;
-          }
-          for (const key in Genre) {
-            if (film.genre === key && state.genre === Genre[key]) {
-              return true;
-            }
-          }
-          return false;
-        });
-
-        return {
-          ...state,
-          films,
-        };
-      }
+    .addCase(
+      getFilmList,
+      (state) => ({
+        ...state,
+        films,
+      })
     );
 });
 

@@ -4,13 +4,12 @@ import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
 // Типы
-import { MainProps, Genre } from '../../types/film';
-
+import { Genre } from '../../types/film';
 
 //Модули
 import { selectGenre } from '../../store/action';
 
-export default function GenreList({ films }: MainProps): JSX.Element {
+export default function GenreList(): JSX.Element {
   const [currentGenre, setCurrentGenre] = useState(Genre.All);
   const dispatch = useDispatch();
 
