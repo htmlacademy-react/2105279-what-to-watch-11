@@ -1,15 +1,30 @@
 // Библиотеки
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 // Типы
 import { MainProps } from '../../types/film';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
+import GenreList from '../../components/genre-list/genere-list';
 
+//Модули
+import { StoreType } from '../../store/index';
+import { getFilmList } from '../../store/action';
 
 export default function Main({ films }: MainProps): JSX.Element {
+  const filtredFilms = useSelector((state: StoreType) => state.film.films);
+  const genre = useSelector((state: StoreType) => state.film.genre);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFilmList(films));
+  }, [genre]
+  );
+
   return (
     <div>
       <Helmet>
@@ -80,40 +95,9 @@ export default function Main({ films }: MainProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <Link to="#" className="catalog__genres-link">All genres</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Comedies</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Crime</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Documentary</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Dramas</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Horror</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Kids & Family</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Romance</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Sci-Fi</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to="#" className="catalog__genres-link">Thrillers</Link>
-            </li>
-          </ul>
+          <GenreList films={films} />
 
-          <CardList films={films} />
+          <CardList films={filtredFilms} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

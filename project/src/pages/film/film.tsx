@@ -1,5 +1,6 @@
 // Библиотеки
 import React from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, redirect } from 'react-router-dom';
 
@@ -10,6 +11,11 @@ import { MainProps } from '../../types/film';
 import Tabs from '../../components/tabs/tabs';
 import SimilarCardList from '../../components/similar-card-list/similar-card-list';
 
+
+// import { useSelector, useDispatch } from 'react-redux';
+// import { StoreType } from '../../store/index';
+// import { selectGenre } from '../../store/action';
+
 export default function Film({ films }: MainProps): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
@@ -18,6 +24,13 @@ export default function Film({ films }: MainProps): JSX.Element {
     redirect('not-found');
   }
   const film = films[filmIndex];
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [id]);
+
+  // const gen = useSelector((state: StoreType) => state.film.genre);
+  // const dispatch = useDispatch();
 
   return (
     <React.StrictMode>
