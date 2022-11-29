@@ -3,13 +3,20 @@ import React from 'react';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 // Типы
-import { MainProps } from '../../types/film';
+import { Genre, MainProps } from '../../types/film';
+
+// Константы
+import { ViewCardCount } from '../../const';
 
 // Компоненты
 import Tabs from '../../components/tabs/tabs';
-import SimilarCardList from '../../components/similar-card-list/similar-card-list';
+import CardList from '../../components/card-list/card-list';
+
+//Модули
+import { selectGenre, setViewCardCount } from '../../store/action';
 
 export default function Film({ films }: MainProps): JSX.Element {
   const { id } = useParams();
@@ -23,6 +30,10 @@ export default function Film({ films }: MainProps): JSX.Element {
   useEffect(() => {
     window.scroll(0, 0);
   }, [id]);
+
+  const dispatch = useDispatch();
+  dispatch(selectGenre(Genre[film.genre as keyof typeof Genre]));
+  dispatch(setViewCardCount(ViewCardCount.Similar));
 
   return (
     <React.StrictMode>
@@ -104,10 +115,7 @@ export default function Film({ films }: MainProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <SimilarCardList
-            films={films}
-            genre={film.genre}
-          />
+          <CardList films={films} />
 
         </section>
 

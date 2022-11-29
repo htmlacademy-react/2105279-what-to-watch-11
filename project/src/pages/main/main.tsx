@@ -1,15 +1,26 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 // Типы
-import { MainProps } from '../../types/film';
+import { MainProps, Genre } from '../../types/film';
+
+// Константы
+import { ViewCardCount } from '../../const';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 import GenreList from '../../components/genre-list/genere-list';
 
+//Модули
+import { selectGenre, setViewCardCount } from '../../store/action';
+
 export default function Main({ films }: MainProps): JSX.Element {
+  const dispatch = useDispatch();
+  dispatch(selectGenre(Genre.All));
+  dispatch(setViewCardCount(ViewCardCount.Init));
+
   return (
     <div>
       <Helmet>

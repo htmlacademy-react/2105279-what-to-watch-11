@@ -12,3 +12,9 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum ViewCardCount {
+  Init = 8,
+  Step = 8,
+  Similar = 4,
+}

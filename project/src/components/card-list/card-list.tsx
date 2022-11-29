@@ -12,6 +12,7 @@ import { StoreType } from '../../store/index';
 
 export default function CardList({ films }: MainProps): JSX.Element {
   const genre = useSelector((state: StoreType) => state.film.genre);
+  const viewCardCount = useSelector((state: StoreType) => state.film.viewCardCount);
 
   const filtredFilms = films.filter((film) => {
     if (genre === Genre.All) {
@@ -23,7 +24,7 @@ export default function CardList({ films }: MainProps): JSX.Element {
       }
     }
     return false;
-  });
+  }).slice(0, viewCardCount);
 
   return (
     <div className="catalog__films-list">

@@ -1,21 +1,26 @@
 // Библиотеки
 import { createReducer } from '@reduxjs/toolkit';
-import { selectGenre, getFilmList } from './action';
 
 // Типы
 import { FilmData, Genre } from '../types/film';
 
 // Константы
 import { films } from '../mocks/films';
+import { ViewCardCount } from '../const';
+
+//Модули
+import { selectGenre, getFilmList, addViewCardCount, setViewCardCount } from './action';
 
 type StateType = {
   genre: string;
   films: FilmData[];
+  viewCardCount: number;
 }
 
 const initialState: StateType = {
   genre: Genre.All,
   films: films,
+  viewCardCount: ViewCardCount.Init,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -34,6 +39,24 @@ export const reducer = createReducer(initialState, (builder) => {
       (state) => ({
         ...state,
         films,
+      })
+    );
+
+  builder
+    .addCase(
+      addViewCardCount,
+      (state) => ({
+        ...state,
+        viewCardCount: state.viewCardCount + ViewCardCount.Step
+      })
+    );
+
+  builder
+    .addCase(
+      setViewCardCount,
+      (state, action) => ({
+        ...state,
+        viewCardCount: action.payload
       })
     );
 });

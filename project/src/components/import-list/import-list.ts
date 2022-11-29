@@ -14,6 +14,7 @@
 // Библиотеки
 import React from 'react';
 import { Fragment, useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import { Navigate, useParams, Link, Route, BrowserRouter, Routes, redirect } from 'react-router-dom';
@@ -45,6 +46,5 @@ import FormReview from '../../components/form-review/form-review';
 import Comment from '../comment/comment';
 
 //Модули
-import { useSelector, useDispatch } from 'react-redux';
 import { StoreType } from '../../store/index';
 import { selectGenre } from '../../store/action';
