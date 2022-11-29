@@ -11,11 +11,6 @@ import { MainProps } from '../../types/film';
 import Tabs from '../../components/tabs/tabs';
 import SimilarCardList from '../../components/similar-card-list/similar-card-list';
 
-
-// import { useSelector, useDispatch } from 'react-redux';
-// import { StoreType } from '../../store/index';
-// import { selectGenre } from '../../store/action';
-
 export default function Film({ films }: MainProps): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
@@ -28,9 +23,6 @@ export default function Film({ films }: MainProps): JSX.Element {
   useEffect(() => {
     window.scroll(0, 0);
   }, [id]);
-
-  // const gen = useSelector((state: StoreType) => state.film.genre);
-  // const dispatch = useDispatch();
 
   return (
     <React.StrictMode>

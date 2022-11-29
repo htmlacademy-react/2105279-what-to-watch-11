@@ -45,8 +45,6 @@ import FormReview from '../../components/form-review/form-review';
 import Comment from '../comment/comment';
 
 //Модули
-// import { reducer } from './reducer';
-// import { StoreType } from '../../store/index';
 import { useSelector, useDispatch } from 'react-redux';
 import { StoreType } from '../../store/index';
 import { selectGenre } from '../../store/action';
