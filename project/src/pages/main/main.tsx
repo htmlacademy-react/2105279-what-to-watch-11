@@ -12,6 +12,7 @@ import { ViewCardCount } from '../../const';
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 import GenreList from '../../components/genre-list/genere-list';
+import ShowButton from '../../components/show-button/show-button';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/action';
@@ -95,9 +96,8 @@ export default function Main({ films }: MainProps): JSX.Element {
 
           <CardList films={films} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowButton />
+
         </section>
 
         <footer className="page-footer">

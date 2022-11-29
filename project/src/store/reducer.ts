@@ -36,9 +36,9 @@ export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(
       getFilmList,
-      (state) => ({
+      (state, action) => ({
         ...state,
-        films,
+        films: action.payload
       })
     );
 
