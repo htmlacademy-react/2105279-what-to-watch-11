@@ -18,7 +18,7 @@ export default function GenreList({ films }: MainProps): JSX.Element {
   const genres = new Set<string>();
 
   for (const key in Genre) {
-    const genre = Genre[key] as Genre;
+    const genre = Genre[key as keyof typeof Genre];
     if (!genres.has(genre)) {
       genres.add(genre);
       genreList.push(
