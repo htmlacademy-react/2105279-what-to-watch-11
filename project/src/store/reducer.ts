@@ -1,23 +1,32 @@
 // Библиотеки
 import { createReducer } from '@reduxjs/toolkit';
-import { selectGenre, getFilmList } from './action';
 
 // Типы
 import { FilmData, Genre } from '../types/film';
 
+// Константы
+import { films } from '../mocks/films';
+import { ViewCardCount } from '../const';
+
+//Модули
+import { selectGenre, getFilmList, addViewCardCount, setViewCardCount } from './action';
+
 type StateType = {
   genre: string;
   films: FilmData[];
+  viewCardCount: number;
 }
 
 const initialState: StateType = {
   genre: Genre.All,
-  films: [],
+  films: films,
+  viewCardCount: ViewCardCount.Init,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(selectGenre,
+    .addCase(
+      selectGenre,
       (state, action) => ({
         ...state,
         genre: action.payload
@@ -25,25 +34,30 @@ export const reducer = createReducer(initialState, (builder) => {
     );
 
   builder
-    .addCase(getFilmList,
-      (state, action) => {
-        const films = action.payload.filter((film) => {
-          if (state.genre === Genre.All) {
-            return true;
-          }
-          for (const key in Genre) {
-            if (film.genre === key && state.genre === Genre[key]) {
-              return true;
-            }
-          }
-          return false;
-        });
+    .addCase(
+      getFilmList,
+      (state, action) => ({
+        ...state,
+        films: action.payload
+      })
+    );
 
-        return {
-          ...state,
-          films,
-        };
-      }
+  builder
+    .addCase(
+      addViewCardCount,
+      (state) => ({
+        ...state,
+        viewCardCount: state.viewCardCount + ViewCardCount.Step
+      })
+    );
+
+  builder
+    .addCase(
+      setViewCardCount,
+      (state, action) => ({
+        ...state,
+        viewCardCount: action.payload
+      })
     );
 });
 

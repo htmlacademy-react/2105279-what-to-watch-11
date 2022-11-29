@@ -1,29 +1,26 @@
 // Библиотеки
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // Типы
-import { MainProps } from '../../types/film';
+import { MainProps, Genre } from '../../types/film';
+
+// Константы
+import { ViewCardCount } from '../../const';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 import GenreList from '../../components/genre-list/genere-list';
+import ShowButton from '../../components/show-button/show-button';
 
 //Модули
-import { StoreType } from '../../store/index';
-import { getFilmList } from '../../store/action';
+import { selectGenre, setViewCardCount } from '../../store/action';
 
 export default function Main({ films }: MainProps): JSX.Element {
-  const filtredFilms = useSelector((state: StoreType) => state.film.films);
-  const genre = useSelector((state: StoreType) => state.film.genre);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getFilmList(films));
-  }, [genre]
-  );
+  dispatch(selectGenre(Genre.All));
+  dispatch(setViewCardCount(ViewCardCount.Init));
 
   return (
     <div>
@@ -95,13 +92,12 @@ export default function Main({ films }: MainProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList films={films} />
+          <GenreList />
 
-          <CardList films={filtredFilms} />
+          <CardList films={films} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowButton />
+
         </section>
 
         <footer className="page-footer">

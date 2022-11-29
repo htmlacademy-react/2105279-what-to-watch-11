@@ -52,3 +52,4 @@ export enum Genre {
   'Sci-Fi' = 'Sci-Fi',
   'Thrillers' = 'Thrillers',
 }
+

@@ -14,6 +14,7 @@
 // Библиотеки
 import React from 'react';
 import { Fragment, useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import { Navigate, useParams, Link, Route, BrowserRouter, Routes, redirect } from 'react-router-dom';
@@ -43,10 +44,8 @@ import FilmCard from '../../components/film-card/film-card';
 import CardList from '../../components/card-list/card-list';
 import FormReview from '../../components/form-review/form-review';
 import Comment from '../comment/comment';
+import ShowButton from '../../components/show-button/show-button';
 
 //Модули
-// import { reducer } from './reducer';
-// import { StoreType } from '../../store/index';
-import { useSelector, useDispatch } from 'react-redux';
 import { StoreType } from '../../store/index';
 import { selectGenre } from '../../store/action';
