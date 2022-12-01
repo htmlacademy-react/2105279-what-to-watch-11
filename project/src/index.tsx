@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 // Константы
-import { films } from './mocks/films';
 
 // Компоненты
 import App from './components/app/app';
@@ -15,6 +14,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App films={films} />
+    <App films={[]} />
   </React.StrictMode>,
 );

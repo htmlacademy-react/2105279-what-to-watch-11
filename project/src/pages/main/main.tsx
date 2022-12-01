@@ -29,7 +29,7 @@ export default function Main({ films }: MainProps): JSX.Element {
       </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={films[0].backgroundImage} alt={films[0].name} />
+          <img src={films[0]?.backgroundImage} alt={films[0]?.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -58,14 +58,14 @@ export default function Main({ films }: MainProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={films[0].posterImage} alt={films[0].name} width="218" height="327" />
+              <img src={films[0]?.posterImage} alt={films[0]?.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{films[0].name}</h2>
+              <h2 className="film-card__title">{films[0]?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{films[0].genre}</span>
-                <span className="film-card__year">{films[0].released}</span>
+                <span className="film-card__genre">{films[0]?.genre}</span>
+                <span className="film-card__year">{films[0]?.released}</span>
               </p>
 
               <div className="film-card__buttons">

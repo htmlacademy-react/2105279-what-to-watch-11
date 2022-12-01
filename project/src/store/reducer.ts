@@ -5,7 +5,6 @@ import { createReducer } from '@reduxjs/toolkit';
 import { FilmData, Genre } from '../types/film';
 
 // Константы
-import { films } from '../mocks/films';
 import { ViewCardCount } from '../const';
 
 //Модули
@@ -19,7 +18,7 @@ type StateType = {
 
 const initialState: StateType = {
   genre: Genre.All,
-  films: films,
+  films: [],
   viewCardCount: ViewCardCount.Init,
 };
 

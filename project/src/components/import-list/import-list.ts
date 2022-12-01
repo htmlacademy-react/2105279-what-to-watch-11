@@ -26,7 +26,6 @@ import { FilmData, MainProps, Genre } from '../../types/film';
 
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { films } from '../../mocks/films';
 
 // Страницы
 import Main from '../../pages/main/main';

@@ -7,7 +7,6 @@ import cn from 'classnames';
 import { FilmData, TabsName } from '../../types/film';
 
 // Константы
-import { comments } from '../../mocks/films';
 
 // Компоненты
 import TabOverview from '../tab-overview/tab-overview';
@@ -32,7 +31,7 @@ export default function Tabs({ film }: { film: FilmData }): JSX.Element {
       selectedTab = <TabDetails film={film} />;
       break;
     case TabsName.Reviews:
-      selectedTab = <TabReview comments={comments} />;
+      selectedTab = <TabReview comments={[]} />;
       break;
   }
 
