@@ -1,6 +1,7 @@
 // Библиотеки
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { useSelector } from 'react-redux';
 
 // Типы
 
@@ -18,8 +19,18 @@ import NotFound from '../../pages/not-found/not-found';
 
 // Компоненты
 import PrivateRoute from '../private-route/private-route';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
+
+//Модули
+import { StoreType } from '../../store/index';
 
 export default function App(): JSX.Element {
+  const length = useSelector((state: StoreType) => state.film.films.length);
+
+  if (!length) {
+    return <LoadingScreen />;
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
