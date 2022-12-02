@@ -1,10 +1,10 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
-import { MainProps, Genre } from '../../types/film';
+import { Genre } from '../../types/film';
 
 // Константы
 import { ViewCardCount } from '../../const';
@@ -16,11 +16,13 @@ import ShowButton from '../../components/show-button/show-button';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/action';
+import { StoreType } from '../../store/index';
 
-export default function Main({ films }: MainProps): JSX.Element {
+export default function Main(): JSX.Element {
   const dispatch = useDispatch();
   dispatch(selectGenre(Genre.All));
   dispatch(setViewCardCount(ViewCardCount.Init));
+  const films = useSelector((state: StoreType) => state.film.films);
 
   return (
     <div>
@@ -94,7 +96,7 @@ export default function Main({ films }: MainProps): JSX.Element {
 
           <GenreList />
 
-          <CardList films={films} />
+          <CardList />
 
           <ShowButton />
 

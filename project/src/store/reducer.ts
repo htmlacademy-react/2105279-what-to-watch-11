@@ -8,7 +8,7 @@ import { FilmData, Genre } from '../types/film';
 import { ViewCardCount } from '../const';
 
 //Модули
-import { selectGenre, getFilmList, addViewCardCount, setViewCardCount } from './action';
+import { selectGenre, loadFilmList, addViewCardCount, setViewCardCount } from './action';
 
 type StateType = {
   genre: string;
@@ -34,7 +34,7 @@ export const reducer = createReducer(initialState, (builder) => {
 
   builder
     .addCase(
-      getFilmList,
+      loadFilmList,
       (state, action) => ({
         ...state,
         films: action.payload
