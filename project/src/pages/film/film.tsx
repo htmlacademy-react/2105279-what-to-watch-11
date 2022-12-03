@@ -3,10 +3,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, redirect } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
-import { Genre, MainProps } from '../../types/film';
+import { Genre } from '../../types/film';
 
 // Константы
 import { ViewCardCount } from '../../const';
@@ -17,10 +17,12 @@ import CardList from '../../components/card-list/card-list';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/action';
+import { StoreType } from '../../store/index';
 
-export default function Film({ films }: MainProps): JSX.Element {
+export default function Film(): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
+  const films = useSelector((state: StoreType) => state.film.films);
   const filmIndex = films.findIndex((value) => (value.id === filmId));
   if (filmIndex === -1) {
     redirect('not-found');
@@ -115,7 +117,7 @@ export default function Film({ films }: MainProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <CardList films={films} />
+          <CardList />
 
         </section>
 

@@ -1,11 +1,10 @@
 // Библиотеки
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { Provider } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
-import { MainProps } from '../../types/film';
-
+import { AppDispatch } from '../../types/store';
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
 
@@ -20,54 +19,64 @@ import NotFound from '../../pages/not-found/not-found';
 
 // Компоненты
 import PrivateRoute from '../private-route/private-route';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 //Модули
-import { store } from '../../store/index';
+import { StoreType } from '../../store/index';
+import { useEffect } from 'react';
+import { fetchFilmAction } from '../../store/api-actions';
 
+export default function App(): JSX.Element {
+  const length = useSelector((state: StoreType) => state.film.films.length);
+  const dispatch = useDispatch<AppDispatch>();
 
-export default function App({ films }: MainProps): JSX.Element {
+  useEffect(
+    () => {
+      dispatch(fetchFilmAction());
+    }, [dispatch]);
+
+  if (!length) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <Provider
-      store={store}
-    >
-      <HelmetProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path={AppRoute.Main}
-              element={<Main films={films} />}
-            />
-            <Route
-              path={AppRoute.SignIn}
-              element={<SignIn />}
-            />
-            <Route
-              path={AppRoute.MyList}
-              element={
-                <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                  <MyList films={films} />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={AppRoute.Film}
-              element={<Film films={films} />}
-            />
-            <Route
-              path={AppRoute.AddReview}
-              element={<AddReview films={films} />}
-            />
-            <Route
-              path={AppRoute.Player}
-              element={<Player films={films} />}
-            />
-            <Route
-              path="*"
-              element={<NotFound />}
-            />
-          </Routes>
-        </BrowserRouter>
-      </HelmetProvider>
-    </Provider>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<Main />}
+          />
+          <Route
+            path={AppRoute.SignIn}
+            element={<SignIn />}
+          />
+          <Route
+            path={AppRoute.MyList}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <MyList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Film}
+            element={<Film />}
+          />
+          <Route
+            path={AppRoute.AddReview}
+            element={<AddReview />}
+          />
+          <Route
+            path={AppRoute.Player}
+            element={<Player />}
+          />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }

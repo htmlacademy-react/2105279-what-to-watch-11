@@ -22,11 +22,10 @@ import { HelmetProvider, Helmet } from 'react-helmet-async';
 import cn from 'classnames';
 
 // Типы
-import { FilmData, MainProps, Genre } from '../../types/film';
+import { FilmData, Genre } from '../../types/film';
 
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { films } from '../../mocks/films';
 
 // Страницы
 import Main from '../../pages/main/main';

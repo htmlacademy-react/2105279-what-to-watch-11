@@ -4,14 +4,11 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-// Типы
-import { MainProps } from '../../types/film';
-
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 
 
-export default function MyList({ films }: MainProps): JSX.Element {
+export default function MyList(): JSX.Element {
   return (
     <div className="user-page">
       <Helmet>
@@ -42,7 +39,7 @@ export default function MyList({ films }: MainProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <CardList films={films} />
+        <CardList />
 
       </section>
 

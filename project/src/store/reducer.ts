@@ -5,11 +5,11 @@ import { createReducer } from '@reduxjs/toolkit';
 import { FilmData, Genre } from '../types/film';
 
 // Константы
-import { films } from '../mocks/films';
 import { ViewCardCount } from '../const';
 
 //Модули
-import { selectGenre, getFilmList, addViewCardCount, setViewCardCount } from './action';
+import { selectGenre, addViewCardCount, setViewCardCount } from './action';
+import { fetchFilmAction } from './api-actions';
 
 type StateType = {
   genre: string;
@@ -19,7 +19,7 @@ type StateType = {
 
 const initialState: StateType = {
   genre: Genre.All,
-  films: films,
+  films: [],
   viewCardCount: ViewCardCount.Init,
 };
 
@@ -35,7 +35,7 @@ export const reducer = createReducer(initialState, (builder) => {
 
   builder
     .addCase(
-      getFilmList,
+      fetchFilmAction.fulfilled,
       (state, action) => ({
         ...state,
         films: action.payload

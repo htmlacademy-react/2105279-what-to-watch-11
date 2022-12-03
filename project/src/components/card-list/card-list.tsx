@@ -1,19 +1,18 @@
 // Библиотеки
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // Типы
-import { FilmData, MainProps, Genre } from '../../types/film';
+import { FilmData, Genre } from '../../types/film';
 
 // Компоненты
 import FilmCard from '../../components/film-card/film-card';
 
 //Модули
 import { StoreType } from '../../store/index';
-import { getFilmList } from '../../store/action';
 
-export default function CardList({ films }: MainProps): JSX.Element {
-  const dispatch = useDispatch();
+export default function CardList(): JSX.Element {
   const genre = useSelector((state: StoreType) => state.film.genre);
+  const films = useSelector((state: StoreType) => state.film.films);
   const viewCardCount = useSelector((state: StoreType) => state.film.viewCardCount);
 
   const filtredFilms = films.filter((film) => {
@@ -27,8 +26,6 @@ export default function CardList({ films }: MainProps): JSX.Element {
     }
     return false;
   });
-
-  dispatch(getFilmList(filtredFilms));
 
   return (
     <div className="catalog__films-list">
