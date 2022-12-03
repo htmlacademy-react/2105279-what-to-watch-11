@@ -1,10 +1,10 @@
 // Библиотеки
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
-
+import { AppDispatch } from '../../types/store';
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
 
@@ -23,9 +23,17 @@ import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 //Модули
 import { StoreType } from '../../store/index';
+import { useEffect } from 'react';
+import { fetchFilmAction } from '../../store/api-actions';
 
 export default function App(): JSX.Element {
   const length = useSelector((state: StoreType) => state.film.films.length);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(
+    () => {
+      dispatch(fetchFilmAction());
+    }, [dispatch]);
 
   if (!length) {
     return <LoadingScreen />;

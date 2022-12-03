@@ -1,21 +1,16 @@
-import { AxiosInstance } from 'axios';
+// import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // Типы
-import { StoreType, AppDispatch } from '../types/store';
 import { FilmData } from '../types/film';
 
 //Модули
-import { loadFilmList } from './action';
+import { Axios } from '../services/api';
 
-export const fetchFilmAction = createAsyncThunk<void, undefined, {
-  dispatch: AppDispatch;
-  state: StoreType;
-  extra: AxiosInstance;
-}>(
+export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',
-  async (_arg, { dispatch, extra: api }) => {
-    const { data } = await api.get<FilmData[]>('/films');
-    dispatch(loadFilmList(data));
+  async () => {
+    const { data } = await Axios.get<FilmData[]>('/films');
+    return data;
   },
 );
