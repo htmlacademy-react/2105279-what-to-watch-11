@@ -1,4 +1,5 @@
 // Библиотеки
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +26,7 @@ export default function Main(): JSX.Element {
   const films = useSelector((state: StoreType) => state.film.films);
 
   return (
-    <div>
+    <React.StrictMode>
       <Helmet>
         <title>Главная страница</title>
       </Helmet>
@@ -116,6 +117,6 @@ export default function Main(): JSX.Element {
           </div>
         </footer>
       </div>
-    </div>
+    </React.StrictMode>
   );
 }
