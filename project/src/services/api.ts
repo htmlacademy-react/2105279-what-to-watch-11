@@ -1,9 +1,16 @@
 //Библиотеки
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+
 import { StatusCodes } from 'http-status-codes';
 
 //Модули
 import { processErrorHandle } from './process-error-handle';
+
+const StatusCodeMapping: Record<number, boolean> = {
+  [StatusCodes.BAD_REQUEST]: true,
+  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.NOT_FOUND]: true
+};
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
