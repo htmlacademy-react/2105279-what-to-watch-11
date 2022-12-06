@@ -1,6 +1,9 @@
 // Библиотеки
 import { createAction } from '@reduxjs/toolkit';
 
+//Константы
+import { AuthorizationStatus } from '../const';
+
 export const selectGenre = createAction('data/genre',
   (value: string) => ({
     payload: value
@@ -14,3 +17,5 @@ export const setViewCardCount = createAction('view/setCardCount',
   ));
 
 export const addViewCardCount = createAction('view/addCardCount');
+
+export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
