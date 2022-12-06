@@ -11,6 +11,7 @@ import { APIRoute, AuthorizationStatus } from '../const';
 
 //Модули
 import { Axios } from '../services/api';
+import { saveToken, dropToken } from '../services/token';
 
 export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',
@@ -34,10 +35,10 @@ export const checkAuthAction = createAsyncThunk(
 
 export const loginAction = createAsyncThunk(
   'user/login',
-  async () => {
+  async ({ login: email, password }: AuthData) => {
     const { data: { token } } = await Axios.post<UserData>(APIRoute.Login, { email, password });
     saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    return AuthorizationStatus.Auth;
   },
 );
 
@@ -46,8 +47,6 @@ export const logoutAction = createAsyncThunk(
   async () => {
     await Axios.delete(APIRoute.Logout);
     dropToken();
-    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    return AuthorizationStatus.NoAuth;
   },
 );
-
-

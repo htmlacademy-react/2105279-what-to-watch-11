@@ -9,7 +9,7 @@ import { ViewCardCount, AuthorizationStatus } from '../const';
 
 //Модули
 import { selectGenre, addViewCardCount, requireAuthorization, setViewCardCount } from './action';
-import { fetchFilmAction } from './api-actions';
+import { fetchFilmAction, checkAuthAction, loginAction, logoutAction } from './api-actions';
 
 type StateType = {
   genre: string;
@@ -33,11 +33,6 @@ export const reducer = createReducer(initialState, (builder) => {
         state.genre = action.payload;
       })
     .addCase(
-      fetchFilmAction.fulfilled,
-      (state, action) => {
-        state.films = action.payload;
-      })
-    .addCase(
       addViewCardCount,
       (state) => {
         state.viewCardCount = state.viewCardCount + ViewCardCount.Step;
@@ -50,6 +45,25 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(requireAuthorization,
       (state, action) => {
         state.authorizationStatus = action.payload;
+      })
+    .addCase(
+      fetchFilmAction.fulfilled,
+      (state, action) => {
+        state.films = action.payload;
+      })
+    .addCase(
+      checkAuthAction.fulfilled,
+      (state, action) => {
+        state.authorizationStatus = action.payload;
+      })
+    .addCase(
+      loginAction.fulfilled,
+      (state, action) => {
+        state.authorizationStatus = action.payload;
+      })
+    .addCase(
+      logoutAction.fulfilled,
+      (state, action) => {
+        state.authorizationStatus = action.payload;
       });
 });
-
