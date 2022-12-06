@@ -3,6 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 
 // Типы
 import { FilmData, Genre } from '../types/film';
+import { StateType } from '../types/store';
 
 // Константы
 import { ViewCardCount, AuthorizationStatus } from '../const';
@@ -10,14 +11,6 @@ import { ViewCardCount, AuthorizationStatus } from '../const';
 //Модули
 import { selectGenre, addViewCardCount, requireAuthorization, setViewCardCount, setError } from './action';
 import { fetchFilmAction, checkAuthAction, loginAction, logoutAction } from './api-actions';
-
-type StateType = {
-  genre: string;
-  films: FilmData[];
-  viewCardCount: number;
-  authorizationStatus: AuthorizationStatus;
-  error: string | null;
-}
 
 const initialState: StateType = {
   genre: Genre.All,
