@@ -7,11 +7,13 @@ import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 
 //Константы
-import { APIRoute, AuthorizationStatus } from '../const';
+import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 
 //Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
+import { setError } from './action';
+import { store } from '../store/index';
 
 export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',
@@ -48,5 +50,15 @@ export const logoutAction = createAsyncThunk(
     await Axios.delete(APIRoute.Logout);
     dropToken();
     return AuthorizationStatus.NoAuth;
+  },
+);
+
+export const clearErrorAction = createAsyncThunk(
+  'game/clearError',
+  () => {
+    setTimeout(
+      () => store.dispatch(setError(null)),
+      TIMEOUT_SHOW_ERROR,
+    );
   },
 );
