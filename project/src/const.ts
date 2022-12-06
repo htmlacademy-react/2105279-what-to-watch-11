@@ -18,3 +18,8 @@ export enum ViewCardCount {
   Step = 8,
   Similar = 4,
 }
+
+export enum APIRoute {
+  Login = '/login',
+  Logout = '/logout',
+}
