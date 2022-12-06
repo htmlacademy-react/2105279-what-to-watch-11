@@ -8,7 +8,7 @@ import { FilmData, Genre } from '../types/film';
 import { ViewCardCount, AuthorizationStatus } from '../const';
 
 //Модули
-import { selectGenre, addViewCardCount, requireAuthorization, setViewCardCount } from './action';
+import { selectGenre, addViewCardCount, requireAuthorization, setViewCardCount, setError } from './action';
 import { fetchFilmAction, checkAuthAction, loginAction, logoutAction } from './api-actions';
 
 type StateType = {
@@ -16,6 +16,7 @@ type StateType = {
   films: FilmData[];
   viewCardCount: number;
   authorizationStatus: AuthorizationStatus;
+  error: string | null;
 }
 
 const initialState: StateType = {
@@ -23,6 +24,7 @@ const initialState: StateType = {
   films: [],
   viewCardCount: ViewCardCount.Init,
   authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -65,5 +67,8 @@ export const reducer = createReducer(initialState, (builder) => {
       logoutAction.fulfilled,
       (state, action) => {
         state.authorizationStatus = action.payload;
-      });
+      })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
+    });
 });

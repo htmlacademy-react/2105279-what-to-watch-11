@@ -19,3 +19,5 @@ export const setViewCardCount = createAction('view/setCardCount',
 export const addViewCardCount = createAction('view/addCardCount');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+
+export const setError = createAction<string | null>('data/setError');
