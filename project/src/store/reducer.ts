@@ -2,7 +2,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 // Типы
-import { FilmData, Genre } from '../types/film';
+import { Genre } from '../types/film';
 import { StateType } from '../types/store';
 
 // Константы

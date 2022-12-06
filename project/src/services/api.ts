@@ -1,5 +1,5 @@
 //Библиотеки
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 
 import { StatusCodes } from 'http-status-codes';
 

@@ -1,4 +1,4 @@
-// import { AxiosInstance } from 'axios';
+//Библиотеки
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // Типы
