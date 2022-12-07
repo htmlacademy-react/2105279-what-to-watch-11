@@ -5,13 +5,12 @@ import { useSelector } from 'react-redux';
 import { StateType } from '../../types/store';
 
 //Компоненты
-// import './error-message.css';
+import './error-message.css';
 
 export default function ErrorMessage(): JSX.Element | null {
   const error = useSelector((state: StateType) => state.error);
 
   return (error)
-    ? <div >{error}</div>
+    ? <div className='error-message'>{error}</div>
     : null;
-
 }

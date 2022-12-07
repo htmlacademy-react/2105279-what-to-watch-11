@@ -11,9 +11,9 @@ import ErrorMessage from './components/error-message/error-message';
 
 //Модули
 import { store } from './store/index';
-// import { checkAuthAction } from './store/api-actions';
+import { checkAuthAction } from './store/api-actions';
 
-// store.dispatch(checkAuthAction());
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
