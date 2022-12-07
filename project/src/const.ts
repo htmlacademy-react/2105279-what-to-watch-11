@@ -25,3 +25,9 @@ export enum APIRoute {
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const StatusCodes = {
+  BAD_REQUEST: 1,
+  UNAUTHORIZED: 2,
+  NOT_FOUND: 404,
+};

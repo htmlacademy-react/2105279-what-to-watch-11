@@ -1,7 +1,8 @@
 //Библиотеки
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 
-import { StatusCodes } from 'http-status-codes';
+//Константы
+import { StatusCodes } from '../const';
 
 //Модули
 import { processErrorHandle } from './process-error-handle';
