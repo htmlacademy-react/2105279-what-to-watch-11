@@ -9,8 +9,7 @@ import { StateType } from '../types/store';
 import { ViewCardCount, AuthorizationStatus } from '../const';
 
 //Модули
-import { selectGenre, addViewCardCount, requireAuthorization, setViewCardCount, setError } from './action';
-import { fetchFilmAction, checkAuthAction, loginAction, logoutAction } from './api-actions';
+import { selectGenre, addViewCardCount, requireAuthorization, setViewCardCount, setError, loadFilmList } from './action';
 
 const initialState: StateType = {
   genre: Genre.All,
@@ -37,29 +36,15 @@ export const reducer = createReducer(initialState, (builder) => {
       (state, action) => {
         state.viewCardCount = action.payload;
       })
-    .addCase(requireAuthorization,
+    .addCase(
+      requireAuthorization,
       (state, action) => {
         state.authorizationStatus = action.payload;
       })
     .addCase(
-      fetchFilmAction.fulfilled,
+      loadFilmList,
       (state, action) => {
         state.films = action.payload;
-      })
-    .addCase(
-      checkAuthAction.fulfilled,
-      (state, action) => {
-        state.authorizationStatus = action.payload;
-      })
-    .addCase(
-      loginAction.fulfilled,
-      (state, action) => {
-        state.authorizationStatus = action.payload;
-      })
-    .addCase(
-      logoutAction.fulfilled,
-      (state, action) => {
-        state.authorizationStatus = action.payload;
       })
     .addCase(setError,
       (state, action) => {

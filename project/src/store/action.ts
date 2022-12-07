@@ -1,6 +1,9 @@
 // Библиотеки
 import { createAction } from '@reduxjs/toolkit';
 
+// Типы
+import { FilmData } from '../types/film';
+
 //Константы
 import { AuthorizationStatus } from '../const';
 
@@ -16,8 +19,17 @@ export const setViewCardCount = createAction('view/setCardCount',
   }
   ));
 
+export const loadFilmList = createAction('data/loadFilms',
+  (films: FilmData[]) => ({
+    payload: films
+  }
+  ));
+
+export const requireAuthorization = createAction('user/requireAuthorization',
+  (status: AuthorizationStatus) => ({
+    payload: status
+  })
+);
+
 export const addViewCardCount = createAction('view/addCardCount');
-
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
-
 export const setError = createAction<string | null>('data/setError');

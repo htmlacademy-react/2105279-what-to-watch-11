@@ -12,52 +12,52 @@ import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 //Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
-import { setError } from './action';
-import { store } from '../store/index';
+import { setError, loadFilmList, requireAuthorization } from './action';
+// import { store } from '../store/index';
 
 export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',
-  async () => {
+  async (_, { dispatch }) => {
     const { data } = await Axios.get<FilmData[]>('/films');
-    return data;
+    dispatch(loadFilmList(data));
   },
 );
 
 export const checkAuthAction = createAsyncThunk(
   'user/checkAuth',
-  async () => {
+  async (_, { dispatch }) => {
     try {
       await Axios.get(APIRoute.Login);
-      return AuthorizationStatus.Auth;
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
     } catch {
-      return AuthorizationStatus.NoAuth;
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
 );
 
 export const loginAction = createAsyncThunk(
   'user/login',
-  async ({ login: email, password }: AuthData) => {
+  async ({ login: email, password }: AuthData, { dispatch }) => {
     const { data: { token } } = await Axios.post<UserData>(APIRoute.Login, { email, password });
     saveToken(token);
-    return AuthorizationStatus.Auth;
+    dispatch(requireAuthorization(AuthorizationStatus.Auth));
   },
 );
 
 export const logoutAction = createAsyncThunk(
   'user/logout',
-  async () => {
+  async (_, { dispatch }) => {
     await Axios.delete(APIRoute.Logout);
     dropToken();
-    return AuthorizationStatus.NoAuth;
+    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
 );
 
 export const clearErrorAction = createAsyncThunk(
   'game/clearError',
-  () => {
+  (_, { dispatch }) => {
     setTimeout(
-      () => store.dispatch(setError(null)),
+      () => dispatch(setError(null)),
       TIMEOUT_SHOW_ERROR,
     );
   },
