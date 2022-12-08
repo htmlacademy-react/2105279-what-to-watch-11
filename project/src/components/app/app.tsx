@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
 import { AppDispatch } from '../../types/store';
+
 // Константы
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 
 // Страницы
 import Main from '../../pages/main/main';
@@ -27,6 +28,8 @@ import { useEffect } from 'react';
 import { fetchFilmAction } from '../../store/api-actions';
 
 export default function App(): JSX.Element {
+
+  const authorizationStatus = useSelector((state: StoreType) => state.film.authorizationStatus);
   const length = useSelector((state: StoreType) => state.film.films.length);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -54,7 +57,9 @@ export default function App(): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute
+                authorizationStatus={authorizationStatus}
+              >
                 <MyList />
               </PrivateRoute>
             }

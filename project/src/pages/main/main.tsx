@@ -1,7 +1,7 @@
 // Библиотеки
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
@@ -9,11 +9,13 @@ import { Genre } from '../../types/film';
 
 // Константы
 import { ViewCardCount } from '../../const';
+import { AppRoute } from '../../const';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 import GenreList from '../../components/genre-list/genere-list';
 import ShowButton from '../../components/show-button/show-button';
+import PageHeader from '../../components/page-header/page-header';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/action';
@@ -21,6 +23,8 @@ import { StoreType } from '../../store/index';
 
 export default function Main(): JSX.Element {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   dispatch(selectGenre(Genre.All));
   dispatch(setViewCardCount(ViewCardCount.Init));
   const films = useSelector((state: StoreType) => state.film.films);
@@ -37,26 +41,7 @@ export default function Main(): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header film-card__head">
-          <div className="logo">
-            <Link to="/" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link to="#" className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
-        </header>
+        <PageHeader />
 
         <div className="film-card__wrap">
           <div className="film-card__info">
@@ -78,7 +63,11 @@ export default function Main(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
+                <button
+                  className="btn btn--list film-card__button"
+                  type="button"
+                  onClick={() => navigate(AppRoute.MyList)}
+                >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>

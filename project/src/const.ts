@@ -18,3 +18,16 @@ export enum ViewCardCount {
   Step = 8,
   Similar = 4,
 }
+
+export enum APIRoute {
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const StatusCodes = {
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
+};
