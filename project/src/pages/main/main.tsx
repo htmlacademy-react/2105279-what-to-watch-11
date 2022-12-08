@@ -1,7 +1,7 @@
 // Библиотеки
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
@@ -9,6 +9,7 @@ import { Genre } from '../../types/film';
 
 // Константы
 import { ViewCardCount } from '../../const';
+import { AppRoute } from '../../const';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
@@ -22,6 +23,8 @@ import { StoreType } from '../../store/index';
 
 export default function Main(): JSX.Element {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   dispatch(selectGenre(Genre.All));
   dispatch(setViewCardCount(ViewCardCount.Init));
   const films = useSelector((state: StoreType) => state.film.films);
@@ -60,7 +63,11 @@ export default function Main(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
+                <button
+                  className="btn btn--list film-card__button"
+                  type="button"
+                  onClick={() => navigate(AppRoute.MyList)}
+                >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
