@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
 import { Genre } from '../../types/film';
+import { AppDispatch } from '../../types/store';
 
 // Константы
 import { ViewCardCount } from '../../const';
@@ -19,6 +20,7 @@ import PageHeader from '../../components/page-header/page-header';
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/action';
 import { StoreType } from '../../store/index';
+import { fetchFilmSimilarAction } from '../../store/api-actions';
 
 export default function Film(): JSX.Element {
   const { id } = useParams();
@@ -29,14 +31,17 @@ export default function Film(): JSX.Element {
     redirect('not-found');
   }
   const film = films[filmIndex];
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     window.scroll(0, 0);
-  }, [id]);
+    dispatch(selectGenre(Genre[film.genre as keyof typeof Genre]));
+    dispatch(setViewCardCount(ViewCardCount.Similar));
+  }, [id, film.genre, dispatch]);
 
-  const dispatch = useDispatch();
-  dispatch(selectGenre(Genre[film.genre as keyof typeof Genre]));
-  dispatch(setViewCardCount(ViewCardCount.Similar));
+  useEffect(() => {
+    dispatch(fetchFilmSimilarAction(film.id));
+  }, [film.id, dispatch]);
 
   return (
     <React.StrictMode>

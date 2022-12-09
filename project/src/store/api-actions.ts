@@ -23,6 +23,14 @@ export const fetchFilmAction = createAsyncThunk(
   },
 );
 
+export const fetchFilmSimilarAction = createAsyncThunk(
+  'data/fetchFilms',
+  async (filmId: number, { dispatch }) => {
+    const { data } = await Axios.get<FilmData[]>(`/films/${filmId}/similar`);
+    dispatch(loadFilmList(data));
+  },
+);
+
 export const checkAuthAction = createAsyncThunk(
   'user/checkAuth',
   async (_, { dispatch }) => {
