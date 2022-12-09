@@ -1,14 +1,23 @@
 // Библиотеки
-import { useSelector } from 'react-redux';
+import { SyntheticEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 // Константы
 import { AuthorizationStatus } from '../../const';
 
 //Модули
 import { StoreType } from '../../store/index';
+import { logoutAction } from '../../store/api-actions';
+import { AppDispatch } from '../../types/store';
 
 export default function PageHeader() {
+  const dispatch = useDispatch<AppDispatch>();
   const authorizationStatus = useSelector((state: StoreType) => state.film.authorizationStatus);
+
+  const handleSignOut = (evt: SyntheticEvent) => {
+    evt.preventDefault();
+    dispatch(logoutAction());
+  };
 
   const userBlock = authorizationStatus === AuthorizationStatus.Auth
     ? (
@@ -19,7 +28,12 @@ export default function PageHeader() {
           </div>
         </li>
         <li className="user-block__item">
-          <a href="/" className="user-block__link">Sign out</a>
+          <a
+            onClick={handleSignOut}
+            href="/"
+            className="user-block__link"
+          >Sign out
+          </a>
         </li>
       </ul>
     )
