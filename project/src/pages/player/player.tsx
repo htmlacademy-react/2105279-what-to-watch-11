@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { useParams, redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-//Модули
-import { StoreType } from '../../store/index';
+//Типы
+import { StoreType } from '../../types/store';
 
 export default function Player(): JSX.Element {
   const { id } = useParams();

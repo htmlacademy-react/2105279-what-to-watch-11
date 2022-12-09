@@ -2,7 +2,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // Типы
-import { FilmData } from '../types/film';
+import { FilmData, CommentData } from '../types/film';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 
@@ -12,8 +12,7 @@ import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 //Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
-import { setError, loadFilmList, requireAuthorization } from './action';
-// import { store } from '../store/index';
+import { setError, loadFilmList, loadFilm, requireAuthorization, loadFilmComments } from './action';
 
 export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',
@@ -23,11 +22,27 @@ export const fetchFilmAction = createAsyncThunk(
   },
 );
 
+export const fetchFilmIdAction = createAsyncThunk(
+  'data/fetchFilm',
+  async (filmId: number, { dispatch }) => {
+    const { data } = await Axios.get<FilmData>(`/films/${filmId}`);
+    dispatch(loadFilm(data));
+  },
+);
+
 export const fetchFilmSimilarAction = createAsyncThunk(
-  'data/fetchFilms',
+  'data/fetchFilmSimilar',
   async (filmId: number, { dispatch }) => {
     const { data } = await Axios.get<FilmData[]>(`/films/${filmId}/similar`);
     dispatch(loadFilmList(data));
+  },
+);
+
+export const fetchCommentAction = createAsyncThunk(
+  'data/fetchComments',
+  async (filmId: number, { dispatch }) => {
+    const { data } = await Axios.get<CommentData[]>(`/comments/${filmId}`);
+    dispatch(loadFilmComments(data));
   },
 );
 

@@ -3,12 +3,10 @@ import { useSelector } from 'react-redux';
 
 // Типы
 import { FilmData } from '../../types/film';
+import { StoreType } from '../../types/store';
 
 // Компоненты
 import FilmCard from '../../components/film-card/film-card';
-
-//Модули
-import { StoreType } from '../../store/index';
 
 export default function CardList(): JSX.Element {
   const films = useSelector((state: StoreType) => state.film.films);

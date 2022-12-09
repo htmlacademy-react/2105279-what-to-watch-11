@@ -2,7 +2,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
 // Типы
-import { FilmData } from '../types/film';
+import { FilmData, CommentData } from '../types/film';
 
 //Константы
 import { AuthorizationStatus } from '../const';
@@ -22,6 +22,18 @@ export const setViewCardCount = createAction('view/setCardCount',
 export const loadFilmList = createAction('data/loadFilms',
   (films: FilmData[]) => ({
     payload: films
+  }
+  ));
+
+export const loadFilm = createAction('data/loadFilm',
+  (film: FilmData) => ({
+    payload: film
+  }
+  ));
+
+export const loadFilmComments = createAction('data/loadComments',
+  (comments: CommentData[]) => ({
+    payload: comments
   }
   ));
 

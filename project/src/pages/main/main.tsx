@@ -10,6 +10,7 @@ import { Genre } from '../../types/film';
 // Константы
 import { ViewCardCount } from '../../const';
 import { AppRoute } from '../../const';
+import { StoreType } from '../../types/store';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
@@ -19,7 +20,6 @@ import PageHeader from '../../components/page-header/page-header';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/action';
-import { StoreType } from '../../store/index';
 
 export default function Main(): JSX.Element {
   const dispatch = useDispatch();

@@ -9,11 +9,22 @@ import { StateType } from '../types/store';
 import { ViewCardCount, AuthorizationStatus } from '../const';
 
 //Модули
-import { selectGenre, addViewCardCount, requireAuthorization, setViewCardCount, setError, loadFilmList } from './action';
+import {
+  selectGenre,
+  addViewCardCount,
+  requireAuthorization,
+  setViewCardCount,
+  setError,
+  loadFilmList,
+  loadFilm,
+  loadFilmComments
+} from './action';
 
 const initialState: StateType = {
   genre: Genre.All,
   films: [],
+  film: null,
+  comments: [],
   viewCardCount: ViewCardCount.Init,
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
@@ -45,6 +56,16 @@ export const reducer = createReducer(initialState, (builder) => {
       loadFilmList,
       (state, action) => {
         state.films = action.payload;
+      })
+    .addCase(
+      loadFilm,
+      (state, action) => {
+        state.film = action.payload;
+      })
+    .addCase(
+      loadFilmComments,
+      (state, action) => {
+        state.comments = action.payload;
       })
     .addCase(setError,
       (state, action) => {

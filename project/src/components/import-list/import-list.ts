@@ -23,6 +23,7 @@ import cn from 'classnames';
 
 // Типы
 import { FilmData, Genre } from '../../types/film';
+import { AppDispatch, StoreType } from '../../types/store';
 
 // Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
@@ -46,5 +47,4 @@ import Comment from '../comment/comment';
 import ShowButton from '../../components/show-button/show-button';
 
 //Модули
-import { StoreType } from '../../store/index';
 import { selectGenre } from '../../store/action';

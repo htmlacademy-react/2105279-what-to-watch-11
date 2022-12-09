@@ -2,11 +2,13 @@
 import { SyntheticEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+//Типы
+import { StoreType } from '../../types/store';
+
 // Константы
 import { AuthorizationStatus } from '../../const';
 
 //Модули
-import { StoreType } from '../../store/index';
 import { logoutAction } from '../../store/api-actions';
 import { AppDispatch } from '../../types/store';
 

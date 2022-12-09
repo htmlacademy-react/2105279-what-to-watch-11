@@ -1,9 +1,11 @@
 // Библиотеки
 import { useDispatch, useSelector } from 'react-redux';
 
+//Типы
+import { StoreType } from '../../types/store';
+
 //Модули
 import { addViewCardCount } from '../../store/action';
-import { StoreType } from '../../store/index';
 
 export default function ShowButton(): JSX.Element {
   const dispatch = useDispatch();

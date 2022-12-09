@@ -3,11 +3,11 @@ import { Helmet } from 'react-helmet-async';
 import { useParams, Link, redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+//Типы
+import { StoreType } from '../../types/store';
+
 // Компоненты
 import FormReview from '../../components/form-review/form-review';
-
-//Модули
-import { StoreType } from '../../store/index';
 
 export default function AddReview(): JSX.Element {
   const { id } = useParams();

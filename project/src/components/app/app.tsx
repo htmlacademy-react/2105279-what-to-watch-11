@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
-import { AppDispatch } from '../../types/store';
+import { AppDispatch, StoreType } from '../../types/store';
 
 // Константы
 import { AppRoute } from '../../const';
@@ -24,7 +24,6 @@ import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 //Модули
-import { StoreType } from '../../store/index';
 import { fetchFilmAction } from '../../store/api-actions';
 
 export default function App(): JSX.Element {
