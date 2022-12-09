@@ -21,10 +21,12 @@ export default function GenreList(): JSX.Element {
     if (!genres.has(genre)) {
       genres.add(genre);
       genreList.push(
-        <li className={cn(
-          'catalog__genres-item',
-          { 'catalog__genres-item--active': currentGenre === genre }
-        )}
+        <li
+          key={key}
+          className={cn(
+            'catalog__genres-item',
+            { 'catalog__genres-item--active': currentGenre === genre }
+          )}
         >
           <a
             href="/"

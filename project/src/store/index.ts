@@ -9,5 +9,3 @@ export const store = configureStore({
     film: reducer,
   },
 });
-
-export type StoreType = ReturnType<typeof store.getState>;

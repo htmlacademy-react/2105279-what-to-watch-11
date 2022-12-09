@@ -1,15 +1,37 @@
 // Библиотеки
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+//Типы
+import { AppDispatch } from '../../types/store';
+
+//Модули
+import { uploadCommentAction } from '../../store/api-actions';
 
 enum Rate {
   MaxRate = 10,
   InitialRate = 8,
 }
 
-export default function FormReview(): JSX.Element {
+export default function FormReview({ id }: { id: string }): JSX.Element {
   const [currentRate, setRate] = useState(Rate.InitialRate);
   const [text, setText] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleCommentRequest = (evt: SyntheticEvent) => {
+    evt.preventDefault();
+    dispatch(uploadCommentAction({
+      id,
+      comment: {
+        comment: text,
+        rating: currentRate,
+      },
+      navigate
+    }));
+  };
 
   const rateInput = Array.from({ length: Rate.MaxRate }, (_v, index) => {
     const rating = Rate.MaxRate - index;
@@ -33,7 +55,11 @@ export default function FormReview(): JSX.Element {
   });
 
   return (
-    <form action="#" className="add-review__form">
+    <form
+      action="#"
+      className="add-review__form"
+      onSubmit={handleCommentRequest}
+    >
       <div className="rating">
         <div className="rating__stars">
           {rateInput}
@@ -48,7 +74,12 @@ export default function FormReview(): JSX.Element {
           onChange={(evt) => setText(evt.target.value)}
         />
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">Post</button>
+          <button
+            className="add-review__btn"
+            type="submit"
+          >
+            Post
+          </button>
         </div>
 
       </div>

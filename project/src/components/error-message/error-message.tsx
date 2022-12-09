@@ -2,7 +2,7 @@
 import { useSelector } from 'react-redux';
 
 //Типы
-import { StoreType } from '../../store/index';
+import { StoreType } from '../../types/store';
 
 //Компоненты
 import './error-message.css';

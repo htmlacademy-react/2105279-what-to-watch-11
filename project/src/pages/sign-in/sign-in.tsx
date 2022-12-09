@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //Типы
 import { AuthData } from '../../types/auth-data';
 import { AppDispatch } from '../../types/store';
+import { StoreType } from '../../types/store';
 
 //Константы
 import { AuthorizationStatus } from '../../const';
@@ -16,7 +17,6 @@ import { AppRoute } from '../../const';
 import PageHeader from '../../components/page-header/page-header';
 
 //Модули
-import { StoreType } from '../../store/index';
 import { loginAction } from '../../store/api-actions';
 
 

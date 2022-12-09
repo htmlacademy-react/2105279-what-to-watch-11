@@ -1,5 +1,5 @@
 //Типы
-import { FilmData } from './film';
+import { FilmData, CommentData } from './film';
 import { AuthorizationStatus } from '../const';
 
 //Модули
@@ -11,6 +11,8 @@ export type AppDispatch = typeof store.dispatch;
 export type StateType = {
   genre: string;
   films: FilmData[];
+  film: FilmData | null;
+  comments: CommentData[];
   viewCardCount: number;
   authorizationStatus: AuthorizationStatus;
   error: string | null;

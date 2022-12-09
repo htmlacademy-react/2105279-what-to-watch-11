@@ -1,5 +1,5 @@
 // Библиотеки
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import { Genre } from '../../types/film';
 // Константы
 import { ViewCardCount } from '../../const';
 import { AppRoute } from '../../const';
+import { StoreType } from '../../types/store';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
@@ -19,15 +20,16 @@ import PageHeader from '../../components/page-header/page-header';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/action';
-import { StoreType } from '../../store/index';
 
 export default function Main(): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  dispatch(selectGenre(Genre.All));
-  dispatch(setViewCardCount(ViewCardCount.Init));
   const films = useSelector((state: StoreType) => state.film.films);
+
+  useEffect(() => {
+    dispatch(selectGenre(Genre.All));
+    dispatch(setViewCardCount(ViewCardCount.Init));
+  }, [dispatch]);
 
   return (
     <React.StrictMode>

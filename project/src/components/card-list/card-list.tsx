@@ -2,35 +2,20 @@
 import { useSelector } from 'react-redux';
 
 // Типы
-import { FilmData, Genre } from '../../types/film';
+import { FilmData } from '../../types/film';
+import { StoreType } from '../../types/store';
 
 // Компоненты
 import FilmCard from '../../components/film-card/film-card';
 
-//Модули
-import { StoreType } from '../../store/index';
-
 export default function CardList(): JSX.Element {
-  const genre = useSelector((state: StoreType) => state.film.genre);
   const films = useSelector((state: StoreType) => state.film.films);
   const viewCardCount = useSelector((state: StoreType) => state.film.viewCardCount);
-
-  const filtredFilms = films.filter((film) => {
-    if (genre === Genre.All) {
-      return true;
-    }
-    for (const key in Genre) {
-      if (film.genre === key && genre === Genre[key as keyof typeof Genre]) {
-        return true;
-      }
-    }
-    return false;
-  });
 
   return (
     <div className="catalog__films-list">
       {
-        filtredFilms
+        films
           .slice(0, viewCardCount)
           .map((film: FilmData) => (
             < FilmCard

@@ -1,25 +1,63 @@
 //Библиотеки
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { NavigateFunction } from 'react-router-dom';
 
 // Типы
-import { FilmData } from '../types/film';
+import { FilmData, CommentData, CommentRequest } from '../types/film';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 
 //Константы
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { AppRoute, APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 
 //Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
-import { setError, loadFilmList, requireAuthorization } from './action';
-// import { store } from '../store/index';
+import { setError, loadFilmList, loadFilm, requireAuthorization, loadFilmComments } from './action';
 
 export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',
   async (_, { dispatch }) => {
     const { data } = await Axios.get<FilmData[]>('/films');
     dispatch(loadFilmList(data));
+  },
+);
+
+export const fetchFilmIdAction = createAsyncThunk(
+  'data/fetchFilm',
+  async ({ id, navigate }: { id: string; navigate: NavigateFunction }, { dispatch }) => {
+    try {
+      const { data } = await Axios.get<FilmData>(`/films/${id}`);
+      dispatch(loadFilm(data));
+    }
+    catch {
+      navigate(AppRoute.NotFound);
+    }
+  },
+);
+
+export const fetchFilmSimilarAction = createAsyncThunk(
+  'data/fetchFilmSimilar',
+  async (id: string, { dispatch }) => {
+    const { data } = await Axios.get<FilmData[]>(`/films/${id}/similar`);
+    dispatch(loadFilmList(data));
+  },
+);
+
+export const fetchCommentAction = createAsyncThunk(
+  'data/fetchComments',
+  async (id: string, { dispatch }) => {
+    const { data } = await Axios.get<CommentData[]>(`/comments/${id}`);
+    dispatch(loadFilmComments(data));
+  },
+);
+
+export const uploadCommentAction = createAsyncThunk(
+  'data/uploadComment',
+  async ({ id, comment, navigate }: { id: string; comment: CommentRequest; navigate: NavigateFunction }, { dispatch }) => {
+    const { data } = await Axios.post<CommentData[]>(`/comments/${id}`, comment);
+    dispatch(loadFilmComments(data));
+    navigate(`/films/${id}?tab=Reviews`);
   },
 );
 

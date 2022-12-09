@@ -29,6 +29,11 @@ export type CommentData = {
   };
 };
 
+export type CommentRequest = {
+  comment: string;
+  rating: number;
+};
+
 export enum TabsName {
   Overview = 'Overview',
   Details = 'Details',

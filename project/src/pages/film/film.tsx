@@ -2,14 +2,17 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link, redirect } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
-import { Genre } from '../../types/film';
+import { AppDispatch } from '../../types/store';
+import { StoreType } from '../../types/store';
+import { FilmData } from '../../types/film';
 
 // Константы
 import { ViewCardCount } from '../../const';
+import { AuthorizationStatus } from '../../const';
 
 // Компоненты
 import Tabs from '../../components/tabs/tabs';
@@ -17,26 +20,37 @@ import CardList from '../../components/card-list/card-list';
 import PageHeader from '../../components/page-header/page-header';
 
 //Модули
-import { selectGenre, setViewCardCount } from '../../store/action';
-import { StoreType } from '../../store/index';
+import { setViewCardCount } from '../../store/action';
+import { fetchFilmSimilarAction, fetchCommentAction, fetchFilmIdAction } from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 export default function Film(): JSX.Element {
   const { id } = useParams();
-  const filmId = Number(id);
-  const films = useSelector((state: StoreType) => state.film.films);
-  const filmIndex = films.findIndex((value) => (value.id === filmId));
-  if (filmIndex === -1) {
-    redirect('not-found');
-  }
-  const film = films[filmIndex];
+  const comments = useSelector((state: StoreType) => state.film.comments);
+  const film = useSelector((state: StoreType) => state.film.film as FilmData);
+  const authorizationStatus = useSelector((state: StoreType) => state.film.authorizationStatus);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scroll(0, 0);
-  }, [id]);
+    dispatch(setViewCardCount(ViewCardCount.Similar));
+  }, [id, dispatch]);
 
-  const dispatch = useDispatch();
-  dispatch(selectGenre(Genre[film.genre as keyof typeof Genre]));
-  dispatch(setViewCardCount(ViewCardCount.Similar));
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilmSimilarAction(id));
+      dispatch(fetchCommentAction(id));
+      dispatch(fetchFilmIdAction({ id, navigate }));
+    }
+  }, [id, dispatch, navigate]);
+
+  if (!film || !id) {
+    return <LoadingScreen />;
+  }
+  const addReviewButton = authorizationStatus === AuthorizationStatus.Auth
+    ? (<Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>)
+    : '';
 
   return (
     <React.StrictMode>
@@ -46,7 +60,7 @@ export default function Film(): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.backgroundImage} alt={film.name} />
+            <img src={film?.backgroundImage} alt={film?.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -55,10 +69,10 @@ export default function Film(): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film.name}</h2>
+              <h2 className="film-card__title">{film?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.released}</span>
+                <span className="film-card__genre">{film?.genre}</span>
+                <span className="film-card__year">{film?.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -75,7 +89,7 @@ export default function Film(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={`/films/${filmId}/review`} className="btn film-card__button">Add review</Link>
+                {addReviewButton}
               </div>
             </div>
           </div>
@@ -84,11 +98,11 @@ export default function Film(): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.posterImage} alt={film.name} width="218" height="327" />
+              <img src={film?.posterImage} alt={film?.name} width="218" height="327" />
             </div>
 
             <Tabs
-              film={film}
+              comments={comments}
             />
 
           </div>
