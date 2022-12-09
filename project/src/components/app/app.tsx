@@ -1,4 +1,5 @@
 // Библиотеки
+import { useEffect } from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +25,6 @@ import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 //Модули
 import { StoreType } from '../../store/index';
-import { useEffect } from 'react';
 import { fetchFilmAction } from '../../store/api-actions';
 
 export default function App(): JSX.Element {
@@ -35,8 +35,10 @@ export default function App(): JSX.Element {
 
   useEffect(
     () => {
-      dispatch(fetchFilmAction());
-    }, [dispatch]);
+      if (!length) {
+        dispatch(fetchFilmAction());
+      }
+    }, [dispatch, length]);
 
   if (!length) {
     return <LoadingScreen />;

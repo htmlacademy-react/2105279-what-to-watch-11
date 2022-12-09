@@ -1,5 +1,5 @@
 // Библиотеки
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,10 +24,12 @@ import { StoreType } from '../../store/index';
 export default function Main(): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  dispatch(selectGenre(Genre.All));
-  dispatch(setViewCardCount(ViewCardCount.Init));
   const films = useSelector((state: StoreType) => state.film.films);
+
+  useEffect(() => {
+    dispatch(selectGenre(Genre.All));
+    dispatch(setViewCardCount(ViewCardCount.Init));
+  }, [dispatch]);
 
   return (
     <React.StrictMode>
