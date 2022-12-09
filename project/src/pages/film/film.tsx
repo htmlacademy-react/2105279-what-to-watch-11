@@ -12,6 +12,7 @@ import { FilmData } from '../../types/film';
 
 // Константы
 import { ViewCardCount } from '../../const';
+import { AuthorizationStatus } from '../../const';
 
 // Компоненты
 import Tabs from '../../components/tabs/tabs';
@@ -26,9 +27,8 @@ import LoadingScreen from '../loading-screen/loading-screen';
 export default function Film(): JSX.Element {
   const { id } = useParams();
   const comments = useSelector((state: StoreType) => state.film.comments);
-
   const film = useSelector((state: StoreType) => state.film.film as FilmData);
-
+  const authorizationStatus = useSelector((state: StoreType) => state.film.authorizationStatus);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -48,6 +48,9 @@ export default function Film(): JSX.Element {
   if (!film || !id) {
     return <LoadingScreen />;
   }
+  const addReviewButton = authorizationStatus === AuthorizationStatus.Auth
+    ? (<Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>)
+    : '';
 
   return (
     <React.StrictMode>
@@ -86,7 +89,7 @@ export default function Film(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>
+                {addReviewButton}
               </div>
             </div>
           </div>
