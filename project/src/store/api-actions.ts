@@ -1,5 +1,6 @@
 //Библиотеки
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { NavigateFunction } from 'react-router-dom';
 
 // Типы
 import { FilmData, CommentData } from '../types/film';
@@ -7,7 +8,7 @@ import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 
 //Константы
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { AppRoute, APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 
 //Модули
 import { Axios } from '../services/api';
@@ -24,24 +25,29 @@ export const fetchFilmAction = createAsyncThunk(
 
 export const fetchFilmIdAction = createAsyncThunk(
   'data/fetchFilm',
-  async (filmId: number, { dispatch }) => {
-    const { data } = await Axios.get<FilmData>(`/films/${filmId}`);
-    dispatch(loadFilm(data));
+  async ({ id, navigate }: { id: string; navigate: NavigateFunction }, { dispatch }) => {
+    try {
+      const { data } = await Axios.get<FilmData>(`/films/${id}`);
+      dispatch(loadFilm(data));
+    }
+    catch {
+      navigate(AppRoute.NotFound);
+    }
   },
 );
 
 export const fetchFilmSimilarAction = createAsyncThunk(
   'data/fetchFilmSimilar',
-  async (filmId: number, { dispatch }) => {
-    const { data } = await Axios.get<FilmData[]>(`/films/${filmId}/similar`);
+  async (id: string, { dispatch }) => {
+    const { data } = await Axios.get<FilmData[]>(`/films/${id}/similar`);
     dispatch(loadFilmList(data));
   },
 );
 
 export const fetchCommentAction = createAsyncThunk(
   'data/fetchComments',
-  async (filmId: number, { dispatch }) => {
-    const { data } = await Axios.get<CommentData[]>(`/comments/${filmId}`);
+  async (id: string, { dispatch }) => {
+    const { data } = await Axios.get<CommentData[]>(`/comments/${id}`);
     dispatch(loadFilmComments(data));
   },
 );

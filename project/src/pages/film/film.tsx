@@ -2,7 +2,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Типы
@@ -25,12 +25,12 @@ import LoadingScreen from '../loading-screen/loading-screen';
 
 export default function Film(): JSX.Element {
   const { id } = useParams();
-  const filmId = Number(id);
   const comments = useSelector((state: StoreType) => state.film.comments);
 
   const film = useSelector((state: StoreType) => state.film.film as FilmData);
 
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -38,14 +38,14 @@ export default function Film(): JSX.Element {
   }, [id, dispatch]);
 
   useEffect(() => {
-    if (filmId) {
-      dispatch(fetchFilmSimilarAction(filmId));
-      dispatch(fetchCommentAction(filmId));
-      dispatch(fetchFilmIdAction(filmId));
+    if (id) {
+      dispatch(fetchFilmSimilarAction(id));
+      dispatch(fetchCommentAction(id));
+      dispatch(fetchFilmIdAction({ id, navigate }));
     }
-  }, [filmId, dispatch]);
+  }, [id, dispatch, navigate]);
 
-  if (!film) {
+  if (!film || !id) {
     return <LoadingScreen />;
   }
 
@@ -86,7 +86,7 @@ export default function Film(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={`/films/${filmId}/review`} className="btn film-card__button">Add review</Link>
+                <Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
