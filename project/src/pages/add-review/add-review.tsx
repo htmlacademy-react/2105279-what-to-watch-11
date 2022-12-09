@@ -14,8 +14,9 @@ export default function AddReview(): JSX.Element {
   const filmId = Number(id);
   const films = useSelector((state: StoreType) => state.film.films);
   const filmIndex = films.findIndex((value) => (value.id === filmId));
-  if (filmIndex === -1) {
+  if (filmIndex === -1 || !id) {
     redirect('not-found');
+    return <div></div>;
   }
   const film = films[filmIndex];
 
@@ -69,7 +70,7 @@ export default function AddReview(): JSX.Element {
       </div>
 
       <div className="add-review">
-        <FormReview />
+        <FormReview id={id} />
       </div>
 
     </section>

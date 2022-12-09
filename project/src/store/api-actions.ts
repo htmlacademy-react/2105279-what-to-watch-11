@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { NavigateFunction } from 'react-router-dom';
 
 // Типы
-import { FilmData, CommentData } from '../types/film';
+import { FilmData, CommentData, CommentRequest } from '../types/film';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 
@@ -49,6 +49,15 @@ export const fetchCommentAction = createAsyncThunk(
   async (id: string, { dispatch }) => {
     const { data } = await Axios.get<CommentData[]>(`/comments/${id}`);
     dispatch(loadFilmComments(data));
+  },
+);
+
+export const uploadCommentAction = createAsyncThunk(
+  'data/uploadComment',
+  async ({ id, comment, navigate }: { id: string; comment: CommentRequest; navigate: NavigateFunction }, { dispatch }) => {
+    const { data } = await Axios.post<CommentData[]>(`/comments/${id}`, comment);
+    dispatch(loadFilmComments(data));
+    navigate(`/films/${id}?tab=Reviews`);
   },
 );
 
