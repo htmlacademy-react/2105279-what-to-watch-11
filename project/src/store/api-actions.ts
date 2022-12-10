@@ -13,7 +13,8 @@ import { AppRoute, APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../
 //Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
-import { setError, loadFilmList, loadFilm, requireAuthorization, loadFilmComments } from './action';
+import { setError, loadFilmList, loadFilm, loadFilmComments } from './film-data';
+import { requireAuthorization } from './user-process';
 
 export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',

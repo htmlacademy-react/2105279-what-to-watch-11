@@ -21,7 +21,7 @@ import ShowButton from '../../components/show-button/show-button';
 import PageHeader from '../../components/page-header/page-header';
 
 //Модули
-import { selectGenre, setViewCardCount } from '../../store/action';
+import { selectGenre, setViewCardCount } from '../../store/film-data';
 
 export default function Main(): JSX.Element {
   const dispatch = useAppDispatch();

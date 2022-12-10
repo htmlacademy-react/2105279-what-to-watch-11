@@ -31,3 +31,8 @@ export enum StatusCodes {
   UNAUTHORIZED = 401,
   NOT_FOUND = 404,
 }
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+}

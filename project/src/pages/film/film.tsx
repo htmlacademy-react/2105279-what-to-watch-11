@@ -18,7 +18,7 @@ import CardList from '../../components/card-list/card-list';
 import PageHeader from '../../components/page-header/page-header';
 
 //Модули
-import { setViewCardCount } from '../../store/action';
+import { setViewCardCount } from '../../store/film-data';
 import { fetchFilmSimilarAction, fetchCommentAction, fetchFilmIdAction } from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 

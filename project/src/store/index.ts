@@ -2,10 +2,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 //Модули
-import { reducer } from './reducer';
+import { rootReducer } from './root-reducer';
 
 export const store = configureStore({
-  reducer: {
-    film: reducer,
-  },
+  reducer: rootReducer
 });

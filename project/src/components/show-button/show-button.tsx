@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getFilms, getCardCount } from '../../store/selectors';
 
 //Модули
-import { addViewCardCount } from '../../store/action';
+import { addViewCardCount } from '../../store/film-data';
 
 export default function ShowButton(): JSX.Element {
   const dispatch = useAppDispatch();

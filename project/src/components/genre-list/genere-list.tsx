@@ -10,7 +10,7 @@ import { getFilms } from '../../store/selectors';
 import { FilmData, GENRE_ALL } from '../../types/film';
 
 //Модули
-import { selectGenre, setViewCardCount } from '../../store/action';
+import { selectGenre, setViewCardCount } from '../../store/film-data';
 import { ViewCardCount } from '../../const';
 
 export default function GenreList(): JSX.Element {
