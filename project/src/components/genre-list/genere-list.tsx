@@ -1,7 +1,9 @@
 // Библиотеки
 import { SyntheticEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import cn from 'classnames';
+
+//Хуки
+import { useAppDispatch } from '../../hooks';
 
 // Типы
 import { Genre } from '../../types/film';
@@ -11,7 +13,7 @@ import { selectGenre } from '../../store/action';
 
 export default function GenreList(): JSX.Element {
   const [currentGenre, setCurrentGenre] = useState(Genre.All);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const genreList: JSX.Element[] = [];
   const genres = new Set<string>();

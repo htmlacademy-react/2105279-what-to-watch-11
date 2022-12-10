@@ -2,10 +2,10 @@
 import { useEffect } from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { useDispatch, useSelector } from 'react-redux';
 
-// Типы
-import { AppDispatch, StoreType } from '../../types/store';
+//Хуки
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { getLength, getAuthorizationStatus } from '../../store/selectors';
 
 // Константы
 import { AppRoute } from '../../const';
@@ -28,9 +28,9 @@ import { fetchFilmAction } from '../../store/api-actions';
 
 export default function App(): JSX.Element {
 
-  const authorizationStatus = useSelector((state: StoreType) => state.film.authorizationStatus);
-  const length = useSelector((state: StoreType) => state.film.films.length);
-  const dispatch = useDispatch<AppDispatch>();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const length = useAppSelector(getLength);
+  const dispatch = useAppDispatch();
 
   useEffect(
     () => {

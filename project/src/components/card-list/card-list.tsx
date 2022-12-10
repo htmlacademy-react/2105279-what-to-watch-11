@@ -1,16 +1,16 @@
-// Библиотеки
-import { useSelector } from 'react-redux';
+//Хуки
+import { useAppSelector } from '../../hooks';
+import { getFilms, getCardCount } from '../../store/selectors';
 
 // Типы
 import { FilmData } from '../../types/film';
-import { StoreType } from '../../types/store';
 
 // Компоненты
 import FilmCard from '../../components/film-card/film-card';
 
 export default function CardList(): JSX.Element {
-  const films = useSelector((state: StoreType) => state.film.films);
-  const viewCardCount = useSelector((state: StoreType) => state.film.viewCardCount);
+  const films = useAppSelector(getFilms);
+  const viewCardCount = useAppSelector(getCardCount);
 
   return (
     <div className="catalog__films-list">

@@ -3,12 +3,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
-// Типы
-import { AppDispatch } from '../../types/store';
-import { StoreType } from '../../types/store';
-import { FilmData } from '../../types/film';
+//Хуки
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { getFilm, getComments, getAuthorizationStatus } from '../../store/selectors';
 
 // Константы
 import { ViewCardCount } from '../../const';
@@ -26,10 +24,10 @@ import LoadingScreen from '../loading-screen/loading-screen';
 
 export default function Film(): JSX.Element {
   const { id } = useParams();
-  const comments = useSelector((state: StoreType) => state.film.comments);
-  const film = useSelector((state: StoreType) => state.film.film as FilmData);
-  const authorizationStatus = useSelector((state: StoreType) => state.film.authorizationStatus);
-  const dispatch = useDispatch<AppDispatch>();
+  const comments = useAppSelector(getComments);
+  const film = useAppSelector(getFilm);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {

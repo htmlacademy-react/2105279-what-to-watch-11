@@ -1,12 +1,14 @@
 // Библиотеки
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import cn from 'classnames';
 
+//Хуки
+import { useAppSelector } from '../../hooks';
+import { getFilm } from '../../store/selectors';
+
 // Типы
-import { FilmData, TabsName, CommentData } from '../../types/film';
-import { StoreType } from '../../types/store';
+import { TabsName, CommentData } from '../../types/film';
 
 // Компоненты
 import TabOverview from '../tab-overview/tab-overview';
@@ -22,7 +24,7 @@ export default function Tabs({ comments }: { comments: CommentData[] }): JSX.Ele
     setCurrentTab(tabName as TabsName);
   }
 
-  const film = useSelector((state: StoreType) => state.film.film as FilmData);
+  const film = useAppSelector(getFilm);
 
   if (!film) {
     return (

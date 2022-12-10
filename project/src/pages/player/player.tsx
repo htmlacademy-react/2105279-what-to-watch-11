@@ -1,15 +1,15 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
 import { useParams, redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-//Типы
-import { StoreType } from '../../types/store';
+//Хуки
+import { useAppSelector } from '../../hooks';
+import { getFilms } from '../../store/selectors';
 
 export default function Player(): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
-  const films = useSelector((state: StoreType) => state.film.films);
+  const films = useAppSelector(getFilms);
   const videoLink = films.find((value) => (value.id === filmId))?.videoLink;
   if (!videoLink) {
     redirect('not-found');

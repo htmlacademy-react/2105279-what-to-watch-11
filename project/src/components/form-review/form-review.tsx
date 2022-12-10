@@ -2,10 +2,9 @@
 import React, { SyntheticEvent } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
-//Типы
-import { AppDispatch } from '../../types/store';
+//Хуки
+import { useAppDispatch } from '../../hooks';
 
 //Модули
 import { uploadCommentAction } from '../../store/api-actions';
@@ -19,7 +18,7 @@ export default function FormReview({ id }: { id: string }): JSX.Element {
   const [currentRate, setRate] = useState(Rate.InitialRate);
   const [text, setText] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleCommentRequest = (evt: SyntheticEvent) => {
     evt.preventDefault();
