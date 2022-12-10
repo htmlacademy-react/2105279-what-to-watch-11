@@ -1,14 +1,12 @@
-//Библиотеки
-import { useSelector } from 'react-redux';
-
-//Типы
-import { StoreType } from '../../types/store';
+//Хуки
+import { useAppSelector } from '../../hooks';
+import { getError } from '../../store/selectors';
 
 //Компоненты
 import './error-message.css';
 
 export default function ErrorMessage(): JSX.Element | null {
-  const error = useSelector((state: StoreType) => state.film.error);
+  const error = useAppSelector(getError);
 
   return (error)
     ? <div className='error-message'>{error}</div>

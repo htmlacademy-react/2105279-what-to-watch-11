@@ -1,20 +1,19 @@
 // Библиотеки
 import { SyntheticEvent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
-//Типы
-import { StoreType } from '../../types/store';
+//Хуки
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/selectors';
 
 // Константы
 import { AuthorizationStatus } from '../../const';
 
 //Модули
 import { logoutAction } from '../../store/api-actions';
-import { AppDispatch } from '../../types/store';
 
 export default function PageHeader() {
-  const dispatch = useDispatch<AppDispatch>();
-  const authorizationStatus = useSelector((state: StoreType) => state.film.authorizationStatus);
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const handleSignOut = (evt: SyntheticEvent) => {
     evt.preventDefault();

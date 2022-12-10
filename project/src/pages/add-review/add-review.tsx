@@ -1,10 +1,10 @@
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-//Типы
-import { StoreType } from '../../types/store';
+//Хуки
+import { useAppSelector } from '../../hooks';
+import { getFilms } from '../../store/selectors';
 
 // Компоненты
 import FormReview from '../../components/form-review/form-review';
@@ -12,7 +12,7 @@ import FormReview from '../../components/form-review/form-review';
 export default function AddReview(): JSX.Element {
   const { id } = useParams();
   const filmId = Number(id);
-  const films = useSelector((state: StoreType) => state.film.films);
+  const films = useAppSelector(getFilms);
   const filmIndex = films.findIndex((value) => (value.id === filmId));
   if (filmIndex === -1 || !id) {
     redirect('not-found');

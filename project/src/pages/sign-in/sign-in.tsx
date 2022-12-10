@@ -2,12 +2,13 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
+//Хуки
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/selectors';
 
 //Типы
 import { AuthData } from '../../types/auth-data';
-import { AppDispatch } from '../../types/store';
-import { StoreType } from '../../types/store';
 
 //Константы
 import { AuthorizationStatus } from '../../const';
@@ -24,10 +25,10 @@ export default function SignIn(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const authorizationStatus = useSelector((state: StoreType) => state.film.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     navigate(AppRoute.Main);

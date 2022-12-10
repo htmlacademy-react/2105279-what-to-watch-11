@@ -1,16 +1,14 @@
-// Библиотеки
-import { useDispatch, useSelector } from 'react-redux';
-
-//Типы
-import { StoreType } from '../../types/store';
+//Хуки
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { getFilms, getCardCount } from '../../store/selectors';
 
 //Модули
-import { addViewCardCount } from '../../store/action';
+import { addViewCardCount } from '../../store/film-data';
 
 export default function ShowButton(): JSX.Element {
-  const dispatch = useDispatch();
-  const viewCardCount = useSelector((state: StoreType) => state.film.viewCardCount);
-  const films = useSelector((state: StoreType) => state.film.films);
+  const dispatch = useAppDispatch();
+  const viewCardCount = useAppSelector(getCardCount);
+  const films = useAppSelector(getFilms);
 
   if (viewCardCount < films.length) {
     return (

@@ -2,15 +2,17 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+
+//Хуки
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { getFilms } from '../../store/selectors';
 
 // Типы
-import { Genre } from '../../types/film';
+import { GENRE_ALL } from '../../types/film';
 
 // Константы
 import { ViewCardCount } from '../../const';
 import { AppRoute } from '../../const';
-import { StoreType } from '../../types/store';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
@@ -19,15 +21,15 @@ import ShowButton from '../../components/show-button/show-button';
 import PageHeader from '../../components/page-header/page-header';
 
 //Модули
-import { selectGenre, setViewCardCount } from '../../store/action';
+import { selectGenre, setViewCardCount } from '../../store/film-data';
 
 export default function Main(): JSX.Element {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const films = useSelector((state: StoreType) => state.film.films);
+  const films = useAppSelector(getFilms);
 
   useEffect(() => {
-    dispatch(selectGenre(Genre.All));
+    dispatch(selectGenre(GENRE_ALL));
     dispatch(setViewCardCount(ViewCardCount.Init));
   }, [dispatch]);
 
