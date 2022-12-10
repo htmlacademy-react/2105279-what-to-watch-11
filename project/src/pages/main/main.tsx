@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getFilms } from '../../store/selectors';
 
 // Типы
-import { Genre } from '../../types/film';
+import { GENRE_ALL } from '../../types/film';
 
 // Константы
 import { ViewCardCount } from '../../const';
@@ -29,7 +29,7 @@ export default function Main(): JSX.Element {
   const films = useAppSelector(getFilms);
 
   useEffect(() => {
-    dispatch(selectGenre(Genre.All));
+    dispatch(selectGenre(GENRE_ALL));
     dispatch(setViewCardCount(ViewCardCount.Init));
   }, [dispatch]);
 

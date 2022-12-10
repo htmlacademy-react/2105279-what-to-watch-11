@@ -11,3 +11,4 @@ export const getAuthorizationStatus = (state: StoreType): AuthorizationStatus =>
 export const getCardCount = (state: StoreType): number => state.film.viewCardCount;
 export const getError = (state: StoreType): string | null => state.film.error;
 export const getLength = (state: StoreType): number => state.film.films.length;
+export const getGenre = (state: StoreType): string => state.film.genre;

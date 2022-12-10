@@ -22,7 +22,7 @@ import { HelmetProvider, Helmet } from 'react-helmet-async';
 import cn from 'classnames';
 
 // Типы
-import { FilmData, Genre } from '../../types/film';
+import { FilmData } from '../../types/film';
 import { AppDispatch, StoreType } from '../../types/store';
 
 // Константы

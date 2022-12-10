@@ -3,48 +3,55 @@ import { SyntheticEvent, useState } from 'react';
 import cn from 'classnames';
 
 //Хуки
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getFilms } from '../../store/selectors';
 
 // Типы
-import { Genre } from '../../types/film';
+import { GENRE_ALL } from '../../types/film';
 
 //Модули
-import { selectGenre } from '../../store/action';
+import { selectGenre, setViewCardCount } from '../../store/action';
+import { ViewCardCount } from '../../const';
 
 export default function GenreList(): JSX.Element {
-  const [currentGenre, setCurrentGenre] = useState(Genre.All);
+  const [currentGenre, setCurrentGenre] = useState<string>(GENRE_ALL);
   const dispatch = useAppDispatch();
+  const films = useAppSelector(getFilms);
 
   const genreList: JSX.Element[] = [];
   const genres = new Set<string>();
 
-  for (const key in Genre) {
-    const genre = Genre[key as keyof typeof Genre];
-    if (!genres.has(genre)) {
-      genres.add(genre);
-      genreList.push(
-        <li
-          key={key}
-          className={cn(
-            'catalog__genres-item',
-            { 'catalog__genres-item--active': currentGenre === genre }
-          )}
-        >
-          <a
-            href="/"
-            className="catalog__genres-link"
-            onClick={(evt: SyntheticEvent) => {
-              evt.preventDefault();
+  genres.add(GENRE_ALL);
+  films.forEach(({ genre }) => {
+    genres.add(genre);
+  });
+
+  genres.forEach((genre) => {
+    genreList.push(
+      <li
+        key={genre}
+        className={cn(
+          'catalog__genres-item',
+          { 'catalog__genres-item--active': currentGenre === genre }
+        )}
+      >
+        <a
+          href="/"
+          className="catalog__genres-link"
+          onClick={(evt: SyntheticEvent) => {
+            evt.preventDefault();
+            if (genre !== currentGenre) {
               setCurrentGenre(genre);
               dispatch(selectGenre(genre));
-            }}
-          >
-            {genre}
-          </a>
-        </li >
-      );
-    }
-  }
+              dispatch(setViewCardCount(ViewCardCount.Init));
+            }
+          }}
+        >
+          {genre}
+        </a>
+      </li >
+    );
+  });
 
   return (
     <ul className="catalog__genres-list">

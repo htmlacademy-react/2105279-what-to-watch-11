@@ -2,7 +2,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 // Типы
-import { Genre } from '../types/film';
+import { GENRE_ALL } from '../types/film';
 import { StateType } from '../types/store';
 
 // Константы
@@ -21,7 +21,7 @@ import {
 } from './action';
 
 const initialState: StateType = {
-  genre: Genre.All,
+  genre: GENRE_ALL,
   films: [],
   film: null,
   comments: [],
