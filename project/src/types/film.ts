@@ -39,6 +39,3 @@ export enum TabsName {
   Details = 'Details',
   Reviews = 'Reviews',
 }
-
-export const GENRE_ALL = 'All genres';
-

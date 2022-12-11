@@ -7,7 +7,10 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getFilms } from '../../store/selectors';
 
 // Типы
-import { FilmData, GENRE_ALL } from '../../types/film';
+import { FilmData } from '../../types/film';
+
+//константы
+import { GENRE_ALL } from '../../const';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/film-data';

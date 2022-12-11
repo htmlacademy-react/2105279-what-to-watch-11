@@ -3,7 +3,10 @@ import { useAppSelector } from '../../hooks';
 import { getFilms, getCardCount, getGenre } from '../../store/selectors';
 
 // Типы
-import { FilmData, GENRE_ALL } from '../../types/film';
+import { FilmData } from '../../types/film';
+
+//константы
+import { GENRE_ALL } from '../../const';
 
 // Компоненты
 import FilmCard from '../../components/film-card/film-card';

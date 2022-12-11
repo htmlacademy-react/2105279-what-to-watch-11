@@ -1,4 +1,5 @@
 // Библиотеки
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, redirect } from 'react-router-dom';
 
@@ -6,20 +7,34 @@ import { useParams, redirect } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { getFilms } from '../../store/selectors';
 
+//Компоненты
+import VideoPlayer from '../../components/film-player/film-player';
+
 export default function Player(): JSX.Element {
+  const [isPlaying, setIsPlaying] = useState(true);
   const { id } = useParams();
   const filmId = Number(id);
   const films = useAppSelector(getFilms);
   const videoLink = films.find((value) => (value.id === filmId))?.videoLink;
   if (!videoLink) {
     redirect('not-found');
+    setIsPlaying(true);
+    return <div></div>;
   }
+
   return (
     <div className="player">
       <Helmet>
         <title>Проигрыватель</title>
       </Helmet>
-      <video src={videoLink} className="player__video" poster="img/player-poster.jpg"></video>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src={videoLink}
+        previewImage={undefined}
+        muted={false}
+        width={280}
+        height={175}
+      />
 
       <button type="button" className="player__exit">Exit</button>
 

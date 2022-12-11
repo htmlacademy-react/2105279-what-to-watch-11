@@ -7,12 +7,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getFilms } from '../../store/selectors';
 
-// Типы
-import { GENRE_ALL } from '../../types/film';
-
 // Константы
-import { ViewCardCount } from '../../const';
-import { AppRoute } from '../../const';
+import { ViewCardCount, AppRoute, GENRE_ALL } from '../../const';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';

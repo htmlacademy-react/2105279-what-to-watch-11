@@ -2,12 +2,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Типы
-import { GENRE_ALL, FilmData, CommentData } from '../types/film';
+import { FilmData, CommentData } from '../types/film';
 import { FilmsData } from '../types/store';
 
 // Константы
-import { ViewCardCount } from '../const';
-import { NameSpace } from '../const';
+import { ViewCardCount, NameSpace, GENRE_ALL } from '../const';
 
 const initialState: FilmsData = {
   genre: GENRE_ALL,
