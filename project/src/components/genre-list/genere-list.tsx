@@ -1,5 +1,5 @@
 // Библиотеки
-import { SyntheticEvent, useMemo, useState } from 'react';
+import { SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import cn from 'classnames';
 
 //Хуки
@@ -31,6 +31,11 @@ export default function GenreList(): JSX.Element {
   const films = useAppSelector(getFilms);
   const genres = useMemo(() => createGenreSet(films), [films]);
 
+  useEffect(() => {
+    dispatch(selectGenre(currentGenre));
+    dispatch(setViewCardCount(ViewCardCount.Init));
+  }, [currentGenre, dispatch]);
+
   genres.forEach((genre) => {
     genreList.push(
       <li
@@ -45,11 +50,7 @@ export default function GenreList(): JSX.Element {
           className="catalog__genres-link"
           onClick={(evt: SyntheticEvent) => {
             evt.preventDefault();
-            if (genre !== currentGenre) {
-              setCurrentGenre(genre);
-              dispatch(selectGenre(genre));
-              dispatch(setViewCardCount(ViewCardCount.Init));
-            }
+            setCurrentGenre(genre);
           }}
         >
           {genre}
