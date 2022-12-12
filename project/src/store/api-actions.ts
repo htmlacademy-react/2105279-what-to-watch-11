@@ -35,7 +35,7 @@ export const fetchFavoriteAction = createAsyncThunk(
 export const toggleFavoriteAction = createAsyncThunk(
   'data/fetchFavorite',
   async ({ id, status }: { id: number; status: FavoriteStatus }, { dispatch }) => {
-    const { data } = await Axios.get<FilmData>(`/favorite/${id}/${status}`);
+    const { data } = await Axios.post<FilmData>(`/favorite/${id}/${status}`);
     dispatch(loadFilm(data));
   },
 );
