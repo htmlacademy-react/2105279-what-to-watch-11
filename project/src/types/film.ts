@@ -39,3 +39,8 @@ export enum TabsName {
   Details = 'Details',
   Reviews = 'Reviews',
 }
+
+export enum FavoriteStatus {
+  DeleteFilm = 0,
+  AddFilm = 1,
+}

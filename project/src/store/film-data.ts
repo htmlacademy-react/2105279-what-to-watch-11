@@ -11,6 +11,7 @@ import { ViewCardCount, NameSpace, GENRE_ALL } from '../const';
 const initialState: FilmsData = {
   genre: GENRE_ALL,
   films: [],
+  favorite: [],
   film: null,
   comments: [],
   viewCardCount: ViewCardCount.Init,
@@ -37,6 +38,10 @@ export const filmsData = createSlice({
       (state, action: PayloadAction<FilmData[]>) => {
         state.films = action.payload;
       },
+    loadFavoriteList:
+      (state, action: PayloadAction<FilmData[]>) => {
+        state.favorite = action.payload;
+      },
     loadFilm:
       (state, action: PayloadAction<FilmData>) => {
         state.film = action.payload;
@@ -59,5 +64,6 @@ export const {
   setError,
   loadFilmList,
   loadFilm,
-  loadFilmComments
+  loadFilmComments,
+  loadFavoriteList
 } = filmsData.actions;

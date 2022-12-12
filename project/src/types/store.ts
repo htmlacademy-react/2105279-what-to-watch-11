@@ -12,10 +12,10 @@ export type AppDispatch = typeof store.dispatch;
 export type FilmsData = {
   genre: string;
   films: FilmData[];
+  favorite: FilmData[];
   film: FilmData | null;
   comments: CommentData[];
   viewCardCount: number;
-  // authorizationStatus: AuthorizationStatus;
   error: string | null;
 }
 

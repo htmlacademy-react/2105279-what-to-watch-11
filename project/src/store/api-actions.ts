@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { NavigateFunction } from 'react-router-dom';
 
 // Типы
-import { FilmData, CommentData, CommentRequest } from '../types/film';
+import { FilmData, CommentData, CommentRequest, FavoriteStatus } from '../types/film';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 
@@ -13,7 +13,7 @@ import { AppRoute, APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../
 //Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
-import { setError, loadFilmList, loadFilm, loadFilmComments } from './film-data';
+import { setError, loadFilmList, loadFilm, loadFilmComments, loadFavoriteList } from './film-data';
 import { requireAuthorization } from './user-process';
 
 export const fetchFilmAction = createAsyncThunk(
@@ -21,6 +21,22 @@ export const fetchFilmAction = createAsyncThunk(
   async (_, { dispatch }) => {
     const { data } = await Axios.get<FilmData[]>('/films');
     dispatch(loadFilmList(data));
+  },
+);
+
+export const fetchFavoriteAction = createAsyncThunk(
+  'data/fetchFavorite',
+  async (_, { dispatch }) => {
+    const { data } = await Axios.get<FilmData[]>('/favorite');
+    dispatch(loadFavoriteList(data));
+  },
+);
+
+export const toggleFavoriteAction = createAsyncThunk(
+  'data/fetchFavorite',
+  async ({ id, status }: { id: number; status: FavoriteStatus }, { dispatch }) => {
+    const { data } = await Axios.get<FilmData>(`/favorite/${id}/${status}`);
+    dispatch(loadFilm(data));
   },
 );
 

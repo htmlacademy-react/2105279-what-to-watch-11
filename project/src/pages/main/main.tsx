@@ -1,5 +1,5 @@
 // Библиотеки
-import React, { useEffect } from 'react';
+import React, { useEffect, MouseEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getFilm } from '../../store/selectors';
 
 // Константы
-import { ViewCardCount, AppRoute, GENRE_ALL } from '../../const';
+import { ViewCardCount, GENRE_ALL } from '../../const';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
@@ -16,6 +16,7 @@ import GenreList from '../../components/genre-list/genere-list';
 import ShowButton from '../../components/show-button/show-button';
 import PageHeader from '../../components/page-header/page-header';
 import LoadingScreen from '../loading-screen/loading-screen';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/film-data';
@@ -38,6 +39,11 @@ export default function Main(): JSX.Element {
   if (!film) {
     return <LoadingScreen />;
   }
+
+  const handlePayerButtonClick = (evt: MouseEvent) => {
+    evt.preventDefault();
+    navigate(`/player/${film.id}`);
+  };
 
   return (
     <React.StrictMode>
@@ -67,23 +73,19 @@ export default function Main(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button
+                  className="btn btn--play film-card__button"
+                  type="button"
+                  onClick={handlePayerButtonClick}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button
-                  className="btn btn--list film-card__button"
-                  type="button"
-                  onClick={() => navigate(AppRoute.MyList)}
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+
+                <MyListButton />
+
               </div>
             </div>
           </div>

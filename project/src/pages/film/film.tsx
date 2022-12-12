@@ -1,5 +1,5 @@
 // Библиотеки
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, useNavigate } from 'react-router-dom';
@@ -21,6 +21,7 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import { setViewCardCount } from '../../store/film-data';
 import { fetchFilmSimilarAction, fetchCommentAction, fetchFilmIdAction } from '../../store/api-actions';
 import { getFilm, getComments, getAuthorizationStatus } from '../../store/selectors';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
 export default function Film(): JSX.Element {
   const { id } = useParams();
@@ -46,6 +47,11 @@ export default function Film(): JSX.Element {
   if (!film || !id || Number(id) !== film.id) {
     return <LoadingScreen />;
   }
+
+  const handlePayerButtonClick = (evt: MouseEvent) => {
+    evt.preventDefault();
+    navigate(`/player/${id}`);
+  };
 
   const addReviewButton = authorizationStatus === AuthorizationStatus.Auth
     ? (<Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>)
@@ -75,19 +81,17 @@ export default function Film(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button
+                  className="btn btn--play film-card__button"
+                  type="button"
+                  onClick={handlePayerButtonClick}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <MyListButton />
                 {addReviewButton}
               </div>
             </div>
