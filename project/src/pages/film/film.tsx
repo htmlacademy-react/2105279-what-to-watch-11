@@ -43,7 +43,7 @@ export default function Film(): JSX.Element {
     }
   }, [id, dispatch, navigate]);
 
-  if (!film || !id) {
+  if (!film || !id || Number(id) !== film.id) {
     return <LoadingScreen />;
   }
 
