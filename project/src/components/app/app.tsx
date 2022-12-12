@@ -24,7 +24,7 @@ import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 //Модули
-import { fetchFilmAction } from '../../store/api-actions';
+import { fetchFilmAction, fetchFavoriteAction } from '../../store/api-actions';
 
 export default function App(): JSX.Element {
 
@@ -38,6 +38,11 @@ export default function App(): JSX.Element {
         dispatch(fetchFilmAction());
       }
     }, [dispatch, length]);
+
+  useEffect(
+    () => {
+      dispatch(fetchFavoriteAction());
+    }, [dispatch]);
 
   if (!length) {
     return <LoadingScreen />;

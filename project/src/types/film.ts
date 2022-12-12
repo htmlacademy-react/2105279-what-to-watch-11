@@ -40,5 +40,7 @@ export enum TabsName {
   Reviews = 'Reviews',
 }
 
-export const GENRE_ALL = 'All genres';
-
+export enum FavoriteStatus {
+  DeleteFilm = 0,
+  AddFilm = 1,
+}

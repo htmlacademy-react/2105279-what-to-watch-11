@@ -1,37 +1,50 @@
 // Библиотеки
-import React, { useEffect } from 'react';
+import React, { useEffect, MouseEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getFilms } from '../../store/selectors';
-
-// Типы
-import { GENRE_ALL } from '../../types/film';
+import { getFilm, getFilms } from '../../store/selectors';
 
 // Константы
-import { ViewCardCount } from '../../const';
-import { AppRoute } from '../../const';
+import { ViewCardCount, GENRE_ALL } from '../../const';
 
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 import GenreList from '../../components/genre-list/genere-list';
 import ShowButton from '../../components/show-button/show-button';
 import PageHeader from '../../components/page-header/page-header';
+import LoadingScreen from '../loading-screen/loading-screen';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/film-data';
+import { fetchFilmPromoAction } from '../../store/api-actions';
 
 export default function Main(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const film = useAppSelector(getFilm);
   const films = useAppSelector(getFilms);
 
   useEffect(() => {
     dispatch(selectGenre(GENRE_ALL));
     dispatch(setViewCardCount(ViewCardCount.Init));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchFilmPromoAction());
+  }, [dispatch]);
+
+  if (!film) {
+    return <LoadingScreen />;
+  }
+
+  const handlePayerButtonClick = (evt: MouseEvent) => {
+    evt.preventDefault();
+    navigate(`/player/${film.id}`);
+  };
 
   return (
     <React.StrictMode>
@@ -40,44 +53,40 @@ export default function Main(): JSX.Element {
       </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={films[0]?.backgroundImage} alt={films[0]?.name} />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <PageHeader />
+        <PageHeader favorite={null} />
 
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={films[0]?.posterImage} alt={films[0]?.name} width="218" height="327" />
+              <img src={film.posterImage} alt={film.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{films[0]?.name}</h2>
+              <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{films[0]?.genre}</span>
-                <span className="film-card__year">{films[0]?.released}</span>
+                <span className="film-card__genre">{film.genre}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button
+                  className="btn btn--play film-card__button"
+                  type="button"
+                  onClick={handlePayerButtonClick}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button
-                  className="btn btn--list film-card__button"
-                  type="button"
-                  onClick={() => navigate(AppRoute.MyList)}
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+
+                <MyListButton />
+
               </div>
             </div>
           </div>
@@ -90,7 +99,7 @@ export default function Main(): JSX.Element {
 
           <GenreList />
 
-          <CardList />
+          <CardList films={films} />
 
           <ShowButton />
 

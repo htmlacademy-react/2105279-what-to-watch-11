@@ -9,7 +9,7 @@ export default function LoadingScreen(): JSX.Element {
     <React.StrictMode>
       <div className="user-page">
 
-        <PageHeader />
+        <PageHeader favorite={null} />
 
         <div className="sign-in user-page__content">
           <h1>Loading ...</h1>

@@ -4,6 +4,7 @@ import { FilmData, CommentData } from '../types/film';
 import { AuthorizationStatus } from '../const';
 
 export const getFilms = (state: StoreType): FilmData[] => state.DATA.films;
+export const getFavorite = (state: StoreType): FilmData[] => state.DATA.favorite;
 export const getFilm = (state: StoreType): FilmData => state.DATA.film as FilmData;
 export const getComments = (state: StoreType): CommentData[] => state.DATA.comments;
 export const getAuthorizationStatus = (state: StoreType): AuthorizationStatus => state.USER.authorizationStatus;

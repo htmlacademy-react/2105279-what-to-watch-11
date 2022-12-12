@@ -2,16 +2,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Типы
-import { GENRE_ALL, FilmData, CommentData } from '../types/film';
+import { FilmData, CommentData } from '../types/film';
 import { FilmsData } from '../types/store';
 
 // Константы
-import { ViewCardCount } from '../const';
-import { NameSpace } from '../const';
+import { ViewCardCount, NameSpace, GENRE_ALL } from '../const';
 
 const initialState: FilmsData = {
   genre: GENRE_ALL,
   films: [],
+  favorite: [],
   film: null,
   comments: [],
   viewCardCount: ViewCardCount.Init,
@@ -38,6 +38,10 @@ export const filmsData = createSlice({
       (state, action: PayloadAction<FilmData[]>) => {
         state.films = action.payload;
       },
+    loadFavoriteList:
+      (state, action: PayloadAction<FilmData[]>) => {
+        state.favorite = action.payload;
+      },
     loadFilm:
       (state, action: PayloadAction<FilmData>) => {
         state.film = action.payload;
@@ -60,5 +64,6 @@ export const {
   setError,
   loadFilmList,
   loadFilm,
-  loadFilmComments
+  loadFilmComments,
+  loadFavoriteList
 } = filmsData.actions;
