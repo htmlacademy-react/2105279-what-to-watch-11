@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getFilm } from '../../store/selectors';
+import { getFilm, getFilms } from '../../store/selectors';
 
 // Константы
 import { ViewCardCount, GENRE_ALL } from '../../const';
@@ -26,6 +26,7 @@ export default function Main(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const film = useAppSelector(getFilm);
+  const films = useAppSelector(getFilms);
 
   useEffect(() => {
     dispatch(selectGenre(GENRE_ALL));
@@ -57,7 +58,7 @@ export default function Main(): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <PageHeader />
+        <PageHeader favorite={null} />
 
         <div className="film-card__wrap">
           <div className="film-card__info">
@@ -98,7 +99,7 @@ export default function Main(): JSX.Element {
 
           <GenreList />
 
-          <CardList />
+          <CardList films={films} />
 
           <ShowButton />
 

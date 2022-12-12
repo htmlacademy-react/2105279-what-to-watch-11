@@ -11,7 +11,7 @@ import { AuthorizationStatus } from '../../const';
 //Модули
 import { logoutAction } from '../../store/api-actions';
 
-export default function PageHeader() {
+export default function PageHeader({ favorite }: { favorite: number | null }) {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
@@ -53,6 +53,12 @@ export default function PageHeader() {
           <span className="logo__letter logo__letter--3">W</span>
         </a>
       </div>
+
+      {
+        favorite !== null
+          ? (<h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favorite}</span></h1>)
+          : (<div />)
+      }
 
       {userBlock}
 

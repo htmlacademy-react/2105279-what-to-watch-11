@@ -1,6 +1,6 @@
 //Хуки
 import { useAppSelector } from '../../hooks';
-import { getFilms, getCardCount, getGenre } from '../../store/selectors';
+import { getCardCount, getGenre } from '../../store/selectors';
 
 // Типы
 import { FilmData } from '../../types/film';
@@ -11,8 +11,7 @@ import { GENRE_ALL } from '../../const';
 // Компоненты
 import FilmCard from '../../components/film-card/film-card';
 
-export default function CardList(): JSX.Element {
-  const films = useAppSelector(getFilms);
+export default function CardList({ films }: { films: FilmData[] }): JSX.Element {
   const viewCardCount = useAppSelector(getCardCount);
   const genre = useAppSelector(getGenre);
 

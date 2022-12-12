@@ -1,27 +1,30 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 // Библиотеки
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
+//Хуки
+import { useAppSelector } from '../../hooks';
+
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 import PageHeader from '../../components/page-header/page-header';
-
+import { getFavorite } from '../../store/selectors';
 
 export default function MyList(): JSX.Element {
+  const favorite = useAppSelector(getFavorite);
+
   return (
     <div className="user-page">
       <Helmet>
         <title>Мой список</title>
       </Helmet>
 
-      <PageHeader />
+      <PageHeader favorite={favorite.length} />
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <CardList />
+        <CardList films={favorite} />
 
       </section>
 

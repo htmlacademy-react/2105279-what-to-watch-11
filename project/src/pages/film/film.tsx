@@ -20,13 +20,14 @@ import LoadingScreen from '../loading-screen/loading-screen';
 //Модули
 import { setViewCardCount } from '../../store/film-data';
 import { fetchFilmSimilarAction, fetchCommentAction, fetchFilmIdAction } from '../../store/api-actions';
-import { getFilm, getComments, getAuthorizationStatus } from '../../store/selectors';
+import { getFilm, getFilms, getComments, getAuthorizationStatus } from '../../store/selectors';
 import MyListButton from '../../components/my-list-button/my-list-button';
 
 export default function Film(): JSX.Element {
   const { id } = useParams();
   const comments = useAppSelector(getComments);
   const film = useAppSelector(getFilm);
+  const films = useAppSelector(getFilms);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ export default function Film(): JSX.Element {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <PageHeader />
+          <PageHeader favorite={null} />
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -116,7 +117,7 @@ export default function Film(): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <CardList />
+          <CardList films={films} />
 
         </section>
 

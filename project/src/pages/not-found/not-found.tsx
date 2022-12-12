@@ -14,7 +14,7 @@ export default function NotFound(): JSX.Element {
       </Helmet>
       <div className="user-page">
 
-        <PageHeader />
+        <PageHeader favorite={null} />
 
         <div className="sign-in user-page__content">
           <h1>404 Not Found</h1>

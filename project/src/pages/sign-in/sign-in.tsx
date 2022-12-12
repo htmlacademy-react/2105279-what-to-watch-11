@@ -54,7 +54,7 @@ export default function SignIn(): JSX.Element {
         <title>Авторизация</title>
       </Helmet>
 
-      <PageHeader />
+      <PageHeader favorite={null} />
 
       <div className="sign-in user-page__content">
         <form
