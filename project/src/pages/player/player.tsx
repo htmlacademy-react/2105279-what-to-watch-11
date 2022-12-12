@@ -13,6 +13,24 @@ import LoadingScreen from '../loading-screen/loading-screen';
 //модули
 import { fetchFilmIdAction } from '../../store/api-actions';
 
+interface DocumentElementWithFullscreen extends HTMLElement {
+  msRequestFullscreen?: () => void;
+  mozRequestFullScreen?: () => void;
+  webkitRequestFullscreen?: () => void;
+}
+
+const requestFullScreen = (element: DocumentElementWithFullscreen) => {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  }
+};
+
 export default function Player(): JSX.Element {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isFullscreen, setFullscreen] = useState(false);
@@ -74,8 +92,8 @@ export default function Player(): JSX.Element {
 
   useEffect(() => {
     if (isFullscreen) {
-      if (videoRef.current?.requestFullscreen) {
-        videoRef.current.requestFullscreen();
+      if (videoRef.current) {
+        requestFullScreen(videoRef.current);
       }
     }
     return () => setFullscreen(false);
