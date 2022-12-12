@@ -6,7 +6,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getFilm, getComments, getAuthorizationStatus } from '../../store/selectors';
 
 // Константы
 import { ViewCardCount } from '../../const';
@@ -16,11 +15,12 @@ import { AuthorizationStatus } from '../../const';
 import Tabs from '../../components/tabs/tabs';
 import CardList from '../../components/card-list/card-list';
 import PageHeader from '../../components/page-header/page-header';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 //Модули
 import { setViewCardCount } from '../../store/film-data';
 import { fetchFilmSimilarAction, fetchCommentAction, fetchFilmIdAction } from '../../store/api-actions';
-import LoadingScreen from '../loading-screen/loading-screen';
+import { getFilm, getComments, getAuthorizationStatus } from '../../store/selectors';
 
 export default function Film(): JSX.Element {
   const { id } = useParams();
@@ -46,6 +46,7 @@ export default function Film(): JSX.Element {
   if (!film || !id) {
     return <LoadingScreen />;
   }
+
   const addReviewButton = authorizationStatus === AuthorizationStatus.Auth
     ? (<Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>)
     : '';

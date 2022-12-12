@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getFilms } from '../../store/selectors';
+import { getFilm } from '../../store/selectors';
 
 // Константы
 import { ViewCardCount, AppRoute, GENRE_ALL } from '../../const';
@@ -15,19 +15,29 @@ import CardList from '../../components/card-list/card-list';
 import GenreList from '../../components/genre-list/genere-list';
 import ShowButton from '../../components/show-button/show-button';
 import PageHeader from '../../components/page-header/page-header';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 //Модули
 import { selectGenre, setViewCardCount } from '../../store/film-data';
+import { fetchFilmPromoAction } from '../../store/api-actions';
 
 export default function Main(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const films = useAppSelector(getFilms);
+  const film = useAppSelector(getFilm);
 
   useEffect(() => {
     dispatch(selectGenre(GENRE_ALL));
     dispatch(setViewCardCount(ViewCardCount.Init));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchFilmPromoAction());
+  }, [dispatch]);
+
+  if (!film) {
+    return <LoadingScreen />;
+  }
 
   return (
     <React.StrictMode>
@@ -36,7 +46,7 @@ export default function Main(): JSX.Element {
       </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={films[0]?.backgroundImage} alt={films[0]?.name} />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -46,14 +56,14 @@ export default function Main(): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={films[0]?.posterImage} alt={films[0]?.name} width="218" height="327" />
+              <img src={film.posterImage} alt={film.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{films[0]?.name}</h2>
+              <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{films[0]?.genre}</span>
-                <span className="film-card__year">{films[0]?.released}</span>
+                <span className="film-card__genre">{film.genre}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
 
               <div className="film-card__buttons">

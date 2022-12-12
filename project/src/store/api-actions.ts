@@ -37,6 +37,14 @@ export const fetchFilmIdAction = createAsyncThunk(
   },
 );
 
+export const fetchFilmPromoAction = createAsyncThunk(
+  'data/fetchFilm',
+  async (_, { dispatch }) => {
+    const { data } = await Axios.get<FilmData>('/promo');
+    dispatch(loadFilm(data));
+  },
+);
+
 export const fetchFilmSimilarAction = createAsyncThunk(
   'data/fetchFilmSimilar',
   async (id: string, { dispatch }) => {
