@@ -2,16 +2,16 @@
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getFilms, getCardCount } from '../../store/selectors';
 
-//Модули
-import { addViewCardCount } from '../../store/film-data';
+//Глобальное состояние
+import { addViewCardCount } from '../../store/film-data/film-data';
 
 export default function ShowButton(): JSX.Element {
   const dispatch = useAppDispatch();
   const viewCardCount = useAppSelector(getCardCount);
   const films = useAppSelector(getFilms);
 
-  if (viewCardCount < films.length) {
-    return (
+  return (viewCardCount < films.length)
+    ? (
       <div className="catalog__more">
         <button
           className="catalog__button"
@@ -25,7 +25,5 @@ export default function ShowButton(): JSX.Element {
           Show more
         </button>
       </div>
-    );
-  }
-  return <div></div>;
+    ) : <div></div>;
 }

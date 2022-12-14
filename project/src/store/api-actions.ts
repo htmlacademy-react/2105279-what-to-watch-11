@@ -13,8 +13,10 @@ import { AppRoute, APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../
 //Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
-import { setError, loadFilmList, loadFilm, loadFilmComments, loadFavoriteList } from './film-data';
-import { requireAuthorization } from './user-process';
+
+//Глобальное состояние
+import { setError, loadFilmList, loadFilm, loadFilmComments, loadFavoriteList } from './film-data/film-data';
+import { requireAuthorization } from './user-process/user-process';
 
 export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',

@@ -4,10 +4,12 @@ import { useParams, Link, redirect } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector } from '../../hooks';
-import { getFilms } from '../../store/selectors';
 
 // Компоненты
 import FormReview from '../../components/form-review/form-review';
+
+//Глобальное состояние
+import { getFilms } from '../../store/selectors';
 
 export default function AddReview(): JSX.Element {
   const { id } = useParams();
@@ -16,7 +18,6 @@ export default function AddReview(): JSX.Element {
   const filmIndex = films.findIndex((value) => (value.id === filmId));
   if (filmIndex === -1 || !id) {
     redirect('not-found');
-    return <div></div>;
   }
   const film = films[filmIndex];
 
@@ -70,7 +71,7 @@ export default function AddReview(): JSX.Element {
       </div>
 
       <div className="add-review">
-        <FormReview id={id} />
+        <FormReview id={id as string} />
       </div>
 
     </section>

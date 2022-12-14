@@ -4,7 +4,7 @@ import axios, { AxiosInstance, AxiosResponse, AxiosError, AxiosRequestConfig } f
 //Константы
 import { StatusCodes } from '../const';
 
-//Модули
+//Глобальное состояние
 import { processErrorHandle } from './process-error-handle';
 import { getToken } from './token';
 

@@ -8,6 +8,8 @@ import { useAppSelector } from '../../hooks';
 // Компоненты
 import CardList from '../../components/card-list/card-list';
 import PageHeader from '../../components/page-header/page-header';
+
+//Глобальное состояние
 import { getFavorite } from '../../store/selectors';
 
 export default function MyList(): JSX.Element {

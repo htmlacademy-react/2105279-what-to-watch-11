@@ -5,7 +5,6 @@ import cn from 'classnames';
 
 //Хуки
 import { useAppSelector } from '../../hooks';
-import { getFilm } from '../../store/selectors';
 
 // Типы
 import { TabsName, CommentData } from '../../types/film';
@@ -15,6 +14,8 @@ import TabOverview from '../tab-overview/tab-overview';
 import TabDetails from '../tab-details/tab-details';
 import TabReview from '../tab-reviews/tab-review';
 
+//Глобальное состояние
+import { getFilm } from '../../store/selectors';
 
 export default function Tabs({ comments }: { comments: CommentData[] }): JSX.Element {
   const [searchTab, setSearchTab] = useSearchParams();

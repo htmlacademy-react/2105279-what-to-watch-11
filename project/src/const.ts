@@ -33,8 +33,14 @@ export enum StatusCodes {
 }
 
 export enum NameSpace {
-  Data = 'DATA',
-  User = 'USER',
+  Data = 'Data',
+  User = 'User',
 }
 
 export const GENRE_ALL = 'All genres';
+export const MAX_VIEW_GENRES = 9;
+
+export enum ReviewSize {
+  Min = 50,
+  Max = 400,
+}

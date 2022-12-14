@@ -5,7 +5,6 @@ import { HelmetProvider } from 'react-helmet-async';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getLength, getAuthorizationStatus } from '../../store/selectors';
 
 // Константы
 import { AppRoute } from '../../const';
@@ -23,8 +22,9 @@ import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
-//Модули
+//Глобальное состояние
 import { fetchFilmAction, fetchFavoriteAction } from '../../store/api-actions';
+import { getLength, getAuthorizationStatus } from '../../store/selectors';
 
 export default function App(): JSX.Element {
 

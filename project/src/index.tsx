@@ -3,13 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
-// Константы
-
 // Компоненты
 import App from './components/app/app';
 import ErrorMessage from './components/error-message/error-message';
 
-//Модули
+//Глобальное состояние
 import { store } from './store/index';
 import { checkAuthAction } from './store/api-actions';
 
