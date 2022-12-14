@@ -44,10 +44,11 @@ export default function Player(): JSX.Element {
 
   const progress = `${(currentTime / durationTime) * 100}%`;
 
-  const hours = Math.trunc(currentTime / 3600);
-  const minutes = Math.trunc(currentTime / 60 - hours * 60);
-  const seconds = Math.trunc(currentTime - hours * 3600 - minutes * 60);
-  const time = `${hours ? hours : '00'}:${minutes ? minutes : '00'}:${seconds ? seconds : '00'}`;
+  const leftTime = durationTime - currentTime;
+  const hours = Math.trunc(leftTime / 3600);
+  const minutes = Math.trunc(leftTime / 60 - hours * 60);
+  const seconds = Math.trunc(leftTime - hours * 3600 - minutes * 60);
+  const timeString = `${hours ? `-${hours}` : '-'}:${minutes ? minutes : '00'}:${seconds ? seconds : '00'}`;
 
   useEffect(() => {
     let isPlayerMounted = true;
@@ -164,7 +165,7 @@ export default function Player(): JSX.Element {
             </progress>
             <div className="player__toggler" style={{ left: progress }}>Toggler</div>
           </div>
-          <div className="player__time-value">{time}</div>
+          <div className="player__time-value">{timeString}</div>
         </div>
 
         <div className="player__controls-row">
