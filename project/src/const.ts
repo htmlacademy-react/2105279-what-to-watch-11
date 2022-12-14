@@ -33,8 +33,8 @@ export enum StatusCodes {
 }
 
 export enum NameSpace {
-  Data = 'DATA',
-  User = 'USER',
+  Data = 'Data',
+  User = 'User',
 }
 
 export const GENRE_ALL = 'All genres';
