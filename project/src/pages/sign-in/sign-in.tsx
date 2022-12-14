@@ -5,20 +5,19 @@ import { useRef, FormEvent } from 'react';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/selectors';
 
 //Типы
 import { AuthData } from '../../types/auth-data';
 
 //Константы
-import { AuthorizationStatus } from '../../const';
-import { AppRoute } from '../../const';
+import { AuthorizationStatus, AppRoute } from '../../const';
 
 //компоненты
 import PageHeader from '../../components/page-header/page-header';
 
-//Модули
+//Глобальное состояние
 import { loginAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/selectors';
 
 
 export default function SignIn(): JSX.Element {

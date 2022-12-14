@@ -3,13 +3,13 @@ import { SyntheticEvent } from 'react';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/selectors';
 
 // Константы
 import { AuthorizationStatus } from '../../const';
 
-//Модули
+//Глобальное состояние
 import { logoutAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/selectors';
 
 export default function PageHeader({ favorite }: { favorite: number | null }) {
   const dispatch = useAppDispatch();
@@ -57,7 +57,7 @@ export default function PageHeader({ favorite }: { favorite: number | null }) {
       {
         favorite !== null
           ? (<h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favorite}</span></h1>)
-          : (<div />)
+          : null
       }
 
       {userBlock}

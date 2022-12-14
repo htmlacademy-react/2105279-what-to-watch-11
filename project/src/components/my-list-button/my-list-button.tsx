@@ -1,10 +1,9 @@
 // Библиотеки
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getFilm, getFavorite, getAuthorizationStatus } from '../../store/selectors';
 
 //Типы
 import { FavoriteStatus } from '../../types/film';
@@ -12,8 +11,9 @@ import { FavoriteStatus } from '../../types/film';
 //Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
 
-//Модули
+//Глобальное состояние
 import { fetchFavoriteAction, toggleFavoriteAction } from '../../store/api-actions';
+import { getFilm, getFavorite, getAuthorizationStatus } from '../../store/selectors';
 
 export default function MyListButton(): JSX.Element {
   const dispatch = useAppDispatch();

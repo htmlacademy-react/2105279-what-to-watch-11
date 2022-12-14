@@ -4,17 +4,16 @@ import cn from 'classnames';
 
 //Хуки
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getFilms } from '../../store/selectors';
 
 // Типы
 import { FilmData } from '../../types/film';
 
 //константы
-import { GENRE_ALL } from '../../const';
+import { GENRE_ALL, ViewCardCount } from '../../const';
 
-//Модули
+//Глобальное состояние
 import { selectGenre, setViewCardCount } from '../../store/film-data';
-import { ViewCardCount } from '../../const';
+import { getFilms } from '../../store/selectors';
 
 export default function GenreList(): JSX.Element {
   const [currentGenre, setCurrentGenre] = useState<string>(GENRE_ALL);

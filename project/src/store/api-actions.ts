@@ -13,6 +13,8 @@ import { AppRoute, APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../
 //Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
+
+//Глобальное состояние
 import { setError, loadFilmList, loadFilm, loadFilmComments, loadFavoriteList } from './film-data';
 import { requireAuthorization } from './user-process';
 

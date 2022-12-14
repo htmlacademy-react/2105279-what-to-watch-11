@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 //Хуки
 import { useAppDispatch } from '../../hooks';
 
-//Модули
+//Глобальное состояние
 import { uploadCommentAction } from '../../store/api-actions';
 
 enum Rate {

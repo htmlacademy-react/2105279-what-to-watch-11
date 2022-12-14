@@ -1,14 +1,14 @@
 // Библиотеки
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import React from 'react';
 
 //Компоненты
 import PageHeader from '../../components/page-header/page-header';
 
 export default function NotFound(): JSX.Element {
   return (
-    <React.StrictMode>
+    <React.Component>
       <Helmet>
         <title>Not Found</title>
       </Helmet>
@@ -42,6 +42,6 @@ export default function NotFound(): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.StrictMode >
+    </React.Component >
   );
 }

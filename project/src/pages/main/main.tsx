@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getFilm, getFilms } from '../../store/selectors';
 
 // Константы
 import { ViewCardCount, GENRE_ALL } from '../../const';
@@ -18,9 +17,10 @@ import PageHeader from '../../components/page-header/page-header';
 import LoadingScreen from '../loading-screen/loading-screen';
 import MyListButton from '../../components/my-list-button/my-list-button';
 
-//Модули
+//Глобальное состояние
 import { selectGenre, setViewCardCount } from '../../store/film-data';
 import { fetchFilmPromoAction } from '../../store/api-actions';
+import { getFilm, getFilms } from '../../store/selectors';
 
 export default function Main(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -47,7 +47,7 @@ export default function Main(): JSX.Element {
   };
 
   return (
-    <React.StrictMode>
+    <React.Component>
       <Helmet>
         <title>Главная страница</title>
       </Helmet>
@@ -119,6 +119,6 @@ export default function Main(): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.StrictMode>
+    </React.Component>
   );
 }

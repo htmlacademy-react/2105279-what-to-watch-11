@@ -6,7 +6,7 @@ import PageHeader from '../../components/page-header/page-header';
 
 export default function LoadingScreen(): JSX.Element {
   return (
-    <React.StrictMode>
+    <React.Component>
       <div className="user-page">
 
         <PageHeader favorite={null} />
@@ -29,6 +29,6 @@ export default function LoadingScreen(): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.StrictMode>
+    </React.Component>
   );
 }

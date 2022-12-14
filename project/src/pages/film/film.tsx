@@ -8,20 +8,19 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
 // Константы
-import { ViewCardCount } from '../../const';
-import { AuthorizationStatus } from '../../const';
+import { ViewCardCount, AuthorizationStatus } from '../../const';
 
 // Компоненты
 import Tabs from '../../components/tabs/tabs';
 import CardList from '../../components/card-list/card-list';
 import PageHeader from '../../components/page-header/page-header';
 import LoadingScreen from '../loading-screen/loading-screen';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
-//Модули
+//Глобальное состояние
 import { setViewCardCount } from '../../store/film-data';
 import { fetchFilmSimilarAction, fetchCommentAction, fetchFilmIdAction } from '../../store/api-actions';
 import { getFilm, getFilms, getComments, getAuthorizationStatus } from '../../store/selectors';
-import MyListButton from '../../components/my-list-button/my-list-button';
 
 export default function Film(): JSX.Element {
   const { id } = useParams();
@@ -56,10 +55,10 @@ export default function Film(): JSX.Element {
 
   const addReviewButton = authorizationStatus === AuthorizationStatus.Auth
     ? (<Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>)
-    : '';
+    : null;
 
   return (
-    <React.StrictMode>
+    <React.Component>
       <Helmet>
         <title>Подробнее о фильме</title>
       </Helmet>
@@ -135,6 +134,6 @@ export default function Film(): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.StrictMode>
+    </React.Component>
   );
 }

@@ -5,13 +5,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getFilm } from '../../store/selectors';
 
 //Компоненты
 import LoadingScreen from '../loading-screen/loading-screen';
 
-//модули
+//Глобальное состояние
 import { fetchFilmIdAction } from '../../store/api-actions';
+import { getFilm } from '../../store/selectors';
 
 interface DocumentElementWithFullscreen extends HTMLElement {
   msRequestFullscreen?: () => void;
@@ -44,11 +44,10 @@ export default function Player(): JSX.Element {
 
   const progress = `${(currentTime / durationTime) * 100}%`;
 
-  let time = '';
   const hours = Math.trunc(currentTime / 3600);
   const minutes = Math.trunc(currentTime / 60 - hours * 60);
   const seconds = Math.trunc(currentTime - hours * 3600 - minutes * 60);
-  time = `${hours ? hours : '00'}:${minutes ? minutes : '00'}:${seconds ? seconds : '00'}`;
+  const time = `${hours ? hours : '00'}:${minutes ? minutes : '00'}:${seconds ? seconds : '00'}`;
 
   useEffect(() => {
     let isPlayerMounted = true;

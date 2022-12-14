@@ -1,8 +1,10 @@
 //Типы
 import { FilmData, CommentData } from './film';
+
+//Константы
 import { AuthorizationStatus } from '../const';
 
-//Модули
+//Глобальное состояние
 import { store } from '../store/index';
 
 
