@@ -1,6 +1,5 @@
 // Библиотеки
 import { SyntheticEvent } from 'react';
-import { Link } from 'react-router-dom';
 
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
@@ -25,11 +24,11 @@ export default function PageHeader({ favorite }: { favorite: number | null }) {
     ? (
       <ul className="user-block">
         <li className="user-block__item">
-          <Link to={AppRoute.MyList}>
+          <a href={AppRoute.MyList}>
             <div className="user-block__avatar">
               <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
             </div>
-          </Link>
+          </a>
         </li>
         <li className="user-block__item">
           <a
@@ -48,7 +47,7 @@ export default function PageHeader({ favorite }: { favorite: number | null }) {
     );
 
   return (
-    <header className="page-header">
+    <header className="page-header user-page__head">
       <div className="logo">
         <a href="/" className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
