@@ -77,7 +77,7 @@ export default function Player(): JSX.Element {
       video.removeEventListener('timeupdate', handleCurrentTime);
       video.removeEventListener('loadeddata', handleDurationTime);
     };
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     let isPlayerMounted = true;
