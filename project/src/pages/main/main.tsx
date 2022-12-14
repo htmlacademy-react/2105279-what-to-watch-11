@@ -18,7 +18,7 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import MyListButton from '../../components/my-list-button/my-list-button';
 
 //Глобальное состояние
-import { selectGenre, setViewCardCount } from '../../store/film-data';
+import { selectGenre, setViewCardCount } from '../../store/film-data/film-data';
 import { fetchFilmPromoAction } from '../../store/api-actions';
 import { getFilm, getFilms } from '../../store/selectors';
 

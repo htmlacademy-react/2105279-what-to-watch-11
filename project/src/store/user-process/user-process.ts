@@ -2,8 +2,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 //Типы
-import { NameSpace, AuthorizationStatus } from '../const';
-import { UserProcess } from '../types/store';
+import { NameSpace, AuthorizationStatus } from '../../const';
+import { UserProcess } from '../../types/store';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,

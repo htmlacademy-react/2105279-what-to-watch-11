@@ -12,7 +12,7 @@ import { FilmData } from '../../types/film';
 import { GENRE_ALL, ViewCardCount, MAX_VIEW_GENRES } from '../../const';
 
 //Глобальное состояние
-import { selectGenre, setViewCardCount } from '../../store/film-data';
+import { selectGenre, setViewCardCount } from '../../store/film-data/film-data';
 import { getFilms } from '../../store/selectors';
 
 export default function GenreList(): JSX.Element {

@@ -18,7 +18,7 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import MyListButton from '../../components/my-list-button/my-list-button';
 
 //Глобальное состояние
-import { setViewCardCount } from '../../store/film-data';
+import { setViewCardCount } from '../../store/film-data/film-data';
 import { fetchFilmSimilarAction, fetchCommentAction, fetchFilmIdAction } from '../../store/api-actions';
 import { getFilm, getFilms, getComments, getAuthorizationStatus } from '../../store/selectors';
 

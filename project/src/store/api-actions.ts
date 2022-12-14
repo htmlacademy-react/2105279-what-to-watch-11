@@ -15,8 +15,8 @@ import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
 
 //Глобальное состояние
-import { setError, loadFilmList, loadFilm, loadFilmComments, loadFavoriteList } from './film-data';
-import { requireAuthorization } from './user-process';
+import { setError, loadFilmList, loadFilm, loadFilmComments, loadFavoriteList } from './film-data/film-data';
+import { requireAuthorization } from './user-process/user-process';
 
 export const fetchFilmAction = createAsyncThunk(
   'data/fetchFilms',
