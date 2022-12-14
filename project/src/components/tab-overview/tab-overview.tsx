@@ -4,7 +4,7 @@ import React from 'react';
 // Типы
 import { FilmData } from '../../types/film';
 
-const RatingStringToRange: {
+export const RatingStringToRange: {
   [key: string]: number[];
 } = {
   'Bad': [0, 3],
@@ -14,7 +14,7 @@ const RatingStringToRange: {
   'Awesome': [10, 11]
 };
 
-const getRatingString = (rating: number) => {
+export const getRatingString = (rating: number) => {
   for (const key in RatingStringToRange) {
     const min = RatingStringToRange[key][0];
     const max = RatingStringToRange[key][1];
