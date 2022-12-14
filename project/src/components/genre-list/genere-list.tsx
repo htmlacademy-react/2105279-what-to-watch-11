@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FilmData } from '../../types/film';
 
 //константы
-import { GENRE_ALL, ViewCardCount } from '../../const';
+import { GENRE_ALL, ViewCardCount, MAX_VIEW_GENRES } from '../../const';
 
 //Глобальное состояние
 import { selectGenre, setViewCardCount } from '../../store/film-data';
@@ -25,7 +25,9 @@ export default function GenreList(): JSX.Element {
     const genres = new Set<string>();
     genres.add(GENRE_ALL);
     films.forEach(({ genre }) => {
-      genres.add(genre);
+      if (genres.size <= MAX_VIEW_GENRES) {
+        genres.add(genre);
+      }
     });
     return genres;
   };

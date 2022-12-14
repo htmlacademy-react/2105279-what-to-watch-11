@@ -38,3 +38,4 @@ export enum NameSpace {
 }
 
 export const GENRE_ALL = 'All genres';
+export const MAX_VIEW_GENRES = 9;
