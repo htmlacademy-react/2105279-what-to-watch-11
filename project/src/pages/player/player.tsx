@@ -50,9 +50,10 @@ export default function Player(): JSX.Element {
   const seconds = Math.trunc(leftTime - hours * 3600 - minutes * 60);
   const timeString = `${hours ? `-${hours}` : '-'}:${minutes ? minutes : '00'}:${seconds ? seconds : '00'}`;
 
+  const video = videoRef.current;
+
   useEffect(() => {
     let isPlayerMounted = true;
-    const video = videoRef.current;
 
     if (!video) {
       return;
@@ -78,7 +79,7 @@ export default function Player(): JSX.Element {
       video.removeEventListener('timeupdate', handleCurrentTime);
       video.removeEventListener('loadeddata', handleDurationTime);
     };
-  });
+  }, [video]);
 
   useEffect(() => {
     let isPlayerMounted = true;
