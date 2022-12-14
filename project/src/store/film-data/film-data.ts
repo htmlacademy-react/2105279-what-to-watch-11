@@ -8,7 +8,7 @@ import { FilmsData } from '../../types/store';
 // Константы
 import { ViewCardCount, NameSpace, GENRE_ALL } from '../../const';
 
-const initialState: FilmsData = {
+export const initialState: FilmsData = {
   genre: GENRE_ALL,
   films: [],
   favorite: [],

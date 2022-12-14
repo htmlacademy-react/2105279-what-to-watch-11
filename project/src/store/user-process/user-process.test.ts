@@ -9,18 +9,18 @@ describe('Reducer: user', () => {
     state = { authorizationStatus: AuthorizationStatus.Unknown };
   });
 
-  it('Без дополнительных параметров должен возвращать исходное состояние', () => {
+  test('Без дополнительных параметров должен возвращать исходное состояние', () => {
     expect(userProcess.reducer(undefined, { type: 'UNKNOWN_ACTION' }))
       .toEqual({ authorizationStatus: AuthorizationStatus.Unknown });
   });
 
   describe('requireAuthorization test', () => {
-    it('Обновляет статус до авторизованного', () => {
+    test('Обновляет статус до авторизованного', () => {
       expect(userProcess.reducer(state, { type: requireAuthorization, payload: AuthorizationStatus.Auth }))
         .toEqual({ authorizationStatus: AuthorizationStatus.Auth });
     });
 
-    it('Обновляет статус до не авторизованного', () => {
+    test('Обновляет статус до не авторизованного', () => {
       expect(userProcess.reducer(state, { type: requireAuthorization, payload: AuthorizationStatus.NoAuth }))
         .toEqual({ authorizationStatus: AuthorizationStatus.NoAuth });
     });
