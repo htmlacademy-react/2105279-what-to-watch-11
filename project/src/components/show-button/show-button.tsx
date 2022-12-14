@@ -1,6 +1,3 @@
-// Библиотеки
-import React from 'react';
-
 //Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getFilms, getCardCount } from '../../store/selectors';
@@ -13,25 +10,20 @@ export default function ShowButton(): JSX.Element {
   const viewCardCount = useAppSelector(getCardCount);
   const films = useAppSelector(getFilms);
 
-  return (
-    <React.Component>
-      {
-        viewCardCount < films.length
-          ? (
-            <div className="catalog__more">
-              <button
-                className="catalog__button"
-                type="button"
-                onClick={
-                  () => {
-                    dispatch(addViewCardCount());
-                  }
-                }
-              >
-                Show more
-              </button>
-            </div>)
-          : null
-      }
-    </React.Component>);
+  return (viewCardCount < films.length)
+    ? (
+      <div className="catalog__more">
+        <button
+          className="catalog__button"
+          type="button"
+          onClick={
+            () => {
+              dispatch(addViewCardCount());
+            }
+          }
+        >
+          Show more
+        </button>
+      </div>
+    ) : <div></div>;
 }

@@ -6,7 +6,7 @@ import { FilmData } from '../../types/film';
 
 export default function TabOverview({ film }: { film: FilmData }): JSX.Element {
   return (
-    <React.StrictMode>
+    <React.Fragment>
       <div className="film-rating">
         <div className="film-rating__score">{film.rating}</div>
         <p className="film-rating__meta">
@@ -20,6 +20,6 @@ export default function TabOverview({ film }: { film: FilmData }): JSX.Element {
         <p className="film-card__director"><strong>{film.director}</strong></p>
         <p className="film-card__starring"><strong>Starring: {film.starring}</strong></p>
       </div>
-    </React.StrictMode>
+    </React.Fragment>
   );
 }

@@ -58,7 +58,7 @@ export default function Film(): JSX.Element {
     : null;
 
   return (
-    <React.Component>
+    <React.Fragment>
       <Helmet>
         <title>Подробнее о фильме</title>
       </Helmet>
@@ -134,6 +134,6 @@ export default function Film(): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.Component>
+    </React.Fragment>
   );
 }

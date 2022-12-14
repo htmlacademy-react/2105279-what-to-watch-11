@@ -8,7 +8,7 @@ import PageHeader from '../../components/page-header/page-header';
 
 export default function NotFound(): JSX.Element {
   return (
-    <React.Component>
+    <React.Fragment>
       <Helmet>
         <title>Not Found</title>
       </Helmet>
@@ -42,6 +42,6 @@ export default function NotFound(): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.Component >
+    </React.Fragment >
   );
 }

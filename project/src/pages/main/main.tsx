@@ -47,7 +47,7 @@ export default function Main(): JSX.Element {
   };
 
   return (
-    <React.Component>
+    <React.Fragment>
       <Helmet>
         <title>Главная страница</title>
       </Helmet>
@@ -119,6 +119,6 @@ export default function Main(): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.Component>
+    </React.Fragment>
   );
 }
