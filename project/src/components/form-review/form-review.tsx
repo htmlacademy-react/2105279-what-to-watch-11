@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 //Хуки
 import { useAppDispatch } from '../../hooks';
 
+//Константы
+import { ReviewSize } from '../../const';
+
 //Глобальное состояние
 import { uploadCommentAction } from '../../store/api-actions';
 
@@ -22,14 +25,16 @@ export default function FormReview({ id }: { id: string }): JSX.Element {
 
   const handleCommentRequest = (evt: SyntheticEvent) => {
     evt.preventDefault();
-    dispatch(uploadCommentAction({
-      id,
-      comment: {
-        comment: text,
-        rating: currentRate,
-      },
-      navigate
-    }));
+    if (text.length >= ReviewSize.Min && text.length <= ReviewSize.Max) {
+      dispatch(uploadCommentAction({
+        id,
+        comment: {
+          comment: text,
+          rating: currentRate,
+        },
+        navigate
+      }));
+    }
   };
 
   const rateInput = Array.from({ length: Rate.MaxRate }, (_v, index) => {
