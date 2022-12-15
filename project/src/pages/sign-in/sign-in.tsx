@@ -7,6 +7,7 @@ import { AuthorizationStatus, AppRoute } from '../../const';
 import PageHeader from '../../components/page-header/page-header';
 import { loginAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/selectors';
+import { processErrorHandle } from '../../services/process-error-handle';
 
 export default function SignIn(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -20,12 +21,17 @@ export default function SignIn(): JSX.Element {
   }
 
   const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
+    const re = new RegExp('(?=.*[0-9])(?=.*[a-zа-яё])', 'i');
+    if (re.test(authData.password)) {
+      dispatch(loginAction(authData));
+      return;
+    }
+    processErrorHandle('Пароль должен содержать минимум одну букву и цифру');
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (loginRef.current && passwordRef.current) {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,
