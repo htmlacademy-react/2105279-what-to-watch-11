@@ -1,10 +1,5 @@
-//Библиотеки
 import axios, { AxiosInstance, AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
-
-//Константы
 import { StatusCodes } from '../const';
-
-//Глобальное состояние
 import { processErrorHandle } from './process-error-handle';
 import { getToken } from './token';
 

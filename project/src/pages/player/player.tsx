@@ -1,15 +1,8 @@
-// Библиотеки
 import { useState, useRef, useEffect, MouseEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, useNavigate } from 'react-router-dom';
-
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-//Компоненты
 import LoadingScreen from '../loading-screen/loading-screen';
-
-//Глобальное состояние
 import { fetchFilmIdAction } from '../../store/api-actions';
 import { getFilm } from '../../store/selectors';
 

@@ -1,4 +1,3 @@
-// Типы
 import { CommentData } from '../../types/film';
 
 export default function Comment({ comment }: { comment: CommentData }): JSX.Element {

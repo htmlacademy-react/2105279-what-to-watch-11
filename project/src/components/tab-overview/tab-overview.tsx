@@ -1,7 +1,4 @@
-// Библиотеки
 import React from 'react';
-
-// Типы
 import { FilmData } from '../../types/film';
 
 export const RatingStringToRange: {

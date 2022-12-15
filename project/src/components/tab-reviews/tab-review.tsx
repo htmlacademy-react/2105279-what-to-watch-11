@@ -1,7 +1,4 @@
-// Типы
 import { CommentData } from '../../types/film';
-
-// Компоненты
 import Comment from '../comment/comment';
 
 export default function TabReview({ comments }: { comments: CommentData[] }): JSX.Element {

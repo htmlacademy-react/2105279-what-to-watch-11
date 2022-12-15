@@ -1,17 +1,8 @@
-// Библиотеки
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-//Типы
 import { FavoriteStatus } from '../../types/film';
-
-//Константы
 import { AppRoute, AuthorizationStatus } from '../../const';
-
-//Глобальное состояние
 import { fetchFavoriteAction, toggleFavoriteAction } from '../../store/api-actions';
 import { getFilm, getFavorite, getAuthorizationStatus } from '../../store/selectors';
 

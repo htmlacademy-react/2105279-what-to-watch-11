@@ -1,14 +1,7 @@
-// Библиотеки
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, redirect } from 'react-router-dom';
-
-//Хуки
 import { useAppSelector } from '../../hooks';
-
-// Компоненты
 import FormReview from '../../components/form-review/form-review';
-
-//Глобальное состояние
 import { getFilms } from '../../store/selectors';
 
 export default function AddReview(): JSX.Element {

@@ -1,4 +1,3 @@
-// Типы
 import { FilmData } from '../../types/film';
 
 export default function TabDetails({ film }: { film: FilmData }): JSX.Element {

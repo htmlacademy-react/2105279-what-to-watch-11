@@ -1,17 +1,8 @@
-// Библиотеки
 import { SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import cn from 'classnames';
-
-//Хуки
 import { useAppDispatch, useAppSelector } from '../../hooks';
-
-// Типы
 import { FilmData } from '../../types/film';
-
-//константы
 import { GENRE_ALL, ViewCardCount, MAX_VIEW_GENRES } from '../../const';
-
-//Глобальное состояние
 import { selectGenre, setViewCardCount } from '../../store/film-data/film-data';
 import { getFilms } from '../../store/selectors';
 

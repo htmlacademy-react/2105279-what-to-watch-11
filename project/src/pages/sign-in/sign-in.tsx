@@ -1,45 +1,37 @@
-// Библиотеки
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, FormEvent } from 'react';
-
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-//Типы
 import { AuthData } from '../../types/auth-data';
-
-//Константы
 import { AuthorizationStatus, AppRoute } from '../../const';
-
-//компоненты
 import PageHeader from '../../components/page-header/page-header';
-
-//Глобальное состояние
 import { loginAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/selectors';
-
+import { processErrorHandle } from '../../services/process-error-handle';
 
 export default function SignIn(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
   if (authorizationStatus === AuthorizationStatus.Auth) {
     navigate(AppRoute.Main);
   }
 
   const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
+    const re = new RegExp('(?=.*[0-9])(?=.*[a-zа-яё])', 'i');
+    if (re.test(authData.password)) {
+      dispatch(loginAction(authData));
+      return;
+    }
+    processErrorHandle('Пароль должен содержать минимум одну букву и цифру');
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (loginRef.current && passwordRef.current) {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,

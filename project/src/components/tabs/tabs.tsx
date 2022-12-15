@@ -1,20 +1,11 @@
-// Библиотеки
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
-
-//Хуки
 import { useAppSelector } from '../../hooks';
-
-// Типы
 import { TabsName, CommentData } from '../../types/film';
-
-// Компоненты
 import TabOverview from '../tab-overview/tab-overview';
 import TabDetails from '../tab-details/tab-details';
 import TabReview from '../tab-reviews/tab-review';
-
-//Глобальное состояние
 import { getFilm } from '../../store/selectors';
 
 export default function Tabs({ comments }: { comments: CommentData[] }): JSX.Element {

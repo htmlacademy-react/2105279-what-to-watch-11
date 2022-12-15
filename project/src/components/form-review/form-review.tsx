@@ -1,15 +1,8 @@
-// Библиотеки
 import React, { SyntheticEvent } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-//Хуки
 import { useAppDispatch } from '../../hooks';
-
-//Константы
 import { ReviewSize } from '../../const';
-
-//Глобальное состояние
 import { uploadCommentAction } from '../../store/api-actions';
 
 enum Rate {

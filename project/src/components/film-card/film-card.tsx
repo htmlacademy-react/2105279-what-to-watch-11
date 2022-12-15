@@ -1,15 +1,9 @@
-// Библиотеки
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-// Типы
 import { FilmData } from '../../types/film';
-
-// Компоненты
 import VideoPlayer from '../video-player/video-player';
 
 const PLAYBACK_DELAY = 1000;
-
 type previewFilm = Pick<FilmData, 'id' | 'name' | 'previewImage' | 'previewVideoLink'>;
 
 export default function FilmCard({ id, name, previewImage, previewVideoLink }: previewFilm): JSX.Element {
