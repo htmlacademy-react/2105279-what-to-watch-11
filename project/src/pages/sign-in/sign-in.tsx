@@ -1,34 +1,20 @@
-// Библиотеки
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, FormEvent } from 'react';
-
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-//Типы
 import { AuthData } from '../../types/auth-data';
-
-//Константы
 import { AuthorizationStatus, AppRoute } from '../../const';
-
-//компоненты
 import PageHeader from '../../components/page-header/page-header';
-
-//Глобальное состояние
 import { loginAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/selectors';
-
 
 export default function SignIn(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
   if (authorizationStatus === AuthorizationStatus.Auth) {
     navigate(AppRoute.Main);
   }

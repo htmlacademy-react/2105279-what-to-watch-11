@@ -1,4 +1,3 @@
-// Библиотеки
 import { useEffect, useRef } from 'react';
 
 type VideoPlayerProps = {

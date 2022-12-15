@@ -1,20 +1,11 @@
-//Библиотеки
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { NavigateFunction } from 'react-router-dom';
-
-// Типы
 import { FilmData, CommentData, CommentRequest, FavoriteStatus } from '../types/film';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
-
-//Константы
 import { AppRoute, APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-
-//Модули
 import { Axios } from '../services/api';
 import { saveToken, dropToken } from '../services/token';
-
-//Глобальное состояние
 import { setError, loadFilmList, loadFilm, loadFilmComments, loadFavoriteList } from './film-data/film-data';
 import { requireAuthorization } from './user-process/user-process';
 

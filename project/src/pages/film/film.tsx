@@ -1,23 +1,14 @@
-// Библиотеки
 import React, { MouseEvent } from 'react';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-// Константы
 import { ViewCardCount, AuthorizationStatus } from '../../const';
-
-// Компоненты
 import Tabs from '../../components/tabs/tabs';
 import CardList from '../../components/card-list/card-list';
 import PageHeader from '../../components/page-header/page-header';
 import LoadingScreen from '../loading-screen/loading-screen';
 import MyListButton from '../../components/my-list-button/my-list-button';
-
-//Глобальное состояние
 import { setViewCardCount } from '../../store/film-data/film-data';
 import { fetchFilmSimilarAction, fetchCommentAction, fetchFilmIdAction } from '../../store/api-actions';
 import { getFilm, getFilms, getComments, getAuthorizationStatus } from '../../store/selectors';

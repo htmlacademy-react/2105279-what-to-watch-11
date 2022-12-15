@@ -1,13 +1,6 @@
-// Библиотеки
 import { SyntheticEvent } from 'react';
-
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-// Константы
 import { AuthorizationStatus, AppRoute } from '../../const';
-
-//Глобальное состояние
 import { logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/selectors';
 

@@ -1,8 +1,5 @@
-//Типы
 import { StoreType } from '../types/store';
 import { FilmData, CommentData } from '../types/film';
-
-//Константы
 import { AuthorizationStatus } from '../const';
 
 export const getFilms = (state: StoreType): FilmData[] => state.Data.films;

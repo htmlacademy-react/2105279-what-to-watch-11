@@ -1,9 +1,6 @@
-// Библиотеки
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-
-//Компоненты
 import PageHeader from '../../components/page-header/page-header';
 
 export default function NotFound(): JSX.Element {

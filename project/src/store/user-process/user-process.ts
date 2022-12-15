@@ -1,7 +1,4 @@
-// Библиотеки
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-//Типы
 import { NameSpace, AuthorizationStatus } from '../../const';
 import { UserProcess } from '../../types/store';
 

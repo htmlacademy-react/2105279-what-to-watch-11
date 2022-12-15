@@ -1,15 +1,8 @@
-// Библиотеки
 import { useEffect } from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-// Константы
 import { AppRoute } from '../../const';
-
-// Страницы
 import Main from '../../pages/main/main';
 import SignIn from '../../pages/sign-in/sign-in';
 import MyList from '../../pages/my-list/my-list';
@@ -17,12 +10,8 @@ import Film from '../../pages/film/film';
 import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
 import NotFound from '../../pages/not-found/not-found';
-
-// Компоненты
 import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
-
-//Глобальное состояние
 import { fetchFilmAction, fetchFavoriteAction } from '../../store/api-actions';
 import { getLength, getAuthorizationStatus } from '../../store/selectors';
 

@@ -1,23 +1,14 @@
-// Библиотеки
 import React, { useEffect, MouseEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
-
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-// Константы
 import { ViewCardCount, GENRE_ALL } from '../../const';
-
-// Компоненты
 import CardList from '../../components/card-list/card-list';
 import GenreList from '../../components/genre-list/genere-list';
 import ShowButton from '../../components/show-button/show-button';
 import PageHeader from '../../components/page-header/page-header';
 import LoadingScreen from '../loading-screen/loading-screen';
 import MyListButton from '../../components/my-list-button/my-list-button';
-
-//Глобальное состояние
 import { selectGenre, setViewCardCount } from '../../store/film-data/film-data';
 import { fetchFilmPromoAction } from '../../store/api-actions';
 import { getFilm, getFilms } from '../../store/selectors';

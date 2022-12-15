@@ -1,8 +1,5 @@
-//Хуки
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getFilms, getCardCount } from '../../store/selectors';
-
-//Глобальное состояние
 import { addViewCardCount } from '../../store/film-data/film-data';
 
 export default function ShowButton(): JSX.Element {
